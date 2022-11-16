@@ -754,4 +754,6 @@ return array (
   'motor_bike' => 'Motor Bike' ,
   'vehicle_make_for' => 'Vehicle Make For',
   'vehicle_make_name' => 'Vehicle Make Name',
+  'book_later_for_delivery' => 'Book Later For Delivery',
+  'book_now_for_delivery' => 'Book Now For Delivery',
   );

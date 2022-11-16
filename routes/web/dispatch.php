@@ -19,5 +19,7 @@ Route::middleware('auth:web')->group(function () {
 
         Route::get('dispatch/profile', 'DispatcherController@profile')->name('dispatcherProfile');
         Route::get('dispatch/book-now', 'DispatcherController@bookNow');
+        Route::get('dispatch/book-now-delivery', 'DispatcherController@bookNowDelivery');
+
     });
 });

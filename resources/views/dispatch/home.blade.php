@@ -582,15 +582,23 @@
 
             if (modal == 'book-now') {
                 $('.date-option').addClass('d-none');
-                $('.modal-title').text('Book Now')
-            } else {
+                $('.modal-title').text('Taxi Book Now');
+                 $('#book-now').modal('show');
+            } else if (modal == 'book-later')  {
                 $('.date-option').removeClass('d-none');
                 $('.datetimepicker').addClass('required_for_valid');
                 $('.datetimepicker').prop('required', true);
-                $('.modal-title').text('Book Later')
+                $('.modal-title').text('Taxi Book Later');
+                $('#book-now').modal('show');
+            } else  if (modal == 'book-now-delivery') {
+                alert('book-now-delivery');
+            } else {
+                alert('book-later-delivery');
             }
+           
+            // $('#book-now').modal('show');
+            
 
-            $('#book-now').modal('show');
         });
 
     </script>

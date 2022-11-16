@@ -46,6 +46,19 @@ class DispatcherController extends BaseController
         return view('dispatch.new-ui.book-now')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
     }
 
+    public function bookNowDelivery()
+    {
+         $main_menu = 'dispatch_request';
+
+        $sub_menu = null;
+       
+        $default_lat = get_settings('default_latitude');
+        $default_lng = get_settings('default_longitude');
+
+        return view('dispatch.new-ui.book-now-delivery')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
+    }
+
+
     /**
     *
     * create new request

@@ -21,6 +21,16 @@
                    @lang('view_pages.book_now')
                 </button>
 
+<!-- Delivery -->
+                <button type="button" class="btn btn-primary btn-sm turned-button mx-4 booking_screen" data-bs-toggle="modal" data-id="book-later-delivery">
+                   @lang('view_pages.book_later_for_delivery')
+                </button>
+
+                <button type="button" class="btn btn-primary btn-sm turned-button mr-auto booking_screen" data-id="book-now-delivery"
+                    data-bs-toggle="modal">
+                   @lang('view_pages.book_now_for_delivery')
+                </button>
+
                 {{-- <a href="{{url('dispatch/book-now')}}" class="btn btn-primary btn-sm">@lang('view_pages.book_now')</a> --}}
             
             <ul class="navbar-nav navbar-nav-icons flex-row align-items-center" style="margin-left: auto;">
