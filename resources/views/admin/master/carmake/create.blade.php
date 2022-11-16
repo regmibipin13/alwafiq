@@ -40,15 +40,28 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="name">@lang('view_pages.name') <span class="text-danger">*</span></label>
+                                            <label for="name">@lang('view_pages.vehicle_make_name') <span class="text-danger">*</span></label>
                                             <input class="form-control" type="text" id="name" name="name"
                                                 value="{{ old('name') }}" required
                                                 placeholder="@lang('view_pages.enter') @lang('view_pages.name')">
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
                                         </div>
                                     </div>
-                                </div>
+                          <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="">@lang('view_pages.vehicle_make_for') <span class="text-danger">*</span></label>
+                                            <select name="vehicle_make_for" id="vehicle_make_for" class="form-control" required>
+                                                <option value="" selected disabled>@lang('view_pages.select')</option>
+                                                <option value="taxi" {{ old('vehicle_make_for') == 'taxi' ? 'selected' : '' }}>@lang('view_pages.taxi')</option>
+                                                <option value="motor_bike" {{ old('vehicle_make_for') == 'motor_bike' ? 'selected' : '' }}>@lang('view_pages.motor_bike')</option>
+                                                <option value="truck" {{ old('icon_types_for') == 'truck' ? 'selected' : '' }}>@lang('view_pages.truck')</option>
 
+                                            </select>
+                                            <span class="text-danger">{{ $errors->first('vehicle_make_for') }}</span>
+                                        </div>
+                                    </div>
+     
+                        </div>
 
                                 <div class="form-group">
                                     <div class="col-12">

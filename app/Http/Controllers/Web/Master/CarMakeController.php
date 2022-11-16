@@ -57,11 +57,11 @@ class CarMakeController extends BaseController
     {
         Validator::make($request->all(), [
             'transport_type' => 'required',
-            'name' => 'required|unique:car_makes,name'
+            'name' => 'required|unique:car_makes,name',
+            'vehicle_make_for' => 'required'
         ])->validate();
-// dd($request);
 
-        $created_params = $request->only(['name', 'transport_type']);
+        $created_params = $request->only(['name', 'transport_type','vehicle_make_for']);
         $created_params['active'] = 1;
 
         // $created_params['company_key'] = auth()->user()->company_key;
@@ -86,9 +86,11 @@ class CarMakeController extends BaseController
 
     public function update(Request $request, CarMake $make)
     {
+
         Validator::make($request->all(), [
             'transport_type' => 'required',
-            'name' => 'required|unique:car_makes,name,'.$make->id
+            'name' => 'required|unique:car_makes,name,'.$make->id,
+            'vehicle_make_for' => 'required'
         ])->validate();
 
         $updated_params = $request->all();

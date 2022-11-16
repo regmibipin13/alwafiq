@@ -10,6 +10,7 @@ use DB;
 class CarMakeAndModelSeeder extends Seeder
 {
     protected $make_and_models = [
+    'taxi'=> [
     'Acura' => [
         'CL',
         'ILX',
@@ -908,6 +909,61 @@ class CarMakeAndModelSeeder extends Seeder
     'smart' => [
         'Fortwo'
     ],
+  ],
+      
+    'motor_bike'=> [
+    
+    'Aprilia' => [
+        'Amico',
+        'Area 51',
+        'Atlantic 125',
+        'Atlantic 250',
+        'Atlantic 500',
+        'Caponord 1000',
+        'Classic 125',
+        'Classic 50',
+        'Gulliver 50',
+        'Habana 125',
+        'Habana 50',
+        'Leonardo 125',
+        'Leonardo 150',
+        'Leonardo 250',
+        'Leonardo 300',
+        'Mcgulliver 50',
+        'Moto 6.5',
+        'MX 125',
+        'MX Super Motard 50',
+        'Pegaso 650',
+        'Rally 50',
+    ],
+    'Bajaj' => [
+        'Classic SL 125',
+        'Classic SL 150',
+        'Sprint',
+        'Sunny',
+    ],
+
+],
+
+    'truck'=> [
+
+    'Tata' => [
+        'ACE',
+        'ICV Truck',
+        'Light Truck',
+        'Yodha Pick-up',
+        'M&HCV Cargo'
+    ],
+        'Ashok Leyland' => [
+        'Dost',
+        'Dost +',
+        'BADA Dost',
+        'Ecomet 1615',
+        'Dost CNG'
+    ],
+
+],
+
 
 ];
 
@@ -922,7 +978,12 @@ class CarMakeAndModelSeeder extends Seeder
         DB::transaction(function () {
             $allMakesDB = CarMake::all();
 
-            foreach ($this->make_and_models as $make => $models) {
+              foreach ($this->make_and_models as $vehicle_make_for => $makes ) {
+
+                // dd($makes);
+
+                foreach ($makes as $make => $models) {
+
                 $makeId = null;
 
                 $makeFound = $allMakesDB->first(function ($item) use ($make) {
@@ -934,7 +995,20 @@ class CarMakeAndModelSeeder extends Seeder
                 }
 
                 if (!$makeId) {
-                    $createdMake = CarMake::create(['name' => $make, 'transport_type' => 'taxi']);
+
+                $data = [
+                    'name' => $make,
+                    'vehicle_make_for' => $vehicle_make_for
+                ];
+
+                if ($vehicle_make_for == "truck") {
+                     $data['transport_type'] = "delivery";
+                }else{
+                   $data['transport_type'] = "taxi";
+                }
+
+
+                    $createdMake = CarMake::create($data);
 
                     $makeId = $createdMake->id;
                 }
@@ -953,6 +1027,8 @@ class CarMakeAndModelSeeder extends Seeder
                         ];
 
                         CarModel::create($data);
+                     }
+
                     }
                 }
             }

@@ -752,4 +752,6 @@ return array (
   'icon_types_for' => 'Icon Types' ,
   'truck' => 'Truck' ,
   'motor_bike' => 'Motor Bike' ,
+  'vehicle_make_for' => 'Vehicle Make For',
+  'vehicle_make_name' => 'Vehicle Make Name',
   );

@@ -3,7 +3,8 @@
         <tr>
             <th> @lang('view_pages.s_no')</th>
             <th> @lang('view_pages.transport_type')</th>
-            <th> @lang('view_pages.name')</th>
+            <th> @lang('view_pages.vehicle_make_name')</th>
+            <th> @lang('view_pages.vehicle_make_for')</th>
             <th> @lang('view_pages.status')</th>
             <th> @lang('view_pages.action')</th>
         </tr>
@@ -18,6 +19,15 @@
             <td>{{ $i++ }} </td>
             <td>{{$result->transport_type }}</td>
             <td>{{$result->name }}</td>
+
+            @if($result->vehicle_make_for == 'taxi')
+            <td>{{ 'Taxi' }}</td>
+            @elseif($result->vehicle_make_for == 'truck')
+            <td>{{ 'Truck' }}</td>
+            @else
+            <td>{{ 'Motor Bike' }}</td>
+            @endif
+
             @if($result->active)
             <td><span class="label label-success">@lang('view_pages.active')</span></td>
             @else

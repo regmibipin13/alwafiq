@@ -21,7 +21,7 @@ class CarMake extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','transport_type','active'];
+    protected $fillable = ['name','transport_type','vehicle_make_for','active'];
 
     /**
      * The relationships that can be loaded with query string filtering includes.
