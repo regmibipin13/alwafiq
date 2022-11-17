@@ -501,6 +501,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'description' => 'Dispatcher user with standard access',
             'permissions' => [],
         ],
+        RoleSlug::DELIVERY_DISPATCHER=>[
+            'name' => 'Delivery-Dispatcher',
+            'description' => 'Dispatcher user with standard access',
+            'permissions' => [],
+        ],
+        
 
 
     ];

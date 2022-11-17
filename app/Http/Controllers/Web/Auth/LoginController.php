@@ -94,6 +94,11 @@ class LoginController extends ApiController
         return $this->loginUserAccountSPA($request, Role::DISPATCHER);
     }
 
+    public function loginDispatchDeliveryUsers(AdminLoginRequest $request)
+    {
+        return $this->loginUserAccountSPA($request, Role::DELIVERY_DISPATCHER);
+    }
+
     /**
      * Logout the user.
      *
@@ -109,7 +114,10 @@ class LoginController extends ApiController
     {
         if (auth()->user()->hasRole(Role::DISPATCHER)) {
             $redirect = 'dispatch-login';
-        } else if (auth()->user()->hasRole('owner')) {
+        } else if (auth()->user()->hasRole(Role::DELIVERY_DISPATCHER)) {
+            $redirect = 'dispatch-delivery-login';
+        }  
+        else if (auth()->user()->hasRole('owner')) {
             $redirect = 'company-login';
         }else{
             $redirect = 'login';
