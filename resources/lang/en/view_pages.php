@@ -20,7 +20,7 @@ return array (
   'edit' => 'Edit',
   'delete' => 'Delete',
   'cash' => 'Cash',
-  'card' => 'Card',
+  'card' => 'Card/Online',
   'wallet' => 'Wallet',
   'place' => 'Place',
   'mobile' => 'Mobile',
