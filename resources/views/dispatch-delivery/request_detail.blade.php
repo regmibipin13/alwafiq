@@ -175,7 +175,7 @@
                                                    @lang('view_pages.phone') : <b>{{ $item->driverDetail->mobile }}</b>
                                                     </p>
                                                     <p class="mb-1 f-12">
-                                                        Stars : <b>{{ $item->driverDetail->driverDetail->rating }} <i
+                                                        Stars : <b>{{ $item->driverDetail->rating ? $item->driverDetail->rating : '-' }}<i
                                                                 class="fas fa-star" style="color: yellow;"></i></b>
                                                     </p>
                                                 </div>
