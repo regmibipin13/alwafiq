@@ -72,7 +72,7 @@ class PaystackController extends ApiController
 
         if($request->has('payment_for') && $request->payment_for=='payment-for-ride'){
 
-        $request_for = $request->request_for;
+        $request_for = $request->payment_for;
 
         }
         $query = [
