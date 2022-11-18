@@ -25,6 +25,7 @@ use App\Models\Payment\OwnerWalletHistory;
 use App\Transformers\Payment\OwnerWalletTransformer;
 use App\Models\Request\Request as RequestModel;
 use Kreait\Firebase\Contract\Database;
+use App\Models\User;
 
 /**
  * @group Paystack Payment Gateway
