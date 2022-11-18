@@ -202,7 +202,7 @@ class PaystackController extends ApiController
 
         $exploded_reference = explode('-----', $request->data['reference']);
         Log::info('request_id');
-        Log::info($exploded_reference[2]);
+        Log::info($exploded_reference);
         Log::info('request_id');
 
         $user_id = $exploded_reference[1];
