@@ -871,16 +871,43 @@
 
     var iconBase = "{{ asset('map/icon/') }}";
     var icons = {
-        available: {
+          car_available: {
             name: 'Available',
-            icon: iconBase + '/taxi1.svg'
-        },
-        ontrip: {
+            icon: iconBase + '/driver_available.png'
+          },
+          car_ontrip: {
             name: 'OnTrip',
-            icon: iconBase + '/taxi.svg'
-        },
-       
-    };
+            icon: iconBase + '/driver_on_trip.png'
+          },
+         car_offline: {
+            name: 'Offline',
+            icon: iconBase + '/driver_off_trip.png'
+         },
+         bike_available: {
+            name: 'Available',
+            icon: iconBase + '/available-bike.png'
+          },
+          bike_ontrip: {
+            name: 'OnTrip',
+            icon: iconBase + '/ontrip-bike.png'
+          },
+          bike_offline: {
+            name: 'Offline',
+            icon: iconBase + '/offline-bike.png'
+          },
+          truck_available: {
+            name: 'Available',
+            icon: iconBase + '/available-truck.png'
+          },
+          truck_ontrip: {
+            name: 'OnTrip',
+            icon: iconBase + '/ontrip-truck.png'
+          },
+          truck_offline: {
+            name: 'Offline',
+            icon: iconBase + '/offline-truck.png'
+          },
+        };
 
     var requestRef = firebase.database().ref('drivers/'+driverId);
 
@@ -898,15 +925,58 @@
             // var iconImg = icons['ontrip'].icon;
 
          var iconImg = '';
-               
-                    if (valu.is_available == true && valu.is_active == 1) {
-                        iconImg = icons['available'].icon;
-                    } else if (valu.is_active == 1 && valu.is_available == false) {
-                        iconImg = icons['ontrip'].icon;
-                    } else {
-                        iconImg = icons['available'].icon;
-                        //@TODO
+                    
+            var date = new Date();
+            var timestamp = date.getTime();
+            var conditional_timestamp = new Date(timestamp - 5 * 60000);
+
+            if(conditional_timestamp > valu.updated_at){
+                if(valu.vehicle_type_icon=='taxi'){
+                    iconImg = icons['car_offline'].icon;
+                }else if(valu.vehicle_type_icon=='motor_bike'){
+                    iconImg = icons['bike_offline'].icon;
+                }else if(valu.vehicle_type_icon=='truck'){
+                    iconImg = icons['truck_offline'].icon;
+                }else{
+                    iconImg = icons['car_offline'].icon;
+
+                }
+            }else{
+                if(valu.is_available == true && valu.is_active==true){
+                    if(valu.vehicle_type_icon=='taxi'){
+                    iconImg = icons['car_available'].icon;
+                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    iconImg = icons['bike_available'].icon;
+                    }else if(valu.vehicle_type_icon=='truck'){
+                    iconImg = icons['truck_available'].icon;
+                    }else{
+                    iconImg = icons['car_available'].icon;
+
                     }
+                }else if(valu.is_active==true && valu.is_available==false){
+                    if(valu.vehicle_type_icon=='taxi'){
+                    iconImg = icons['car_ontrip'].icon;
+                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    iconImg = icons['bike_ontrip'].icon;
+                    }else if(valu.vehicle_type_icon=='truck'){
+                    iconImg = icons['truck_ontrip'].icon;
+                    }else{
+                    iconImg = icons['car_ontrip'].icon;
+                    }
+                }else{
+
+                    if(valu.vehicle_type_icon=='taxi'){
+                    iconImg = icons['car_offline'].icon;
+                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    iconImg = icons['bike_offline'].icon;
+                    }else if(valu.vehicle_type_icon=='truck'){
+                    iconImg = icons['truck_offline'].icon;
+                    }else{
+                    iconImg = icons['car_offline'].icon;
+
+                    }
+                }
+            }
 
         var carIcon = new google.maps.Marker({
             position: new google.maps.LatLng(val.l[0], val.l[1]),
