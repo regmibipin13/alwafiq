@@ -7,6 +7,7 @@ use App\Base\Libraries\QueryFilter\QueryFilterContract;
 use App\Http\Controllers\Web\BaseController;
 use App\Models\Request\Request as RequestRequest;
 use Illuminate\Http\Request;
+use App\Base\Constants\Auth\Role;
 
 class DispatcherController extends BaseController
 {
@@ -72,8 +73,16 @@ class DispatcherController extends BaseController
         return view('admin.dispatch-login');
     }
 
-    public function dashboard(){
-        return view('dispatch.home');
+    public function dashboard()
+    {
+        
+        if (access()->hasRole(Role::DISPATCHER)) {
+             return view('dispatch.home');
+        } else {
+        
+        return view('dispatch-delivery.home');
+
+        }
     }
 
     public function fetchBookingScreen($modal){
@@ -82,7 +91,7 @@ class DispatcherController extends BaseController
 
     public function fetchRequestLists(QueryFilterContract $queryFilter){
 
-        $query = RequestRequest::query();
+        $query = RequestRequest::where('transport_type', 'taxi');
 
         $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->paginate();
 

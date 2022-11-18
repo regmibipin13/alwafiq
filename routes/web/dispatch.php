@@ -22,4 +22,5 @@ Route::middleware('auth:web')->group(function () {
         Route::get('dispatch/book-now-delivery', 'DispatcherController@bookNowDelivery');
 
     });
+
 });

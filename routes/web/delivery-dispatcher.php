@@ -10,9 +10,9 @@ Route::middleware('auth:web')->group(function () {
         Route::get('dispatch-delivery/dashboard', 'DeliveryDispatcherController@dashboard');
         Route::get('fetch/booking-screen/{modal}', 'DeliveryDispatcherController@fetchBookingScreen');
 
-        Route::post('request/create', 'DispatcherCreateRequestController@createRequest');
+        Route::post('dispatch-delivery/request/create', 'DispatcherCreateRequestController@createRequest');
 
-        Route::get('fetch/request_lists', 'DeliveryDispatcherController@fetchRequestLists');
+        Route::get('fetch/dispatch-delivery-request_lists', 'DeliveryDispatcherController@fetchRequestLists');
 
         Route::get('request/detail_view/{requestmodel}','DeliveryDispatcherController@requestDetailedView')->name('dispatcherRequestDetailView');
 

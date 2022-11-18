@@ -30,6 +30,18 @@ class Role
             self::DELIVERY_DISPATCHER,
         ];
     }
+
+    /* dispatchRoles */
+
+        public static function dispatchRoles()
+        {
+            return [
+                self::DISPATCHER,
+                self::DELIVERY_DISPATCHER,
+            ];
+        }
+
+    
     /**
      * Get all the admin roles.
      *

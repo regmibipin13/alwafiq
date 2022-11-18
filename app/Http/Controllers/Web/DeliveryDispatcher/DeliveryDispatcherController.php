@@ -41,7 +41,7 @@ class DeliveryDispatcherController extends BaseController
          $default_lat = env('DEFAULT_LAT');
         $default_lng = env('DEFAULT_LNG');
 
-        return view('dispatch.new-ui.book-now')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
+        return view('dispatch-delivery.book-now')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
     }
 
     /**
@@ -58,24 +58,28 @@ class DeliveryDispatcherController extends BaseController
     }
 
     public function dashboard(){
+
         return view('dispatch-delivery.home');
     }
 
     public function fetchBookingScreen($modal){
-        return view("dispatch.$modal");
+
+        return view("dispatch-delivery.$modal");
     }
 
     public function fetchRequestLists(QueryFilterContract $queryFilter){
 
-        $query = RequestRequest::query();
+        $query = RequestRequest::where('transport_type', 'delivery');
+
+        // dd($query);
 
         $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->paginate();
 
-        return view('dispatch.request-list', compact('results'));
+        return view('dispatch-delivery.request-list', compact('results'));
     }
 
     public function profile(){
-        return view('dispatch.profile');
+        return view('dispatch-delivery.profile');
     }
 
      public function fetchSingleRequest(RequestRequest $requestmodel){
@@ -85,6 +89,6 @@ class DeliveryDispatcherController extends BaseController
      public function requestDetailedView(RequestRequest $requestmodel){
         $item = $requestmodel;
         
-        return view('dispatch.request_detail',compact('item'));
+        return view('dispatch-delivery.request_detail',compact('item'));
     }
 }

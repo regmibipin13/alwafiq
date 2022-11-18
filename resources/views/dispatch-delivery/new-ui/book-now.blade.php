@@ -263,7 +263,7 @@
             </ul>
             @else
                 <div class="pull-right" style="float: right">
-                    <a href="{{ url('dispatch-delivery/dashboard') }}"  class="btn btn-danger btn-sm turned-button mr-auto">
+                    <a href="{{ url('dispatch/dashboard') }}"  class="btn btn-danger btn-sm turned-button mr-auto">
                         @lang('view_pages.back')
                     </a>
                 </div>
@@ -723,8 +723,8 @@
                 };
 
                 function initialize() {
-                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? 11.015956}}");
-                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? 76.968985}}");
+                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? get_settings('default_latitude')}}");
+                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? get_settings('default_longitude')}}");
                     var pickup = document.getElementById('pickup');
                     var drop = document.getElementById('drop');//11.018511, 76.969897
                     var latlng = new google.maps.LatLng(centerLat,centerLng);

@@ -221,10 +221,10 @@ background: #000000;
 <div class="container-fluid">
 @include('dispatch.header')
 {{-- Book Now --}}
-@include('dispatch.book-now')
+@include('dispatch-delivery.book-now')
 
 {{-- Book Later --}}
-{{-- @include('dispatch.book-later') --}}
+{{-- @include('dispatch-delivery.book-later') --}}
 
 <div class="row g-0">
 <div class="col ps-md-2 mb-2" style="padding-right: 0 !important;">
@@ -243,7 +243,7 @@ background: #000000;
 <i class="fas fa-align-justify"></i>
 </div>
 <div id="request-lists-target">
-<include-fragment src="{{ url('fetch/request_lists') }}">
+<include-fragment src="{{ url('fetch/dispatch-delivery-request_lists') }}">
 <span style="text-align: center;font-weight: bold;">@lang('view_pages.loading')</span>
 </include-fragment>
 </div>
@@ -303,7 +303,7 @@ if (column && value)
 query = column + '=' + value
 
 $(function() {
-var url = '{{ url('fetch/request_lists') }}?' + query;
+var url = '{{ url('fetch/dispatch-delivery-request_lists') }}?' + query;
 fetch(url)
 .then(response => response.text())
 .then(html => {

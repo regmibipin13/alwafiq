@@ -974,7 +974,7 @@ element.goods_type_name, element.id);
 
                     var pick_lat = document.getElementById('pickup_lat').value;
                     var pick_lng = document.getElementById('pickup_lng').value;
-                    var url = '{{ url('api/v1/dispatcher/request/eta') }}';
+                    var url = '{{ url('api/v1/delivery-dispatcher/request/eta') }}';
 
                     var etaData = {
                         'pick_lat': pickUpLat,
@@ -1118,7 +1118,7 @@ element.goods_type_name, element.id);
                         etaData.fare_type_id = fareType;
                     }
 
-                    var etaUrl = "{{ url('api/v1/dispatcher/request/eta') }}"
+                    var etaUrl = "{{ url('api/v1/delivery-dispatcher/request/eta') }}"
                     fetch(etaUrl, {
                             method: 'POST',
                             headers: {
@@ -1190,7 +1190,7 @@ element.goods_type_name, element.id);
                     }
 
 
-                    var tripUrl = "{{ url('request/create') }}"
+                    var tripUrl = "{{ url('/dispatch-delivery/request/create') }}"
                     fetch(tripUrl, {
                             method: 'POST',
                             headers: {

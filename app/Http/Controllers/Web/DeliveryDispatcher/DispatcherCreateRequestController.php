@@ -374,8 +374,8 @@ class DispatcherCreateRequestController extends BaseController
             'service_location_id'=>$service_location->id];
 
         // store request details to db
-        DB::beginTransaction();
-        try {
+        // DB::beginTransaction();
+        // try {
             $request_detail = $this->request->create($request_params);
             // request place detail params
             $request_place_params = [
@@ -402,13 +402,13 @@ class DispatcherCreateRequestController extends BaseController
 
             $request_result =  fractal($request_detail, new TripRequestTransformer)->parseIncludes('userDetail');
             // @TODO send sms & email to the user
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error($e);
-            Log::error('Error while Create new schedule request. Input params : ' . json_encode($request->all()));
-            return $this->respondBadRequest('Unknown error occurred. Please try again later or contact us if it continues.');
-        }
-        DB::commit();
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     Log::error($e);
+        //     Log::error('Error while Create new schedule request. Input params : ' . json_encode($request->all()));
+        //     return $this->respondBadRequest('Unknown error occurred. Please try again later or contact us if it continues.');
+        // }
+        // DB::commit();
 
         return $this->respondSuccess($request_result, 'Request Scheduled Successfully');
     }

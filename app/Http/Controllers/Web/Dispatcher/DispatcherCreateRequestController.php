@@ -53,6 +53,8 @@ class DispatcherCreateRequestController extends BaseController
     */
     public function createRequest(CreateTripRequest $request)
     {
+
+        dd($request);
         /**
         * Validate payment option is available.
         * if card payment choosen, then we need to check if the user has added thier card.
