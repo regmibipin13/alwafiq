@@ -116,3 +116,11 @@ Route::prefix('payment')->namespace('Payment')->middleware('auth')->group(functi
 
     
 });
+
+Route::prefix('payment')->namespace('Payment')->group(function () {
+    Route::prefix('paystack')->namespace('Paystack')->group(function () {
+        Route::any('web-hook', 'PaystackController@webHook');
+
+    });
+
+});
