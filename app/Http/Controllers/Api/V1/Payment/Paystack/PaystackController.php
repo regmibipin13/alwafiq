@@ -70,7 +70,7 @@ class PaystackController extends ApiController
         $reference = auth()->user()->id;
 
 
-        if($request->has('request_for') && $request->request_for=='payment-for-ride'){
+        if($request->has('payment_for') && $request->payment_for=='payment-for-ride'){
 
         $request_for = $request->request_for;
 
