@@ -925,6 +925,7 @@
 
         Object.entries(val).forEach(([key, valu]) => {
 
+            console.log(valu);
             // var iconImg = icons['ontrip'].icon;
 
          var iconImg = '';
