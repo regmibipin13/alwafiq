@@ -26,6 +26,8 @@ use App\Transformers\Payment\OwnerWalletTransformer;
 use App\Models\Request\Request as RequestModel;
 use Kreait\Firebase\Contract\Database;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 
 /**
  * @group Paystack Payment Gateway
@@ -195,6 +197,9 @@ class PaystackController extends ApiController
         $transaction_id = $request->data['id'];
 
         $exploded_reference = explode('-', $request->data['reference']);
+        Log::info('request_id');
+        Log::info($exploded_reference[2]);
+        Log::info('request_id');
 
         $user_id = $exploded_reference[1];
 
