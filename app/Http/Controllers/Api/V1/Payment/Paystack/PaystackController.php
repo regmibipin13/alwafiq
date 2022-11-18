@@ -201,9 +201,6 @@ class PaystackController extends ApiController
         $transaction_id = $request->data['id'];
 
         $exploded_reference = explode('-----', $request->data['reference']);
-        Log::info('request_id');
-        Log::info($exploded_reference);
-        Log::info('request_id');
 
         $user_id = $exploded_reference[1];
 
