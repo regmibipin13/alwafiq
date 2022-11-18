@@ -247,7 +247,7 @@ class StripeController extends ApiController
             'remarks'=>WalletRemarks::TRIP_COMMISSION_FOR_DRIVER,
             'is_credit'=>true]);
 
-        $this->database->getReference('requests/'.$request->id)->update(['is_paid'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+        $this->database->getReference('requests/'.$request_detail->id)->update(['is_paid'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
 
         $title = trans('push_notifications.payment_completed_by_user_title',[],$driver->user->lang);
         $body = trans('push_notifications.payment_completed_by_user_body',[],$driver->user->lang);
