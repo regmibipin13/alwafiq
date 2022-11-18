@@ -924,11 +924,6 @@
         deleteAllMarkers();
 
         Object.entries(val).forEach(([key, valu]) => {
-
-            console.log("key");
-            console.log(key);
-            console.log("val");
-            console.log(val);
             // var iconImg = icons['ontrip'].icon;
 
          var iconImg = '';
@@ -937,46 +932,46 @@
             var timestamp = date.getTime();
             var conditional_timestamp = new Date(timestamp - 5 * 60000);
 
-            if(conditional_timestamp > valu.updated_at){
-                if(valu.vehicle_type_icon=='taxi'){
+            if(conditional_timestamp > val.updated_at){
+                if(val.vehicle_type_icon=='taxi'){
                     iconImg = icons['car_offline'].icon;
-                }else if(valu.vehicle_type_icon=='motor_bike'){
+                }else if(val.vehicle_type_icon=='motor_bike'){
                     iconImg = icons['bike_offline'].icon;
-                }else if(valu.vehicle_type_icon=='truck'){
+                }else if(val.vehicle_type_icon=='truck'){
                     iconImg = icons['truck_offline'].icon;
                 }else{
                     iconImg = icons['car_offline'].icon;
 
                 }
             }else{
-                if(valu.is_available == true && valu.is_active==true){
-                    if(valu.vehicle_type_icon=='taxi'){
+                if(val.is_available == true && val.is_active==true){
+                    if(val.vehicle_type_icon=='taxi'){
                     iconImg = icons['car_available'].icon;
-                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    }else if(val.vehicle_type_icon=='motor_bike'){
                     iconImg = icons['bike_available'].icon;
-                    }else if(valu.vehicle_type_icon=='truck'){
+                    }else if(val.vehicle_type_icon=='truck'){
                     iconImg = icons['truck_available'].icon;
                     }else{
                     iconImg = icons['car_available'].icon;
 
                     }
-                }else if(valu.is_active==true && valu.is_available==false){
-                    if(valu.vehicle_type_icon=='taxi'){
+                }else if(val.is_active==true && val.is_available==false){
+                    if(val.vehicle_type_icon=='taxi'){
                     iconImg = icons['car_ontrip'].icon;
-                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    }else if(val.vehicle_type_icon=='motor_bike'){
                     iconImg = icons['bike_ontrip'].icon;
-                    }else if(valu.vehicle_type_icon=='truck'){
+                    }else if(val.vehicle_type_icon=='truck'){
                     iconImg = icons['truck_ontrip'].icon;
                     }else{
                     iconImg = icons['car_ontrip'].icon;
                     }
                 }else{
 
-                    if(valu.vehicle_type_icon=='taxi'){
+                    if(val.vehicle_type_icon=='taxi'){
                     iconImg = icons['car_offline'].icon;
-                    }else if(valu.vehicle_type_icon=='motor_bike'){
+                    }else if(val.vehicle_type_icon=='motor_bike'){
                     iconImg = icons['bike_offline'].icon;
-                    }else if(valu.vehicle_type_icon=='truck'){
+                    }else if(val.vehicle_type_icon=='truck'){
                     iconImg = icons['truck_offline'].icon;
                     }else{
                     iconImg = icons['car_offline'].icon;
