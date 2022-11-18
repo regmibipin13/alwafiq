@@ -851,7 +851,7 @@
 
     var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(default_lat, default_lng),
-            zoom: 10,
+            zoom: 5,
             mapTypeId: 'roadmap',
             mapTypeControl: true,
             mapTypeControlOptions: {
@@ -922,7 +922,7 @@
     function loadDriverIcons(val){
 
         deleteAllMarkers();
-        
+
         Object.entries(val).forEach(([key, valu]) => {
 
             // var iconImg = icons['ontrip'].icon;
