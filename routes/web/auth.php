@@ -29,6 +29,8 @@ Route::prefix('api/spa')->namespace('Auth')->group(function () {
     // Login Admin user from the web (SPA) application
     Route::post('login', 'LoginController@loginWebUsers');
     Route::post('dispatch/login', 'LoginController@loginDispatchUsers');
+    Route::post('dispatch-delivery/login', 'LoginController@loginDispatchDeliveryUsers');
+
 });
 
 Route::prefix('api/spa')->namespace('Auth')->group(function () {

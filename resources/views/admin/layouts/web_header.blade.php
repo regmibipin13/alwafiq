@@ -12,7 +12,7 @@
   <!-- Libs CSS -->
     @include('admin.layouts.web_common_styles')
 
-  <title>Ayo Services</title>
+  <title>{{ env('APP_NAME') }}</title>
 <style>
   .driver a.nav-link {
   font-size: 14px;  

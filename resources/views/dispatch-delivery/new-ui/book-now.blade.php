@@ -1,23 +1,287 @@
-<div id="book-now" class="modal fade" role="dialog">
-    <div class="modal-dialog container">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    Book Now
-                </h4>
-                <button type="button" class="close btn btn-danger" data-bs-dismiss="modal">X</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 p-0">
+@extends('dispatch.layout')
+
+@push('dispatch-css')
+    <style>
+        #legend {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            /*transparent;*/
+            padding: 5px;
+            margin: 5px;
+            border: 3px solid #000;
+            width: 10%;
+            font-size: 8px;
+        }
+
+        #legend div {
+            display: flex;
+            align-items: center;
+        }
+
+        #legend h5 {
+            margin-top: 0;
+            font-size: 15px;
+        }
+
+        #legend img {
+            vertical-align: middle;
+            width: 35px;
+            height: 35px;
+            margin: 0 10px;
+            padding-top: 3px;
+            vertical-align: sub;
+        }
+
+        #legend .text {
+            font-weight: bold;
+            font-size: 10px;
+            font-style: italic;
+        }
+
+        .etarow {
+            padding: 5px;
+            background: aliceblue;
+            margin: 3px;
+        }
+
+        .etarow div {
+            font-size: larger;
+            font-weight: bolder;
+        }
+
+        .detail-popup {
+            display: none;
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .detail-overflow {
+            height: 89vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-right: 25px;
+        }
+
+        .btn-type {
+            width: 32%;
+            border-radius: 0;
+        }
+
+        .detail-overflow::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .detail-overflow::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .detail-overflow::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        .detail-overflow::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .f-12 {
+            font-size: 12px;
+        }
+
+        #map {
+            height: calc(100vh - 120px);
+            width: 100%;
+            padding: 10px;
+        }
+
+        .modal-content {
+            height: 90vh;
+        }
+
+        #book-now-map,
+        #book-later-map,
+        #box-content {
+            width: 100%;
+            height: calc(80vh - 100px);
+            padding: 10px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        #box-content::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        #box-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #box-content::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        #box-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        a.notification:hover,
+        a.notification:focus {
+            background-color: aquamarine;
+        }
+
+        .packages .fs--1 {
+            font-size: .83333rem !important;
+        }
+
+        .body-type li {
+            list-style: none;
+            padding: 5px;
+            background: bisque;
+            border-radius: 5px;
+            text-align: center;
+            margin: 3px;
+            cursor: pointer;
+        }
+
+        .notification-avatar {
+            margin-left: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .truck-types img {
+            width: 55px;
+        }
+
+        .truck-types {
+            padding: 0px 30px;
+            height: 70px;
+            margin: 0 0 25px 10px;
+            cursor: pointer;
+            width: auto;
+            text-align: center;
+            border: 5px solid #dddddd;
+            border-radius: 5px;
+        }
+
+        .truck-types:hover,
+        .truck-types:focus {
+            border: 5px solid #ff9933;
+        }
+
+        .pac-container {
+            z-index: 10000 !important;
+        }
+
+        .iti {
+            width: 100%;
+        }
+
+        .iti__flag {
+            background-image: {{ asset('assets/build/img/flags.png') }};
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .iti__flag {
+                background-image: {{ asset('assets/build/img/flags@2x.png') }};
+            }
+        }
+
+        .swiper-slide p {
+            margin-top: 15px;
+        }
+
+        .swiper-slide.active {
+            border: 5px solid #ff9933;
+            color: #000;
+            background: transparent;
+        }
+
+        .sidebar-contact.left.active {
+            background: transparent;
+        }
+
+        .active {
+            background: #ff9933;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .toggle.l.pulse.active {
+            background: #000000;
+        }
+
+    </style>
+@endpush
+
+
+
+
+
+@section('dispatch-content')
+<main class="main">
+	<div id="book-now">
+    <div class="container-fluid">
+
+    	<div class="card my-2">
+    <div class="card-body  py-0 position-relative">
+        <nav class="navbar navbar-light navbar-top navbar-expand-xl">
+            <a class="navbar-brand me-1 me-sm-3" href="#">
+                <div class="d-flex align-items-center"><img class="me-2"
+                        src="{{ app_logo() ?? asset('images/email/logo.svg') }}" style="width: 26px;padding-right: 5px;" alt="" />
+                        <span>
+                            {{ app_name() ?? 'Tagxi' }}
+                        </span>
+                        
+                    </div>
+            </a>
+
+            @if (request()->route()->getName() != 'dispatcherProfile')
+               
+            
+            <ul class="navbar-nav navbar-nav-icons flex-row align-items-center" style="margin-left: auto;">
+                <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#"
+                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar avatar-xl">
+                            <img class="rounded-circle" src="{{ auth()->user()->profile_picture ?? asset('dispatcher/assets/img/team/3-thumb.png') }}" alt="" />
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
+                        <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                            <span class="dropdown-item fw-bold text-warning"><span
+                                    class="fas fa-crown me-1"></span><span>{{ ucfirst(auth()->user()->name) }}</span></span>
+                            <div class="dropdown-divider"></div>
+    
+                            {{-- <a class="dropdown-item" href="{{ url('dispatch/profile') }}">@lang('view_pages.profile')</a> --}}
+                            
+                            <a class="dropdown-item" href="{{ url('api/spa/logout') }}">@lang('view_pages.admin_logout')</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            @else
+                <div class="pull-right" style="float: right">
+                    <a href="{{ url('dispatch-delivery/dashboard') }}"  class="btn btn-danger btn-sm turned-button mr-auto">
+                        @lang('view_pages.back')
+                    </a>
+                </div>
+            @endif
+        </nav>
+    </div>
+</div>
+<div class="col-md-12 mb-3 ps-md-2">
+         
+                 <div class="row">
+                   <div class="col-md-6 p-0">
                         <div class="box" id="box-content">
                             <div class="box-body">
                                 <form action="#" method="post" id="tripForm">
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="box-title">User Details</h6>
+                                                <h6 class="box-title">@lang('view_pages.user_details')</h6>
                                             </div>
 
                                             <input id="dialcodes" name="dialcodes" type="hidden">
@@ -43,11 +307,38 @@
 
                                         </div>
                                     </div>
-                                   
+                                    {{-- <div class="card p-3 mb-3 book">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="box-title">@lang('view_pages.receiver_details')</h6>
+                                    </div>
+                                    
+                                    <input id="receiverDialCode" name="receiverDialCode" type="hidden">
+
+                                    <div class="col-md-6">
+                                        <div class="form-check" style="float: right;padding: 0;">
+                                            <input class="form-check-input" id="same_as_sender" type="checkbox"/>
+                                            <label class="form-check-label" for="same_as_sender">@lang('view_pages.same_as_sender')</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control w-100 required_for_valid" type="text" placeholder="Name" name="receiverName" id="receiverName">
+                                            <span class="text-danger" id="error-receiverName">{{ $errors->first('receiverName') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" type="text" name="receiverPhone" id="receiverPhone">
+                                            <span class="text-danger" id="receiverPhone-error">{{ $errors->first('receiverPhone') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="box-title">Location Details</h6>
+                                                <h6 class="box-title">@lang('view_pages.location_details')</h6>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="input-group mb-3">
@@ -83,30 +374,30 @@
                                         <div class="row">
                                             {{-- <div class="col-12" id="vehicle-body">
                                     <div class="box-header with-border text-left">
-                                        <h6 class="box-title">Truck Type</h6>
+                                        <h6 class="box-title">@lang('view_pages.truck_type')</h6>
                                     </div>
                                     <div class="box-body py-0">
                                         <div class="row">
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="1">Open</li>
+                                                    <li data-id="1">@lang('view_pages.open')</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="0">Closed</li>
+                                                    <li data-id="0">@lang('view_pages.closed')</li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-4 m-auto truckType">
                                                 <ul class="body-type">
-                                                    <li data-id="2">Any</li>
+                                                    <li data-id="2">@lang('view_pages.any')</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div> --}}
                                             <div class="col-12">
-                                                <h6 class="box-title">Vehicle Type</h6>
+                                                <h6 class="box-title">@lang('view_pages.type')</h6>
                                             </div>
                                             <div class="col-12">
                                                 <div class="row">
@@ -126,7 +417,7 @@
                                                     <div class="collapse text-center" id="collapseExample">
                                                         <hr>
                                                         <h4>
-                                                            Packages
+                                                            @lang('view_pages.packages')
                                                         </h4>
                                                         <div class="packages" id="packageList">
 
@@ -141,7 +432,7 @@
                                     <div class="card p-3 mb-3 book date-option d-none">
                                         <div class="row">
                                             <div class="mb-3">
-                                                <label class="form-label" for="datepicker">Start Date</label>
+                                                <label class="form-label" for="datepicker">@lang('view_pages.start_date')</label>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="date" id="datepicker" type="text" required placeholder="d/m/y"
                                                     data-options='{"disableMobile":true}' />
@@ -149,7 +440,7 @@
                                                     id="error-date">{{ $errors->first('date') }}</span>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" for="timepicker">Start Time</label>
+                                                <label class="form-label" for="timepicker">@lang('view_pages.start_time')</label>
                                                 <input class="form-control datetimepicker required_for_valid"
                                                     name="time" id="timepicker" type="text" required placeholder="H:i"
                                                     data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}' />
@@ -162,7 +453,7 @@
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h6 class="box-title">Payment Method</h6>
+                                                <h6 class="box-title">@lang('view_pages.payment_method')</h6>
                                             </div>
                                             <div class="col-md-12 chq-radio">
                                                 <div class="form-check form-check-inline">
@@ -339,7 +630,7 @@
                                                                 </linearGradient>
                                                             </defs>
                                                         </svg>
-                                                        &nbsp; Cash
+                                                        &nbsp; @lang('view_pages.cash')
                                                     </label>
                                                 </div>
                                                 <span class="text-danger"
@@ -349,15 +640,15 @@
                                     </div>
 
                                     {{-- <p class="mb-0">
-                                    <a data-fancybox data-animation-duration="500" data-src="#animatedModal" href="javascript:;" class="btn btn-primary">Success!</a>
+                                    <a data-fancybox data-animation-duration="500" data-src="#animatedModal" href="javascript:;" class="btn btn-primary">@lang('view_pages.success')!</a>
                                 </p> --}}
 
 
                                     <div class="col-12 mt-3">
                                         <button type="button"
-                                            class="btn btn-primary btn-md turned-button form-submit mr-auto"
+                                            class="btn btn-primary btn-md "
                                             style="float: right">
-                                            Book
+                                            @lang('view_pages.book')
                                         </button>
                                     </div>
                             </div>
@@ -384,6 +675,7 @@
         </div>
     </div>
 </div>
+</main>
 
 @push('booking-scripts')
 
@@ -431,8 +723,8 @@
                 };
 
                 function initialize() {
-                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? get_settings('default_latitude')}}");
-                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? get_settings('default_longitude')}}");
+                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? 11.015956}}");
+                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? 76.968985}}");
                     var pickup = document.getElementById('pickup');
                     var drop = document.getElementById('drop');//11.018511, 76.969897
                     var latlng = new google.maps.LatLng(centerLat,centerLng);
@@ -724,10 +1016,10 @@
                 // var receiver = document.querySelector("#receiverPhone");
 
                 var iti = window.intlTelInput(input, {
-                    initialCountry: "IN",
-                    allowDropdown: true,
+                    initialCountry: "GB",
+                    allowDropdown: false,
                     separateDialCode: true,
-                    // onlyCountries: ['gb'],
+                    onlyCountries: ['gb'],
                     utilsScript: util,
                 });
 

@@ -65,6 +65,15 @@ class AdminViewController extends BaseController
         return redirect('dispatch/dashboard');
 
         }
+        if($conditional_host[0] =='tagxi-super-dispatcher'){
+
+        $user = User::belongsToRole('delivery-dispatcher')->first();
+        
+        auth('web')->login($user, true);
+
+        return redirect('delivery-dispatch/dashboard');
+
+        }
 
         return view('admin.login');
     }

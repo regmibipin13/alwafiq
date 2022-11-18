@@ -43,7 +43,34 @@
 
                                         </div>
                                     </div>
-                                   
+                                    {{-- <div class="card p-3 mb-3 book">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="box-title">Receiver Details</h6>
+                                    </div>
+                                    
+                                    <input id="receiverDialCode" name="receiverDialCode" type="hidden">
+
+                                    <div class="col-md-6">
+                                        <div class="form-check" style="float: right;padding: 0;">
+                                            <input class="form-check-input" id="same_as_sender" type="checkbox"/>
+                                            <label class="form-check-label" for="same_as_sender">Same as Sender</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control w-100 required_for_valid" type="text" placeholder="Name" name="receiverName" id="receiverName">
+                                            <span class="text-danger" id="error-receiverName">{{ $errors->first('receiverName') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" type="text" name="receiverPhone" id="receiverPhone">
+                                            <span class="text-danger" id="receiverPhone-error">{{ $errors->first('receiverPhone') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
@@ -397,26 +424,16 @@
                     maxDate: new Date().fp_incr(5)
                 });
 
-  //               function showlocation() {
-  //   // One-shot position request.
-  //   navigator.geolocation.getCurrentPosition(callback);
-  // }
-
-               
+                google.maps.event.addDomListener(window, 'load', initialize);
 
                 var directionsService = new google.maps.DirectionsService();
                 var directionsRenderer = new google.maps.DirectionsRenderer({
-                    suppressMarkers: true,
-                    draggable: true,
-                    panel: document.getElementById("pickup"),
+                    suppressMarkers: true
                 });
                 var map;
                 var pickUpMarker, dropMarker = [];
                 var pickUpLocation, dropLocation;
                 var pickUpLat, pickUpLng, dropLat, dropLng;
-                var infowindow = new google.maps.InfoWindow({
-                      size: new google.maps.Size(150, 50)
-                    });
 
                 var iconBase = '{{ asset('map/icon/') }}';
                 var icons = {
@@ -431,8 +448,8 @@
                 };
 
                 function initialize() {
-                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? get_settings('default_latitude')}}");
-                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? get_settings('default_longitude')}}");
+                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? 11.015956}}");
+                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? 76.968985}}");
                     var pickup = document.getElementById('pickup');
                     var drop = document.getElementById('drop');//11.018511, 76.969897
                     var latlng = new google.maps.LatLng(centerLat,centerLng);
@@ -443,26 +460,15 @@
                         mapTypeId: 'roadmap'
                     });
 
-                    // google.maps.event.addListener(map, 'click', function() {
-                    //     infowindow.close();
-                    //   });
-
-              
                     directionsRenderer.setMap(map);
-                       
                     var geocoder = new google.maps.Geocoder();
 
                     var pickup_location = new google.maps.places.Autocomplete(pickup);
                     var drop_location = new google.maps.places.Autocomplete(drop);
 
-                    
-
                     pickup_location.addListener('place_changed', function() {
-                      
-                        // pickUpMarker.setVisible(false);
 
                         var place = pickup_location.getPlace();
-                        // console.log(place);
 
                         if (!place.geometry) {
                             // window.alert("Autocomplete's returned place contains no geometry");
@@ -477,13 +483,12 @@
                         pickUpMarker = new google.maps.Marker({
                             position: pickUpLocation,
                             icon: icons['pickup'].icon,
-                            draggable: true,
                             map,
                             // draggable: true,
                             anchorPoint: new google.maps.Point(0, -29)
                         });
 
-                         // If the place has a geometry, then present it on a map.
+                        // If the place has a geometry, then present it on a map.
                         if (place.geometry.viewport) {
                             map.fitBounds(place.geometry.viewport);
                         } else {
@@ -494,31 +499,10 @@
                         pickUpMarker.setPosition(place.geometry.location);
                         pickUpMarker.setVisible(true);
 
-                         google.maps.event.addListener(pickUpMarker, 'dragend', function() {
-                            geocodePosition(pickUpMarker.getPosition());
-                          });
-                          
-                          // google.maps.event.addListener(pickUpMarker, 'click', function() {
-                          //   if (pickUpMarker.formatted_address) {
-                          //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                          //   } else {
-                          //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                          //   }
-                          //   infowindow.open(map, pickUpMarker);
-                          // });
-                          google.maps.event.trigger(pickUpMarker, 'click')
-
-                       
-
-                        // console.log(pickUpMarker.setPosition(place.geometry.location));
-
-
                         if (dropLocation)
                             calcRoute(pickUpLocation, dropLocation)
 
                         bindDataToForm(place.formatted_address, pickUpLat, pickUpLng, 'pickup');
-                        
-                       
                     });
 
                     drop_location.addListener('place_changed', function() {
@@ -536,9 +520,8 @@
                         dropMarker = new google.maps.Marker({
                             position: new google.maps.LatLng(dropLat, dropLng),
                             icon: icons['drop'].icon,
-                            draggable: true,
                             map,
-                            draggable: true,
+                            // draggable: true,
                             anchorPoint: new google.maps.Point(0, -29)
                         });
 
@@ -553,26 +536,6 @@
                         dropMarker.setPosition(place.geometry.location);
                         dropMarker.setVisible(true);
 
-                         google.maps.event.addListener(dropMarker, 'dragend', function() {
-                            geocodedropPosition(dropMarker.getPosition());
-                          });
-
-                          //  google.maps.event.addListener(dropMarker, 'click', function() {
-                          //   if (dropMarker.formatted_address) {
-                          //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                          //   } else {
-                          //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                          //   }
-                          //   infowindow.open(map, dropMarker);
-                          //   // calcRoute(pickUpLocation, drop);
-                          // });
-                          // google.maps.event.trigger(dropMarker, 'click')
-
-
-
-
-                        
-
                         if (pickUpLocation)
                             calcRoute(pickUpLocation, dropLocation)
 
@@ -580,96 +543,24 @@
                     });
 
                     // @TODO this function will work on marker move event into map 
-                    // google.maps.event.addListener(pickUpMarker, 'dragend', function() {
-                        
-                    //     console.log("hi");
-                    //     geocoder.geocode({
-                    //         'latLng': pickUpMarker.getPosition()
-                    //     }, function(results, status) {
-                    //         if (status == google.maps.GeocoderStatus.OK) {
-                    //             if (results[0]) {
-                    //                 bindDataToForm(results[0].formatted_address,
-                    //                     pickUpMarker.getPosition().lat(), pickUpMarker
-                    //                     .getPosition().lng(), 'pickup');
-                    //                 var pickup = new google.maps.LatLng(pickUpMarker
-                    //                     .getPosition().lat(), pickUpMarker.getPosition()
-                    //                     .lng());
-                    //                 fillInAddress(results[0]);
-                                   
-                                   
-                    //                 calcRoute(pickup, dropLocation);
-                    //             }
-                    //         }
-                    //     });
-                    // });
-
-                   function geocodePosition(pos) {
-                      geocoder.geocode({
-                        latLng: pos
-                      }, function(responses) {
-                        if (responses && responses.length > 0) {
-                          pickUpMarker.formatted_address = responses[0].formatted_address;
-                           $("#pickup").val(responses[0].formatted_address);
-                           $("#pickup_lat").val(pickUpMarker.getPosition().lat());
-                           $("#pickup_lng").val(pickUpMarker.getPosition().lng());
-                            bindDataToForm(responses[0].formatted_address,
-                                 pickUpMarker.getPosition().lat(), pickUpMarker
+                    google.maps.event.addListener(pickUpMarker, 'dragend', function() {
+                        geocoder.geocode({
+                            'latLng': pickUpMarker.getPosition()
+                        }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    bindDataToForm(results[0].formatted_address,
+                                        pickUpMarker.getPosition().lat(), pickUpMarker
                                         .getPosition().lng(), 'pickup');
                                     var pickup = new google.maps.LatLng(pickUpMarker
                                         .getPosition().lat(), pickUpMarker.getPosition()
                                         .lng());
-                                     var drop = new google.maps.LatLng(dropMarker
-                                        .getPosition().lat(), dropMarker.getPosition()
-                                        .lng());
-
-                            calcRoute(pickup, drop);
-                        } else {
-                          pickUpMarker.formatted_address = 'Cannot determine address at this location.';
-                        }
-                        // infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                        // infowindow.open(map, pickUpMarker);
-                      });
-                    } 
-
-                    function geocodedropPosition(pos) {
-                      geocoder.geocode({
-                        latLng: pos
-                      }, function(responses) {
-                        if (responses && responses.length > 0) {
-                          dropMarker.formatted_address = responses[0].formatted_address;
-                           $("#drop").val(responses[0].formatted_address);
-                           $("#drop_lat").val(dropMarker.getPosition().lat());
-                           $("#drop_lng").val(dropMarker.getPosition().lng());
-                            bindDataToForm(responses[0].formatted_address,
-                                 dropMarker.getPosition().lat(), dropMarker
-                                        .getPosition().lng(), 'drop');
-                                 var pickup = new google.maps.LatLng(pickUpMarker
-                                        .getPosition().lat(), pickUpMarker.getPosition()
-                                        .lng());
-                                    var drop = new google.maps.LatLng(dropMarker
-                                        .getPosition().lat(), dropMarker.getPosition()
-                                        .lng());
-
-                            calcRoute(pickup, drop);
-                        } else {
-                          dropMarker.formatted_address = 'Cannot determine address at this location.';
-                        }
-                        // infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                        // infowindow.open(map, dropMarker);
-                      });
-                    }
-
-
-                    // calcRoute(pickup, drop);
-                    
-
+                                    calcRoute(pickup, dropLocation);
+                                }
+                            }
+                        });
+                    });
                 }
-
-                 google.maps.event.addDomListener(window, 'load', initialize);
-
-               
-
-
 
                 // Draw path from pickup to drop - map api
                 function calcRoute(pickup, drop) {
@@ -724,10 +615,10 @@
                 // var receiver = document.querySelector("#receiverPhone");
 
                 var iti = window.intlTelInput(input, {
-                    initialCountry: "IN",
-                    allowDropdown: true,
+                    initialCountry: "GB",
+                    allowDropdown: false,
                     separateDialCode: true,
-                    // onlyCountries: ['gb'],
+                    onlyCountries: ['gb'],
                     utilsScript: util,
                 });
 

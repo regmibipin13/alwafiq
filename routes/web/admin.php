@@ -149,6 +149,11 @@ Route::middleware('guest')->namespace('Dispatcher')->group(function () {
     Route::get('dispatch-login', 'DispatcherController@loginView');
 });
 
+Route::middleware('guest')->namespace('DeliveryDispatcher')->group(function () {
+    // Get admin-login form
+    Route::get('dispatch-delivery-login', 'DeliveryDispatcherController@loginView');
+});
+
 
 Route::namespace('Admin')->group(function () {
     Route::get('track/request/{request}', 'AdminViewController@trackTripDetails');

@@ -12,6 +12,8 @@ class Role
     const DEVELOPER = 'developer';
     const CLIENT = 'client';
     const OWNER = 'owner';
+    const DELIVERY_DISPATCHER = 'delivery-dispatcher';
+
 
 
     /**
@@ -25,6 +27,7 @@ class Role
             self::SUPER_ADMIN,
             self::ADMIN,
             self::DISPATCHER,
+            self::DELIVERY_DISPATCHER,
         ];
     }
     /**

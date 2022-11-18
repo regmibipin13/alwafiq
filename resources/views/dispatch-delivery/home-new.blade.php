@@ -665,12 +665,12 @@ google.maps.LatLng.prototype.lngRadians = function()
 
             if (modal == 'book-now') {
                 $('.date-option').addClass('d-none');
-                $('.modal-title').text('Taxi Book Now')
+                $('.modal-title').text('Book Now')
             } else {
                 $('.date-option').removeClass('d-none');
                 $('.datetimepicker').addClass('required_for_valid');
                 $('.datetimepicker').prop('required', true);
-                $('.modal-title').text('Taxi Book Later')
+                $('.modal-title').text('Book Later')
             }
 
             $('#book-now').modal('show');

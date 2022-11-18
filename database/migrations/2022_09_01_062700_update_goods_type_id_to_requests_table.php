@@ -15,7 +15,7 @@ class UpdateGoodsTypeIdToRequestsTable extends Migration
     {
         Schema::table('requests', function (Blueprint $table) {
 
-            $table->unsignedInteger('goods_type_id')->after('user_id');
+            $table->unsignedInteger('goods_type_id')->after('user_id')->nullable();
             $table->string('goods_type_quantity')->after('goods_type_id')->nullable();
 
             $table->foreign('goods_type_id')
