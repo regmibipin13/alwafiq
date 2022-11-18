@@ -37,6 +37,10 @@ use Illuminate\Support\Facades\Log;
 class PaystackController extends ApiController
 {
 
+     public function __construct(Database $database)
+    {
+        $this->database = $database;
+    }
     /**
      * Initialize Payment
      * 
