@@ -920,6 +920,9 @@
     });
 
     function loadDriverIcons(val){
+
+        deleteAllMarkers();
+        
         Object.entries(val).forEach(([key, valu]) => {
 
             // var iconImg = icons['ontrip'].icon;
