@@ -80,7 +80,7 @@ class PaystackController extends ApiController
         $query = [
             'email'=> $customer_email,
             'amount'=>$request->amount,
-            'reference'=>$current_timestamp.'-'.$reference.'-'.$request_for
+            'reference'=>$current_timestamp.'-----'.$reference.'-----'.$request_for
 
             ];
 
@@ -196,7 +196,7 @@ class PaystackController extends ApiController
 
         $transaction_id = $request->data['id'];
 
-        $exploded_reference = explode('-', $request->data['reference']);
+        $exploded_reference = explode('-----', $request->data['reference']);
         Log::info('request_id');
         Log::info($exploded_reference[2]);
         Log::info('request_id');
