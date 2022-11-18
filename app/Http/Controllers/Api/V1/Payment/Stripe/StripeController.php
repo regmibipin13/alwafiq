@@ -26,6 +26,9 @@ use App\Base\Constants\Setting\Settings;
 use App\Models\Payment\OwnerWallet;
 use App\Models\Payment\OwnerWalletHistory;
 use App\Transformers\Payment\OwnerWalletTransformer;
+use App\Models\Request\Request as RequestModel;
+use Kreait\Firebase\Contract\Database;
+
 
 /**
  * @group Stripe Payment Gateway
@@ -36,7 +39,10 @@ class StripeController extends ApiController
 {
 
 
-    
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+    }
      /**
      * Setup a client secret
      * @response {
@@ -197,6 +203,61 @@ class StripeController extends ApiController
                 }
 
         return $this->respondSuccess($result, 'money_added_successfully');
+    }
+
+    /**
+     * Make payment at end of the ride
+     * @bodyParam amount double required  amount of the invoice
+     * @bodyParam request_id string required  request_id of invoice
+     * @bodyParam payment_id string required  payment_id from transaction
+     * 
+     * */
+    public function makePaymentForRide(Request $request){
+
+        $request->validate([
+        'request_id' => 'required|exists:requests,id',
+        ]);
+
+        $transaction_id = $request->payment_id;
+        $user = auth()->user();
+
+        $request_detail = RequestModel::find($request->request_id); 
+
+        $driver = $request_detail->driverDetail;    
+
+        //  Update payement status
+        $request_detail->is_paid = 1;
+
+        $request_detail->save();
+
+        $driver_commision = $request_detail->requestBill->driver_commision;
+
+        $user_wallet = DriverWallet::firstOrCreate([
+            'user_id'=>$driver->id]);
+
+        $user_wallet->amount_added += $driver_commision;
+        $user_wallet->amount_balance += $driver_commision;
+        $user_wallet->save();
+        $user_wallet->fresh();
+
+        DriverWalletHistory::create([
+            'user_id'=>$driver->id,
+            'amount'=>$driver_commision,
+            'transaction_id'=>$transaction_id,
+            'remarks'=>WalletRemarks::TRIP_COMMISSION_FOR_DRIVER,
+            'is_credit'=>true]);
+
+        $this->database->getReference('requests/'.$request_detail->id)->update(['is_paid'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
+
+        $title = trans('push_notifications.payment_completed_by_user_title',[],$driver->user->lang);
+        $body = trans('push_notifications.payment_completed_by_user_body',[],$driver->user->lang);
+
+        $driver->user->notify(new AndroidPushNotification($title, $body));
+
+
+        return $this->respondSuccess(null,'payment_completed_successfully');
+
+
     }
 
     /**

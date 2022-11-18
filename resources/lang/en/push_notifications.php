@@ -40,6 +40,8 @@ return array (
   'fleet_declined_body'=>'Fleet Got Declined by Admin, Please Contact Admin',
   'fleet_removed_from_your_account_title'=>'Fleet Removed From Your Account',
   'fleet_removed_from_your_account_body'=>'Fleet Removed From Your Account, Please Wait For Assigning Fleet',
+  'payment_completed_by_user_title'=>'Payment Received',
+  'payment_completed_by_user_body'=>'Payment Received from customer',
 
 
 );

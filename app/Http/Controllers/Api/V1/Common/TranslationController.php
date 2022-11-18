@@ -17,7 +17,7 @@ class TranslationController extends BaseController
     public function index()
     {
         $client = new Client();
-        $get_api_key = get_settings('google_map_key');
+        $get_api_key = get_settings('google_map_key_for_distance_matrix');
 
         // $sheet_id = '1J7F9JXssbN8mzSOatEF9-MLfC7Odz0SWZItX7fLSwU8';
 

@@ -59,6 +59,7 @@ Route::prefix('payment')->namespace('Payment')->middleware('auth')->group(functi
 
         Route::post('intent', 'StripeController@createStripeIntent');
         Route::post('add/money', 'StripeController@addMoneyToWallet');
+        Route::post('make-payment-for-ride','StripeController@makePaymentForRide');
 
     });
 
@@ -114,4 +115,12 @@ Route::prefix('payment')->namespace('Payment')->middleware('auth')->group(functi
     });
 
     
+});
+
+Route::prefix('payment')->namespace('Payment')->group(function () {
+    Route::prefix('paystack')->namespace('Paystack')->group(function () {
+        Route::any('web-hook', 'PaystackController@webHook');
+
+    });
+
 });
