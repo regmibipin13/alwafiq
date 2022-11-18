@@ -84,8 +84,9 @@ td {
                                 <th>@lang('view_pages.transport_type')</th>
                                 <th>@lang('view_pages.vehicle_type')</th>
                                 <th>@lang('view_pages.trip_time')</th>
+                                @if($item->goodsTypeDetail)
                                 <th>@lang('view_pages.goods_type_and_quantity')</th>
-
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +95,9 @@ td {
                                 <td>{{ $item->zoneType->vehicleType->is_taxi }}</td>
                                 <td>{{ $item->zoneType->vehicleType->name }}</td>
                                 <td>{{ $item->trip_start_time }}</td>
+                                @if($item->goodsTypeDetail)
                                 <td>{{ $item->goodsTypeDetail->goods_type_name }} - {{$item->goods_type_quantity }}</td>
+                                @endif
 
                             </tr>
                         </tbody>
