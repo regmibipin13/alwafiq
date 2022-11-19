@@ -52,6 +52,7 @@ class DispatcherCreateRequestController extends BaseController
     */
     public function createRequest(CreateTripRequest $request)
     {
+        // dd($request);
         /**
         * Validate payment option is available.
         * if card payment choosen, then we need to check if the user has added thier card.
@@ -112,7 +113,8 @@ class DispatcherCreateRequestController extends BaseController
             'unit'=>$unit,
             'requested_currency_code'=>$currency_code,
             'service_location_id'=>$service_location->id,
-            'goods_type_id'=>(integer)$request->goods_type_id
+            'goods_type_id'=>(integer)$request->goods_type_id,
+            'transport_type'=>$request->transport_type,
         ];
 
         // store request details to db
@@ -371,7 +373,8 @@ class DispatcherCreateRequestController extends BaseController
             'unit'=>$unit,
             'requested_currency_code'=>$currency_code,
             'goods_type_id'=>(integer)$request->goods_type_id,
-            'service_location_id'=>$service_location->id];
+            'service_location_id'=>$service_location->id,
+            'transport_type'=>$request->transport_type,];
 
         // store request details to db
         // DB::beginTransaction();

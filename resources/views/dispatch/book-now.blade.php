@@ -1075,7 +1075,9 @@
                         'pick_address': pickAdd,
                         'drop_address': dropAdd,
                         'pickup_poc_name': sender.name,
-                        'pickup_poc_mobile': sender.phone
+                        'pickup_poc_mobile': sender.phone,
+                         'transport_type':'taxi',
+
                     }
 
                     // if(typeof fareTypeId != "undefined"){

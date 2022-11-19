@@ -68,9 +68,13 @@ class EtaController extends ApiController
             }
         } else {
 
-            if($request->has('transport_type')){
+            if($request->has('transport_type')){      
+
+        // dd($request->all());
+
 
                 $type = $zone_detail->zoneType()->where('transport_type',$request->transport_type)->get();
+
 
             }else{
 

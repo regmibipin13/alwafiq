@@ -982,6 +982,7 @@ element.goods_type_name, element.id);
                         'drop_lat': dropLat,
                         'drop_lng': dropLng,
                         'ride_type': 1,
+                        'transport_type':'delivery',
                     };
 
                     fetch(url, {
@@ -1112,6 +1113,7 @@ element.goods_type_name, element.id);
                         'drop_lng': dropLng,
                         'vehicle_type': truckId,
                         'ride_type': 1,
+                        'transport_type':'delivery',
                     };
 
                     if (fareType) {
@@ -1175,6 +1177,7 @@ element.goods_type_name, element.id);
                         'pickup_poc_mobile': sender.phone,
                         'drop_poc_name': receiver.name,
                         'drop_poc_mobile': receiver.phone,
+                        'transport_type':'delivery',
                     }
 
                     // if(typeof fareTypeId != "undefined"){
