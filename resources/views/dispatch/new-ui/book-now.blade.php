@@ -1180,6 +1180,8 @@
                         'drop_lat': dropLat,
                         'drop_lng': dropLng,
                         'ride_type': 1,
+                        'transport_type':'delivery',
+
                     };
 
                     fetch(url, {
@@ -1310,6 +1312,8 @@
                         'drop_lng': dropLng,
                         'vehicle_type': truckId,
                         'ride_type': 1,
+                        'transport_type':'delivery',
+
                     };
 
                     if (fareType) {
