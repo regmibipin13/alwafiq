@@ -206,7 +206,7 @@ class PaymentController extends BaseController
 
             $user_wallet = auth()->user()->userWallet;
 
-            $wallet_balance = $user_wallet->amount_balance;
+            $wallet_balance = number_format($user_wallet->amount_balance,2);
             
             $currency_code = auth()->user()->countryDetail->currency_code;
             $currency_symbol = auth()->user()->countryDetail->currency_symbol;

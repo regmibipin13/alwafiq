@@ -43,7 +43,12 @@ class DriverDocumentController extends BaseController
 
     public function index(Driver $driver)
     {
+        if($driver->owner_id){
+        $neededDocument = DriverNeededDocument::where('is_individual',0)->whereActive(true)->get();
+        }else{
         $neededDocument = DriverNeededDocument::whereActive(true)->get();
+
+        }
         $driverDoc = DriverDocument::whereDriverId($driver->id)->get();
 
         $page = trans('pages_names.driver_document');
