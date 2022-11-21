@@ -114,7 +114,7 @@ class TripRequestTransformer extends Transformer
 
         $current_time = $current_time = Carbon::now();
 
-        $trip_requested_time = Carbon::parse($request->created_at);
+        $trip_requested_time = Carbon::parse($request->updated_at);
 
         $difference_request_duration = $trip_requested_time->diffInMinutes($current_time);
 
