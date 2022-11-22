@@ -24,6 +24,7 @@ use App\Base\Constants\Auth\Role;
 use Carbon\Carbon;
 use App\Http\Requests\Request\CancelTripRequest;
 use App\Base\Constants\Masters\UserType;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Dispatcher-trips-apis
@@ -94,7 +95,7 @@ class DispatcherRequestStateController extends BaseController
             $title = trans('push_notifications.trip_cancelled_by_user_title');
             $body = trans('push_notifications.trip_cancelled_by_user_body');
             
-            $notifiable_driver->notify(new AndroidPushNotification($title, $body));
+            dispatch(new SendPushNotification($notifiable_driver,$title,$body));;
         }
         // Delete meta records        
         $request_detail->requestMeta()->delete();

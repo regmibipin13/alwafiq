@@ -207,7 +207,7 @@ class AssignDriversForRegularRides extends Command
                         $driver = Driver::find($first_meta_driver);
 
                         $notifable_driver = $driver->user;
-                        // $notifable_driver->notify(new AndroidPushNotification($title, $body));
+                        
                         dispatch(new SendPushNotification($notifable_driver,$title,$body)); 
                     
                         // dispatch(new NotifyViaMqtt('create_request_'.$driver->id, json_encode($socket_data), $driver->id));

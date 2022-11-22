@@ -16,6 +16,7 @@ use App\Transformers\Owner\FleetNeededDocumentTransformer;
 use App\Models\Admin\FleetDocument;
 use App\Jobs\Notifications\AndroidPushNotification;
 use Kreait\Firebase\Contract\Database;
+use App\Jobs\Notifications\SendPushNotification;
 
 
 class FleetController extends BaseController
@@ -128,7 +129,7 @@ class FleetController extends BaseController
             $this->database->getReference('drivers/'.$fleet_driver->id)->update(['fleet_changed'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
 
             $notifable_driver = $fleet_driver->user;
-            $notifable_driver->notify(new AndroidPushNotification($title, $body));
+            dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
             $fleet->driverDetail()->update(['fleet_id'=>null,'vehicle_type'=>null]);
 
@@ -159,7 +160,7 @@ class FleetController extends BaseController
         $body = trans('push_notifications.new_fleet_assigned_body');
 
         $notifable_driver = $driver->user;
-        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
         $this->database->getReference('drivers/'.$driver->id)->update(['fleet_changed'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
 

@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\V1\BaseController;
 use App\Models\Request\Request as RequestModel;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
+use App\Jobs\Notifications\SendPushNotification;
+
 
 /**
  * @group Driver-trips-apis
@@ -88,7 +90,7 @@ class DriverTripStartedController extends BaseController
         // dispatch(new NotifyViaSocket('transfer_msg', $socket_message));
         
         // dispatch(new NotifyViaMqtt('trip_status_'.$user->id, json_encode($socket_data), $user->id));
-        $user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($user,$title,$body));
         dispatch_notify:
         return $this->respondSuccess(null, 'driver_trip_started');
     }

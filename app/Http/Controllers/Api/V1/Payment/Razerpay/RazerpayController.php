@@ -22,6 +22,7 @@ use App\Base\Constants\Masters\PushEnums;
 use App\Models\Payment\OwnerWallet;
 use App\Models\Payment\OwnerWalletHistory;
 use App\Transformers\Payment\OwnerWalletTransformer;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Razerpay Payment Gateway
@@ -97,7 +98,7 @@ class RazerpayController extends ApiController
 
                 // dispatch(new NotifyViaMqtt('add_money_to_wallet_status'.$user_id, json_encode($socket_data), $user_id));
                 
-                $user->notify(new AndroidPushNotification($title, $body));
+                dispatch(new SendPushNotification($user,$title,$body));
 
                 if (access()->hasRole(Role::USER)) {
                 $result =  fractal($user_wallet, new WalletTransformer);

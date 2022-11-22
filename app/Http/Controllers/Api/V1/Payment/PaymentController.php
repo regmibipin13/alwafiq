@@ -27,7 +27,7 @@ use App\Models\Payment\UserWallet;
 use App\Models\Payment\DriverWallet;
 use App\Models\Payment\OwnerWallet;
 use App\Jobs\Notifications\AndroidPushNotification;
-
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Payment
@@ -685,7 +685,7 @@ class PaymentController extends BaseController
 
         $body = trans('push_notifications.you_have_received_a_money_from_body', [], $user->lang);
 
-        $receiver_user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($receiver_user,$title,$body));
 
         $user_wallet->amount_spent -= $amount_to_transfer;
         $user_wallet->amount_balance -= $amount_to_transfer;

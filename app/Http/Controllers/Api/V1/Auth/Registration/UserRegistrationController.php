@@ -28,6 +28,7 @@ use App\Http\Requests\Auth\Registration\SendRegistrationOTPRequest;
 use App\Http\Requests\Auth\Registration\ValidateRegistrationOTPRequest;
 use App\Jobs\Notifications\Auth\Registration\UserRegistrationNotification;
 use App\Base\Services\ImageUploader\ImageUploaderContract;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group SignUp-And-Otp-Validation
@@ -278,8 +279,9 @@ class UserRegistrationController extends LoginController
         // Notify user
         $title = trans('push_notifications.referral_earnings_notify_title');
         $body = trans('push_notifications.referral_earnings_notify_body');
+        
+        dispatch(new SendPushNotification($reffered_user,$title,$body));
 
-        $reffered_user->notify(new AndroidPushNotification($title, $body));
     }
 
 

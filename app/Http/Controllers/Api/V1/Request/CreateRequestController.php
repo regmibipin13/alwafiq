@@ -227,8 +227,6 @@ class CreateRequestController extends BaseController
 
         dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
-        // $notifable_driver->notify(new AndroidPushNotification($title, $body));
-
         $device_token = $notifable_driver->fcm_token;
         // Send FCM Notification
         // dispatch(new FcmPushNotification($title,$push_data,$device_token));

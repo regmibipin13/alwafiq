@@ -28,6 +28,7 @@ use App\Models\Payment\OwnerWalletHistory;
 use App\Transformers\Payment\OwnerWalletTransformer;
 use App\Models\Request\Request as RequestModel;
 use Kreait\Firebase\Contract\Database;
+use App\Jobs\Notifications\SendPushNotification;
 
 
 /**
@@ -191,7 +192,7 @@ class StripeController extends ApiController
 
                 // dispatch(new NotifyViaMqtt('add_money_to_wallet_status'.$user_id, json_encode($socket_data), $user_id));
                 
-                $user->notify(new AndroidPushNotification($title, $body));
+                dispatch(new SendPushNotification($user,$title,$body));
 
                 if (access()->hasRole(Role::USER)) {
                 $result =  fractal($user_wallet, new WalletTransformer);
@@ -252,7 +253,7 @@ class StripeController extends ApiController
         $title = trans('push_notifications.payment_completed_by_user_title',[],$driver->user->lang);
         $body = trans('push_notifications.payment_completed_by_user_body',[],$driver->user->lang);
 
-        $driver->user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($driver->user,$title,$body));;
 
 
         return $this->respondSuccess(null,'payment_completed_successfully');

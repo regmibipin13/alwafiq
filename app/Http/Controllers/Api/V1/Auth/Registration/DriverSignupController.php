@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Requests\Auth\Registration\DriverRegistrationRequest;
 use App\Jobs\Notifications\Auth\Registration\UserRegistrationNotification;
 use App\Base\Services\ImageUploader\ImageUploaderContract;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group SignUp-And-Otp-Validation
@@ -277,7 +278,8 @@ class DriverSignupController extends LoginController
         $title = trans('push_notifications.referral_earnings_notify_title');
         $body = trans('push_notifications.referral_earnings_notify_body');
 
-        $reffered_user->user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($reffered_user->user,$title,$body));
+
     }
 
 

@@ -10,6 +10,7 @@ use App\Base\Constants\Masters\PushEnums;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Jobs\NotifyViaMqtt;
 use Illuminate\Http\Request;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Request-Chat
@@ -133,7 +134,7 @@ class ChatController extends BaseController
         $title = 'New Message From ' . $driver->name;
         $body = $request->message;
 
-        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
         return $this->respondSuccess(null, 'message_sent_successfully');
     }

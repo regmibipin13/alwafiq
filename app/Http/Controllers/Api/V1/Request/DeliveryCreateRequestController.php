@@ -21,6 +21,7 @@ use App\Jobs\Notifications\FcmPushNotification;
 use App\Base\Constants\Setting\Settings;
 use Kreait\Firebase\Contract\Database;
 use Sk\Geohash\Geohash;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group User-trips-apis
@@ -244,7 +245,7 @@ class DeliveryCreateRequestController extends BaseController
         $driver = Driver::find($first_meta_driver);
 
         $notifable_driver = $driver->user;
-        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
         $device_token = $notifable_driver->fcm_token;
         // Send FCM Notification

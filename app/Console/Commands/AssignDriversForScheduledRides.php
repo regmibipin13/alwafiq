@@ -19,6 +19,8 @@ use App\Models\Request\DriverRejectedRequest;
 use Sk\Geohash\Geohash;
 use Kreait\Firebase\Contract\Database;
 use App\Base\Constants\Setting\Settings;
+use App\Jobs\Notifications\SendPushNotification;
+
 
 class AssignDriversForScheduledRides extends Command
 {
@@ -198,8 +200,9 @@ class AssignDriversForScheduledRides extends Command
                         $driver = Driver::find($first_meta_driver);
 
                         $notifable_driver = $driver->user;
-                        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+                        dispatch(new SendPushNotification($notifable_driver,$title,$body)); 
 
+                        
                         // Form a socket sturcture using users'id and message with event name
                         // $socket_message = structure_for_socket($driver->id, 'driver', $socket_data, 'create_request');
 

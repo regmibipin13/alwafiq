@@ -24,6 +24,7 @@ use Kreait\Firebase\Contract\Database;
 use App\Base\Constants\Auth\Role;
 use Carbon\Carbon;
 use App\Transformers\Dispatcher\UserForDispatcherRideTransformer;
+use App\Jobs\Notifications\SendPushNotification;
 
 
 /**
@@ -201,7 +202,7 @@ class DispatcherCreateRequestController extends BaseController
         $driver = Driver::find($first_meta_driver);
 
         $notifable_driver = $driver->user;
-        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
         foreach ($selected_drivers as $key => $selected_driver) {
             $request_detail->requestMeta()->create($selected_driver);

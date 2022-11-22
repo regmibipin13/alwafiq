@@ -10,6 +10,7 @@ use App\Base\Constants\Masters\WalletRemarks;
 use App\Transformers\User\ReferralTransformer;
 use App\Http\Controllers\Api\V1\BaseController;
 use App\Jobs\Notifications\AndroidPushNotification;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group SignUp-And-Otp-Validation
@@ -70,7 +71,8 @@ class ReferralController extends BaseController
         $title = trans('push_notifications.referral_earnings_notify_title');
         $body = trans('push_notifications.referral_earnings_notify_body');
 
-        $reffered_user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($reffered_user,$title,$body));
+
 
         return $this->respondSuccess();
     }
@@ -113,8 +115,8 @@ class ReferralController extends BaseController
         $title = trans('push_notifications.referral_earnings_notify_title');
         $body = trans('push_notifications.referral_earnings_notify_body');
 
-        $reffered_user->user->notify(new AndroidPushNotification($title, $body));
-
+        dispatch(new SendPushNotification($reffered_user->user,$title,$body));
+        
         return $this->respondSuccess();
     }
 }

@@ -16,6 +16,7 @@ use App\Base\Constants\Masters\zoneRideType;
 use App\Base\Constants\Masters\PaymentType;
 use App\Models\Admin\CancellationReason;
 use Kreait\Firebase\Contract\Database;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group User-trips-apis
@@ -169,7 +170,7 @@ class UserCancelRequestController extends BaseController
             // dispatch(new NotifyViaMqtt('request_handler_'.$driver->id, json_encode($socket_data), $driver->id));
 
            
-            $notifiable_driver->notify(new AndroidPushNotification($title, $body));
+            dispatch(new SendPushNotification($notifiable_driver,$title,$body));;
         }
         // Delete meta records
         // RequestMeta::where('request_id', $request_detail->id)->delete();

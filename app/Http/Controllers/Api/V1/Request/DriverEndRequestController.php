@@ -20,6 +20,7 @@ use App\Models\Admin\ZoneTypePackagePrice;
 use Illuminate\Support\Facades\Log;
 use App\Models\Request\RequestCancellationFee;
 use App\Base\Constants\Setting\Settings;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Driver-trips-apis
@@ -387,7 +388,7 @@ class DriverEndRequestController extends BaseController
 
         // dispatch(new NotifyViaMqtt('trip_status_'.$user->id, json_encode($socket_data), $user->id));
 
-        $user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($user,$title,$body));
         dispatch_notify:
         // @TODO Send email & sms
         return $this->respondSuccess($request_result, 'request_ended');

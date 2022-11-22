@@ -19,6 +19,8 @@ use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Models\Admin\FleetNeededDocument;
 use App\Jobs\Notifications\AndroidPushNotification;
+use App\Jobs\Notifications\SendPushNotification;
+
 
 class FleetController extends BaseController
 {
@@ -221,7 +223,7 @@ class FleetController extends BaseController
     
         }
         
-        $user->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($user,$title,$body));
 
         $message = trans('succes_messages.fleet_approval_status_changed_succesfully');
         return redirect('fleets')->with('success', $message);

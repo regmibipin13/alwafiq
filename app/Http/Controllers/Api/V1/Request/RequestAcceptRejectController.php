@@ -16,6 +16,7 @@ use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Models\Request\DriverRejectedRequest;
 use Kreait\Firebase\Contract\Database;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @group Driver-trips-apis
@@ -95,7 +96,7 @@ class RequestAcceptRejectController extends BaseController
             $title = trans('push_notifications.trip_accepted_title');
             $body = trans('push_notifications.trip_accepted_body');
             $push_data = ['notification_enum'=>PushEnums::TRIP_ACCEPTED_BY_DRIVER,'result'=>(string)$push_request_detail];
-            $user->notify(new AndroidPushNotification($title, $body));
+            dispatch(new SendPushNotification($user,$title,$body));
 
             // Form a socket sturcture using users'id and message with event name
             $socket_data = new \stdClass();
@@ -133,7 +134,7 @@ class RequestAcceptRejectController extends BaseController
                 $this->database->getReference('request-meta/'.$request_detail->id)->set(['driver_id'=>$request_meta->driver_id,'request_id'=>$request_detail->id,'user_id'=>$request_detail->user_id,'active'=>1,'updated_at'=> Database::SERVER_TIMESTAMP]);
 
                 $notifiable_driver = $driver->user;
-                $notifiable_driver->notify(new AndroidPushNotification($title, $body));
+                dispatch(new SendPushNotification($notifiable_driver,$title,$body));;
 
                 // Form a socket sturcture using users'id and message with event name
                 $socket_data = new \stdClass();
@@ -158,7 +159,7 @@ class RequestAcceptRejectController extends BaseController
                 $user = User::find($request_detail->user_id);
                 $title = trans('push_notifications.no_driver_found_title');
                 $body = trans('push_notifications.no_driver_found_body');
-                $user->notify(new AndroidPushNotification($title, $body));
+                dispatch(new SendPushNotification($user,$title,$body));
                 $push_data = ['notification_enum'=>PushEnums::NO_DRIVER_FOUND,'result'=>(string)$push_request_detail];
                 // Form a socket sturcture using users'id and message with event name
                 $socket_data = new \stdClass();

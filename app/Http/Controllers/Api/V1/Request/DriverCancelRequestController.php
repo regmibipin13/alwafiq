@@ -20,6 +20,8 @@ use Carbon\Carbon;
 use Kreait\Firebase\Contract\Database;
 use Sk\Geohash\Geohash;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\Notifications\SendPushNotification;
+
 
 
 /**
@@ -217,7 +219,7 @@ class DriverCancelRequestController extends BaseController
         $title = trans('push_notifications.new_request_title',[],$notifable_driver->lang);
         $body = trans('push_notifications.new_request_body',[],$notifable_driver->lang);
 
-        $notifable_driver->notify(new AndroidPushNotification($title, $body));
+        dispatch(new SendPushNotification($notifable_driver,$title,$body));
 
         foreach ($selected_drivers as $key => $selected_driver) {
             $request_detail->requestMeta()->create($selected_driver);
@@ -236,7 +238,7 @@ class DriverCancelRequestController extends BaseController
             $push_data = ['success'=>true,'success_message'=>PushEnums::REQUEST_CANCELLED_BY_DRIVER,'result'=>(string)$push_request_detail];
 
             
-            $user->notify(new AndroidPushNotification($title, $body));
+            dispatch(new SendPushNotification($user,$title,$body));
         }
 
 
