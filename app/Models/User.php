@@ -130,6 +130,14 @@ class User extends Authenticatable implements CanSendOTPContract
         }
         return Storage::disk(env('FILESYSTEM_DRIVER'))->url(file_path($this->uploadPath(), $value));
     }
+
+    public function getMobileAttribute($value)
+    {
+        if (env('APP_FOR')=='demo') {
+
+            return '**********';
+        }
+    }
     /**
      * Override the "boot" method of the model.
      *
