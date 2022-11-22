@@ -14,7 +14,7 @@ class ZoneTypePackagePrice extends Model
      protected $table = 'zone_type_package_prices';
 
       protected $fillable = [
-        'zone_type_id','base_price','package_type_id','distance_price_per_km','time_price_per_min','cancellation_fee','free_distance','free_min'
+        'zone_type_id','base_price','package_type_id','distance_price_per_km','time_price_per_min','cancellation_fee','free_distance','free_min','zone_id'
     ];
 
     /**

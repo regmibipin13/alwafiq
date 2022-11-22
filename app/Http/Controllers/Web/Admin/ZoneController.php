@@ -752,8 +752,8 @@ class ZoneController extends BaseController
             'free_min' => $request->free_minute,
             'cancellation_fee' => $request->cancellation_fee,
             'zone_type_id' => $zone_type->id,
-
-          
+             'zone_id' => $zone_type->zone_id,
+  
         ]);
 
          $message = trans('succes_messages.zone_package_store_succesfully');
@@ -791,9 +791,8 @@ class ZoneController extends BaseController
             'free_distance' => $request->free_distance,
             'free_min' => $request->free_minute,
             'cancellation_fee' => $request->cancellation_fee,
-            
-          
-        ]);
+             'zone_id' => $zone_type->zone_id,
+         ]);
 
          $message = trans('succes_messages.zone_package_update_succesfully');
 
