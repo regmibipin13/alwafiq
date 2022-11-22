@@ -52,7 +52,13 @@ class DriverDocumentController extends BaseController
 
         $driver_id = auth()->user()->driver->id;
 
+        if(auth()->user()->driver->owner_id){
+            $driverneededdocumentQuery  = DriverNeededDocument::where('is_individual',0)->active()->get();
+        }else{
+
         $driverneededdocumentQuery  = DriverNeededDocument::active()->get();
+            
+        }
 
         $neededdocument =  fractal($driverneededdocumentQuery, new DriverNeededDocumentTransformer);
 

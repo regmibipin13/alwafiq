@@ -19,6 +19,7 @@ use App\Models\Request\DriverRejectedRequest;
 use Sk\Geohash\Geohash;
 use Kreait\Firebase\Contract\Database;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\Notifications\SendPushNotification;
 
 
 class AssignDriversForRegularRides extends Command
@@ -206,8 +207,8 @@ class AssignDriversForRegularRides extends Command
                         $driver = Driver::find($first_meta_driver);
 
                         $notifable_driver = $driver->user;
-                        $notifable_driver->notify(new AndroidPushNotification($title, $body));
-
+                        // $notifable_driver->notify(new AndroidPushNotification($title, $body));
+                        dispatch(new SendPushNotification($notifable_driver,$title,$body)); 
                     
                         // dispatch(new NotifyViaMqtt('create_request_'.$driver->id, json_encode($socket_data), $driver->id));
 
