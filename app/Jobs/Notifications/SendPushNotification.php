@@ -9,7 +9,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use NotificationChannels\Fcm\FcmChannel;
 use NotificationChannels\Fcm\FcmMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use NotificationChannels\Fcm\Resources\AndroidConfig;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Jobs\Notifications\AndroidPushNotification;
