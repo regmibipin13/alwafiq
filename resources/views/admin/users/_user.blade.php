@@ -48,7 +48,11 @@
     <td>{{ $i++ }} </td>
     <td> {{$result->name}}</td>
     <td>{{$result->email}}</td>
+    @if(env('APP_FOR')=='demo')
+    <td>**********</td>
+    @else
     <td>{{$result->mobile}}</td>
+    @endif
     <td>{{$result->userDetails ? $result->userDetails->address : '-'}}</td>
     @if($result->active)
     <td><span class="label label-success">@lang('view_pages.active')</span></td>
