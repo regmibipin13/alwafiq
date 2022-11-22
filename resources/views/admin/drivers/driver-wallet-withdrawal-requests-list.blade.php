@@ -34,7 +34,11 @@
             <td>{{ $key+1 }} </td>
             <td>{{$result->getConvertedCreatedAtAttribute()}}</td>
             <td>{{$result->driverDetail->name }}</td>
-            <td>{{$result->driverDetail->mobile }}</td>
+            @if(env('APP_FOR')=='demo')
+            <td>**********</td>
+            @else
+            <td>{{$result->driverDetail->mobile}}</td>
+            @endif
             <td> {{$result->requested_currency}} {{$result->requested_amount}}</td>
             <td>{{$result->driverDetail->driverWallet->amount_balance }}</td>
             @if ($result->status == 0)

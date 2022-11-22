@@ -20,7 +20,11 @@
                                         <tr>
                                             <td>{{ $key+1}} </td>
                                             <td>{{$result->name}}</td>
-                                            <td>{{ $result->mobile }}</td>
+                                            @if(env('APP_FOR')=='demo')
+                                            <td>**********</td>
+                                            @else
+                                            <td>{{$result->mobile}}</td>
+                                            @endif
                                             <td>{{$result->vehicleType->name }}</td>
                                            
                                            <td>

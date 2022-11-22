@@ -23,7 +23,11 @@
                                             <td>{{$result->name}}</td>
                                             <td>{{$result->transport_type}}</td>
                                             <td>{{$result->vehicleType->name }}</td>
-                                            <td>{{ $result->mobile }}</td>
+                                            @if(env('APP_FOR')=='demo')
+                                            <td>**********</td>
+                                            @else
+                                            <td>{{$result->mobile}}</td>
+                                            @endif
                                            
                                            <td>
                                           @php $rating = $result->rating($result->user_id); @endphp  
