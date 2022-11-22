@@ -77,7 +77,11 @@
 <td>--</td>
 @endif
 <td>{{$result->email}}</td>
+@if(env('APP_FOR')=='demo')
+<td>**********</td>
+@else
 <td>{{$result->mobile}}</td>
+@endif
 <td>{{$result->vehicleType->name}}</td>
 <td>{{$result->driverWallet->amount_balance}}</td>
 <!-- <td>
