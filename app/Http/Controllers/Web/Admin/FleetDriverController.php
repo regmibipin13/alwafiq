@@ -41,6 +41,7 @@ use App\Models\Payment\WalletWithdrawalRequest;
 use App\Base\Constants\Setting\Settings;
 use Kreait\Firebase\Contract\Database;
 use App\Models\Admin\Owner;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @resource Driver
@@ -399,7 +400,7 @@ class FleetDriverController extends BaseController
 
         // dispatch(new NotifyViaMqtt('approval_status_'.$driver_details->id, json_encode($socket_data), $driver_details->id));
 
-        $user->notify(new AndroidPushNotification($title, $body, $push_data));
+        dispatch(new SendPushNotification($user,$title,$body));
 
         return redirect('fleet-drivers')->with('success', $message);
     }

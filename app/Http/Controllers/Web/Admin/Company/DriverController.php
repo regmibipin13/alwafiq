@@ -33,6 +33,7 @@ use App\Models\Admin\OwnerHiredDriver;
 use App\Models\Admin\Fleet;
 use App\Models\Admin\DriverPrivilegedVehicle;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\Notifications\SendPushNotification;
 
 /**
  * @resource Driver
@@ -307,7 +308,7 @@ class DriverController extends BaseController
             $push_data = ['notification_enum'=>PushEnums::DRIVER_ACCOUNT_DECLINED];
         }
 
-        $user->notify(new AndroidPushNotification($title, $body, $push_data));
+        dispatch(new SendPushNotification($user,$title,$body));
 
         return redirect('company/drivers')->with('success', $message);
     }

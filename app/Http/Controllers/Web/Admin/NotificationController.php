@@ -15,6 +15,7 @@ use App\Models\Admin\Driver;
 use App\Models\Admin\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Jobs\Notifications\SendPushNotification;
 
 class NotificationController extends BaseController
 {
@@ -98,7 +99,8 @@ class NotificationController extends BaseController
                 $image = $notification->push_image;
 
                 foreach ($userData as $key => $value) {
-                    $value->notify(new AndroidPushNotification($title, $body, $push_data, $image));
+
+                dispatch(new SendPushNotification($value,$title,$body,$push_data,$image));
                 }
             });
         }
@@ -113,7 +115,8 @@ class NotificationController extends BaseController
                 $image = $notification->push_image;
 
                 foreach ($driverData as $key => $value) {
-                    $value->user->notify(new AndroidPushNotification($title, $body, $push_data, $image));
+
+                dispatch(new SendPushNotification($value->user,$title,$body,$push_data,$image));
                 }
             });
         }

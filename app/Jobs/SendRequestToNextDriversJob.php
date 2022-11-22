@@ -14,6 +14,7 @@ use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Transformers\Requests\CronTripRequestTransformer;
 use Kreait\Firebase\Contract\Database;
+use App\Jobs\Notifications\SendPushNotification;
 
 class SendRequestToNextDriversJob implements ShouldQueue
 {
@@ -68,7 +69,7 @@ class SendRequestToNextDriversJob implements ShouldQueue
 
                 $notifiable_driver = $request_meta_detail->driver->user;
 
-                $notifiable_driver->notify(new AndroidPushNotification($title, $body, $push_data));
+                dispatch(new SendPushNotification($notifiable_driver,$title,$body));
             }
         }
     }

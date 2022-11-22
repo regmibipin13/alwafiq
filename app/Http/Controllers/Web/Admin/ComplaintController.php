@@ -12,6 +12,7 @@ use App\Models\Admin\Owner;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Admin\Driver;
+use App\Jobs\Notifications\SendPushNotification;
 
 class ComplaintController extends Controller
 {
@@ -159,7 +160,7 @@ class ComplaintController extends Controller
         $body = trans('push_notifications.complaint_taken_body');
         $push_data = ['notification_enum'=>PushEnums::COMPLAINT_TAKEN];
 
-        $user->notify(new AndroidPushNotification($title, $body, $push_data));
+        dispatch(new SendPushNotification($user,$title,$body));
 
         $message = trans('succes_messages.complaint_taken_succesfully');
 
@@ -185,7 +186,7 @@ class ComplaintController extends Controller
         $body = trans('push_notifications.complaint_solved_body');
         $push_data = ['notification_enum'=>PushEnums::COMPLAINT_SOLVED];
 
-        $user->notify(new AndroidPushNotification($title, $body, $push_data));
+        dispatch(new SendPushNotification($user,$title,$body));
 
         $message = trans('succes_messages.complaint_solved_succesfully');
 

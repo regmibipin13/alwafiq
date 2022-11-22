@@ -14,6 +14,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Jobs\Notifications\AndroidPushNotification;
 use App\Transformers\Requests\TripRequestTransformer;
 use App\Transformers\Requests\CronTripRequestTransformer;
+use App\Jobs\Notifications\SendPushNotification;
 
 class NoDriverFoundNotifyJob implements ShouldQueue
 {
@@ -61,7 +62,7 @@ class NoDriverFoundNotifyJob implements ShouldQueue
 
                 // dispatch(new NotifyViaMqtt('trip_status_'.$user->id, json_encode($socket_data), $user->id));
 
-                $user->notify(new AndroidPushNotification($title, $body, $push_data));
+                dispatch(new SendPushNotification($user,$title,$body));
             }
         }
     }

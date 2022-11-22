@@ -12,6 +12,7 @@ use App\Models\Admin\FleetDocument;
 use App\Models\Admin\FleetNeededDocument;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Jobs\Notifications\SendPushNotification;
 
 class FleetDocumentController extends BaseController
 {
@@ -166,6 +167,6 @@ class FleetDocumentController extends BaseController
         
         // dispatch(new NotifyViaMqtt('approval_status_'.$driver_details->id, json_encode($socket_data), $driver_details->id));
 
-        $user->notify(new AndroidPushNotification($title, $body, $push_data));
+        dispatch(new SendPushNotification($user,$title,$body));
     }
 }
