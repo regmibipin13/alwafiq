@@ -78,8 +78,12 @@
 <td>--</td>
 @endif
 <td>{{$result->email}}</td>
+@if(env('APP_FOR')=='demo')
+<td>**********</td>
+@else
 <td>{{$result->mobile}}</td>
-<td>{{$result->transport_type}}</td>
+@endif
+    <td>{{$result->transport_type}}</td>
 <td>{{$result->vehicleType->name}}</td>
 <td>
     <a href="{{ url('drivers/document/view',$result->id) }}" class="btn btn-social-icon btn-bitbucket">
