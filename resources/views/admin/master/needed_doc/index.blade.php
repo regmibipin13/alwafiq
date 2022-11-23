@@ -22,10 +22,12 @@
                         </button>
                     </div> --}}
 
+                    @if(auth()->user()->can('add-driver-needed-document'))         
                     <div class="col-12 text-right">
                         <a href="{{url('needed_doc/create')}}" class="btn btn-primary btn-sm">
                             <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_needed_doc')</a>
                     </div>
+                    @endif
                 </div>
             </div>
 

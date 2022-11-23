@@ -31,11 +31,16 @@
                             </div>
 
                             
+
+                    @if(auth()->user()->can('Add_Service_Location'))         
+                            
                             <div class="col-md-7 text-center text-md-right">
                                 <a href="{{ url('service_location/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_service_location')</a>
                                
                             </div>
+                     @endif
+
 
                         </div>
                         <!-- <div class="box-controls pull-right">

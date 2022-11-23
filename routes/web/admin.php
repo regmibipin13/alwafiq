@@ -587,7 +587,7 @@ Route::middleware('auth:web')->group(function () {
         });
 
         // Driver Needed Document CRUD
-        Route::group(['prefix' => 'needed_doc',  'middleware' => 'permission:manage-needed-document'], function () {
+        Route::group(['prefix' => 'needed_doc',  'middleware' => 'permission:manage-driver-needed-document'], function () {
             Route::get('/', 'DriverNeededDocumentController@index');
             Route::get('/fetch', 'DriverNeededDocumentController@fetch');
             Route::get('/create', 'DriverNeededDocumentController@create');

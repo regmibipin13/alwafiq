@@ -7,7 +7,6 @@ if(str_contains((string)request()->path(),'translations')){
   $sub_menu = 'translations';
 }
 @endphp
-
 <aside class="main-sidebar">
   <!-- sidebar-->
   <section class="sidebar">
@@ -55,7 +54,7 @@ if(str_contains((string)request()->path(),'translations')){
             <a href="{{url('/system/settings')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.system_settings')</a>
           </li>
           @endif
-          @if(auth()->user()->can('view-system-settings'))
+          @if(auth()->user()->can('view-translations'))
           <li class="{{ 'translations' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/translations')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.translations')</a>
           </li>
@@ -64,7 +63,7 @@ if(str_contains((string)request()->path(),'translations')){
       </li>
       @endif
 
-      @if(auth()->user()->can('master-data'))
+     @if(auth()->user()->can('master-data'))
       <li class="treeview {{ 'master' == $main_menu ? 'active menu-open' : '' }}">
         <a href="javascript: void(0);">
           <i class="fa fa-code-fork"></i>
@@ -74,7 +73,7 @@ if(str_contains((string)request()->path(),'translations')){
           </span>
         </a>
 
-        <ul class="treeview-menu">
+          <ul class="treeview-menu">
           @if(auth()->user()->can('manage-carmake'))
           <li class="{{ 'car_make' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/carmake')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.vehicle_make')</a>
@@ -85,7 +84,7 @@ if(str_contains((string)request()->path(),'translations')){
             <a href="{{url('/carmodel')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.vehicle_model')</a>
           </li>
           @endif
-          @if(auth()->user()->can('manage-needed-document'))
+          @if(auth()->user()->can('manage-driver-needed-document'))
           <li class="{{ 'needed_document' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/needed_doc')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.needed_doc')</a>
           </li>
@@ -171,37 +170,44 @@ if(str_contains((string)request()->path(),'translations')){
         </a>
       </li>
       @endif --}}
-       @if(auth()->user()->can('view-requests'))
-      <li class="treeview {{ 'trip-request' == $main_menu ? 'active menu-open' : '' }}">
-        <a href="javascript: void(0);">
-          <i class="fa fa-map"></i>
-          <span> @lang('pages_names.request') </span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
-        </a>
+         @if(auth()->user()->can('view-requests'))
+        <li class="treeview {{ 'trip-request' == $main_menu ? 'active menu-open' : '' }}">
+          <a href="javascript: void(0);">
+            <i class="fa fa-map"></i>
+            <span> @lang('pages_names.request') </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+  
+          <ul class="treeview-menu">
+         @if(auth()->user()->can('view-rides'))
+           
+            <li class="{{'request' == $sub_menu ? 'active' : '' }}">
+              <a href="{{url('/requests')}}">
+                <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.rides')</span>
+              </a>
+            </li>
+          @endif
+         @if(auth()->user()->can('scheduled-rides'))
+            <li class="{{'scheduled-rides' == $sub_menu ? 'active' : '' }}">
+              <a href="{{url('/scheduled-rides')}}">
+                <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.scheduled_rides')</span>
+              </a>
+            </li>
+          @endif
 
-        <ul class="treeview-menu">
-         
-          <li class="{{'request' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url('/requests')}}">
-              <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.rides')</span>
-            </a>
-          </li>
-          <li class="{{'scheduled-rides' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url('/scheduled-rides')}}">
-              <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.scheduled_rides')</span>
-            </a>
-          </li>
-          <li class="{{'cancellation-rides' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url('/cancellation-rides')}}">
-              <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.cancellation_rides')</span>
-            </a>
-          </li>
-        
-        </ul>
-      </li>
-       @endif 
+         @if(auth()->user()->can('cancellation-rides'))
+            <li class="{{'cancellation-rides' == $sub_menu ? 'active' : '' }}">
+              <a href="{{url('/cancellation-rides')}}">
+                <i class="fa fa-circle-thin"></i> <span>@lang('pages_names.cancellation_rides')</span>
+              </a>
+            </li>
+          @endif
+          
+          </ul>
+        </li>
+         @endif 
       @if(auth()->user()->can('view-types'))
       <li class="{{'types' == $main_menu ? 'active' : '' }}">
         <a href="{{url('/types')}}">
@@ -209,30 +215,32 @@ if(str_contains((string)request()->path(),'translations')){
         </a>
       </li>
       @endif
-      @if(auth()->user()->can('map-menu'))
-      <li class="treeview {{ 'map' == $main_menu ? 'active menu-open' : '' }}">
-        <a href="javascript: void(0);">
-          <i class="fa fa-map"></i>
-          <span> @lang('pages_names.map') </span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-          </span>
-        </a>
+      
+        @if(auth()->user()->can('map-menu'))
+        <li class="treeview {{ 'map' == $main_menu ? 'active menu-open' : '' }}">
+          <a href="javascript: void(0);">
+            <i class="fa fa-map"></i>
+            <span> @lang('pages_names.map') </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            @if(auth()->user()->can('view-zone'))
+            <li class="{{ 'zone' == $sub_menu ? 'active' : '' }}">
+              <a href="{{url('/zone')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.zone')</a>
+            </li>
+            @endif
+            @if(auth()->user()->can('list-airports'))
+            <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
+              <a href="{{url('/airport')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.airport')</a>
+            </li>
+            @endif
 
-        <ul class="treeview-menu">
-          @if(auth()->user()->can('view-zone'))
-          <li class="{{ 'zone' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url('/zone')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.zone')</a>
-          </li>
-          @endif
-          @if(auth()->user()->can('list-airports'))
-          <li class="{{ 'airport' == $sub_menu ? 'active' : '' }}">
-            <a href="{{url('/airport')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.airport')</a>
-          </li>
-          @endif
-        </ul>
-      </li>
+          </ul>
+        </li>
       @endif
+
       @if(auth()->user()->can('vehicle-fare'))
          <li class="{{'vehicle-fare' == $main_menu ? 'active' : '' }}">
               <a href="{{url('/vehicle_fare')}}"><i class="fa fa-money"></i>@lang('pages_names.set_price')</a>

@@ -27,14 +27,14 @@
                                 </button>
                             </div>
 
-
-
+                            @if(auth()->user()->can('Add-Airports'))            
                             <div class="col-md-7 text-center text-md-right">
                                 <a href="{{ url('airport/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_airport')</a>
                                 <!--  <a class="btn btn-danger">
                                         Export</a> -->
                             </div>
+                            @endif
                             <!-- <div class="box-controls pull-right">
                     <div class="lookup lookup-circle lookup-right">
                       <input type="text" name="s">

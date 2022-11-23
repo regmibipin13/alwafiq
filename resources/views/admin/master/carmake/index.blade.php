@@ -21,11 +21,12 @@
                             @lang('view_pages.search')
                         </button>
                     </div> --}}
-
+                @if(auth()->user()->can('add-carmake'))         
                     <div class="col-12 text-right">
                         <a href="{{url('carmake/create')}}" class="btn btn-primary btn-sm">
                             <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_carmake')</a>
                     </div>
+                @endif
                 </div>
             </div>
 

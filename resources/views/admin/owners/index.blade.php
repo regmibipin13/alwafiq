@@ -31,13 +31,14 @@
                         @lang('view_pages.search')
                     </button>
                 </div>
-
+                    @if(auth()->user()->can('add-owner'))         
                             <div class="col-9 text-right">
                                 <a href="{{ url('owners/create',$area->id)}}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add')</a>
                                <!--  <a class="btn btn-danger">
                                     Export</a> -->
                             </div>
+                    @endif
               <!-- <div class="box-controls pull-right">
                 <div class="lookup lookup-circle lookup-right">
                   <input type="text" name="s">

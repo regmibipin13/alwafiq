@@ -50,13 +50,15 @@
     <td>
     <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
     </button>
-        <div class="dropdown-menu">
+       <div class="dropdown-menu">
+        @if(auth()->user()->can('Edit_Service_Location'))         
             
             <a class="dropdown-item" href="{{url('service_location/edit',$result->id)}}">
             <i class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
+        @endif
             
-
-           
+        @if(auth()->user()->can('Toggle_Service_Location'))         
+          
             @if($result->active)
             <a class="dropdown-item" href="{{url('service_location/toggle_status',$result->id)}}">
             <i class="fa fa-dot-circle-o"></i>@lang('view_pages.inactive')</a>
@@ -64,9 +66,12 @@
             <a class="dropdown-item" href="{{url('service_location/toggle_status',$result->id)}}">
             <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
             @endif
-
+        @endif
+        @if(auth()->user()->can('Delete_Service_Location'))         
            <!--  <a class="dropdown-item sweet-delete" data-url="{{url('service_location/delete',$result->id)}}" href="#">
             <i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> -->
+        @endif
+        
         </div>
     </div>
    

@@ -12,7 +12,9 @@
                                  <th>{{ trans('view_pages.vehicle_type')}}</th>
                                  <th>{{ trans('view_pages.car_brand')}}</th>
                                  <th>{{ trans('view_pages.car_model')}}</th>
+                            @if (auth()->user()->can('view-fleet-document'))
                                 <th> @lang('view_pages.document_view')</th>
+                            @endif
                                  <!-- <th>{{ trans('view_pages.qr_code')}}</th> -->
                                  <th>{{ trans('view_pages.license_number')}}</th>
                                  <th>{{ trans('view_pages.status')}}</th> 
@@ -37,11 +39,13 @@
                                     <td>{{ $result->vehicleType->name }}</td>
                                     <td>{{ $result->carBrand->name }}</td>
                                     <td>{{ $result->carModel->name }}</td>
+                                @if (auth()->user()->can('view-owner-document'))
                                     <td class="manage-driver text-center">
                                     <a href="{{url('fleets/document/view', $result->id) }}" class="btn btn-social-icon btn-bitbucket">
                                     <i class="fa fa-file-code-o"></i>
                                     </a>
                                     </td>
+                                @endif
 
 <!--                                     <td>
                                         @if ($result->approve)
@@ -63,7 +67,7 @@
                                     </td>
 
                                     
-                                    <td>
+                                  <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
                                              </button>

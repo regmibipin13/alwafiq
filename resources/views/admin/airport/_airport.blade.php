@@ -53,18 +53,29 @@
     <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
     </button>
 
-        <div class="dropdown-menu" x-placement="bottom-start">
+         <div class="dropdown-menu" x-placement="bottom-start">
+        @if(auth()->user()->can('Map-view-Airports'))            
+
              <a class="dropdown-item" href="{{url('airport/mapview',$result->id)}}"><i class="fa fa-eye"></i>@lang('view_pages.map_view')</a>
+        @endif
+        @if(auth()->user()->can('Edit-airports'))            
              <a class="dropdown-item" href="{{url('airport/edit',$result->id)}}"><i class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
-            @if($result->active)
+        @endif
+        @if(auth()->user()->can('Toggle-Airports'))                 
+             @if($result->active)
             <a class="dropdown-item" href="{{url('airport/toggle_status',$result->id)}}">
             <i class="fa fa-dot-circle-o"></i>@lang('view_pages.inactive')</a>
             @else
             <a class="dropdown-item" href="{{url('airport/toggle_status',$result->id)}}">
             <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
             @endif
+        @endif
+
+        @if(auth()->user()->can('Delete-Airports'))            
             <a class="dropdown-item sweet-delete" href="#" data-url="{{url('airport/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a>
+        @endif
         </div>
+
 
     </td>
     </tr>

@@ -27,6 +27,7 @@
                                 </button>
                             </div>
 
+                            @if(auth()->user()->can('add-zone'))            
 
                             <div class="col-md-7 text-center text-md-right">
                                 <a href="{{ url('zone/create') }}" class="btn btn-primary btn-sm">
@@ -34,6 +35,8 @@
                                 <!--  <a class="btn btn-danger">
                                         Export</a> -->
                             </div>
+
+                            @endif
               
                             <!-- <div class="box-controls pull-right">
                     <div class="lookup lookup-circle lookup-right">

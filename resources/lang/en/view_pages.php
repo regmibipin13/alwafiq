@@ -756,4 +756,5 @@ return array (
   'vehicle_make_name' => 'Vehicle Make Name',
   'book_later_for_delivery' => 'Book Later For Delivery',
   'book_now_for_delivery' => 'Book Now For Delivery',
+  'add_goods_type' => 'Add Goods Type',
   );

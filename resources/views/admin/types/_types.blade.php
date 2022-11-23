@@ -92,24 +92,24 @@
                                 <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
                                 </button>
-
-                                <div class="dropdown-menu" x-placement="bottom-start"
-                                     style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <a class="dropdown-item" id="editVehicle"
-                                       href="{{url('types/edit',$result->id)}}"><i
-                                            class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
-
-
-                                    @if($result->active)
-                                        <a class="dropdown-item" href="{{url('types/toggle_status',$result->id)}}">
-                                            <i class="fa fa-dot-circle-o"></i>@lang('view_pages.inactive')</a>
-                                    @else
-                                        <a class="dropdown-item" href="{{url('types/toggle_status',$result->id)}}">
-                                            <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
+                                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    @if(auth()->user()->can('edit-vehicle-types'))            
+                                    <a class="dropdown-item" href="{{url('types/edit',$result->id)}}"><i class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
                                     @endif
-
-                                    <!--  <a class="dropdown-item sweet-delete" href="#" data-url="{{url('types/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> -->
-                                </div>
+                                    @if(auth()->user()->can('toggle-vehicle-types'))            
+                                        @if($result->active)
+                                            <a class="dropdown-item" href="{{url('types/toggle_status',$result->id)}}">
+                                            <i class="fa fa-dot-circle-o"></i>@lang('view_pages.inactive')</a>
+                                        @else
+                                            <a class="dropdown-item" href="{{url('types/toggle_status',$result->id)}}">
+                                            <i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
+                                        @endif
+                                    @endif
+                                    @if(auth()->user()->can('delete-vehicle-types'))            
+                                       <!--  <a class="dropdown-item sweet-delete" href="#" data-url="{{url('types/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> -->
+                                    @endif
+                                  
+                                    </div>
 
                             </td>
                         @endif

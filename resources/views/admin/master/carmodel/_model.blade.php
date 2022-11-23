@@ -29,15 +29,20 @@
             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
             </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{url('carmodel',$result->id)}}"><i class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
+                @if(auth()->user()->can('edit-carmodel'))         
 
+                    <a class="dropdown-item" href="{{url('carmodel',$result->id)}}"><i class="fa fa-pencil"></i>@lang('view_pages.edit')</a>
+                @endif
+                @if(auth()->user()->can('toggle-carmodel'))         
                     @if($result->active)
                     <a class="dropdown-item" href="{{url('carmodel/toggle_status',$result->id)}}"><i class="fa fa-dot-circle-o"></i>@lang('view_pages.inactive')</a>
                     @else
                     <a class="dropdown-item" href="{{url('carmodel/toggle_status',$result->id)}}"><i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
                     @endif
-
+                @endif
+                @if(auth()->user()->can('delete-carmodel'))         
                     {{-- <a class="dropdown-item sweet-delete" href="{{url('carmodel/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a> --}}
+                @endif
                 </div>
             </div>
 
