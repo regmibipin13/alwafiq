@@ -53,8 +53,11 @@
 <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
 </button>
     <div class="dropdown-menu">
+        @if(auth()->user()->can('driver-withdrwal-request-view'))         
         <a class="dropdown-item" href="{{url('withdrawal-requests-lists/view',$result->driverDetail->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.view_in_detail')</a>
+       @endif
+
     </div>
 </div>
             </td>

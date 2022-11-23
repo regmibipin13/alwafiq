@@ -30,7 +30,9 @@
             <td>
                     <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')</button>
                         <div class="dropdown-menu">
+                         @if(auth()->user()->can('delete-notifications'))         
                             <a class="dropdown-item sweet-delete" href="{{url('notifications/push/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a>
+                        @endif
                         </div>
                 </div>
             </td>

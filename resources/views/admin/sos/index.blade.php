@@ -30,10 +30,13 @@
 
 
                             <div class="col-md-7 text-center text-md-right">
+                            @if(auth()->user()->can('add-sos'))         
+
                                 <a href="{{ url('sos/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_sos')</a>
                                 <!--  <a class="btn btn-danger">
                                             Export</a> -->
+                            @endif
                             </div>
                         </div>
                         <!-- <div class="box-controls pull-right">

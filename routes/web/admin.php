@@ -465,7 +465,7 @@ Route::middleware('auth:web')->group(function () {
         });
 
         // Manage Notifications
-        Route::group(['prefix' => 'notifications',  'middleware' => 'permission:manage-promo'], function () {
+        Route::group(['prefix' => 'notifications',  'middleware' => 'permission:notifications'], function () {
             Route::get('/push', 'NotificationController@index');
             Route::get('push/fetch', 'NotificationController@fetch');
             Route::get('push/view', 'NotificationController@pushView');

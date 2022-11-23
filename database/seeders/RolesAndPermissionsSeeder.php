@@ -713,7 +713,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'sub_menu'=>'airport',
             'sub_link'=>'aiports',
         ],
-/* Vehicle Type */
+/* Vehicle Fare */
 
         PermissionSlug::VEHICLE_FARE => [
             'name' => 'vehicle-fare',
@@ -816,6 +816,558 @@ class RolesAndPermissionsSeeder extends Seeder
             'main_link'=>'vehicle_fare',
         ],
 
+/* Drivers */
+        PermissionSlug::DRIVERS_MENU => [
+            'name' => 'drivers-menu',
+            'description' => 'drivers',
+            'main_menu' => 'drivers',
+            'sub_menu' => null,
+            'sort' => 4,
+            'icon' => 'fa fa-users'
+        ],
+        PermissionSlug::VIEW_DRIVERS => [
+            'name' => 'view-drivers',
+            'description' => 'Get all drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_PPROVAL_PENDING_DRIVERS => [
+            'name' => 'view-approval-pending-drivers',
+            'description' => 'Get-All-approval-pending-Drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_DRIVER_RATINGS => [
+            'name' => 'view-driver-ratings',
+            'description' => 'Get all Drivers-Ratings',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_DRIVER_WITHDRAWAL_REQUESTS => [
+            'name' => 'view-driver-withdrawal-requests',
+            'description' => 'Get all Drivers-withdrawal-request',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_NEGATIVE_BALANCE_DRIVERS => [
+            'name' => 'view-negative-balance-drivers',
+            'description' => 'Get all-Negative-Balance-Drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::EDIT_DRIVERS => [
+            'name' => 'edit-drivers',
+            'description' => 'edit-drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::TOGGLE_DRIVERS => [
+            'name' => 'toggle-drivers',
+            'description' => 'toggle-drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_REQUEST_LIST => [
+            'name' => 'view-request-list',
+            'description' => 'view-request-list',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::DRIVER_PAYMENT_HISTORY => [
+            'name' => 'driver-payment-history',
+            'description' => 'driver-payment-history',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::VIEW_DRIVER_PROFILE => [
+            'name' => 'view-driver-profile',
+            'description' => 'view-profile',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::ADD_DRIVERS => [
+            'name' => 'add-drivers',
+            'description' => 'add-drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::UPDATE_DRIVERS => [
+            'name' => 'update-drivers',
+            'description' => 'update-drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+        PermissionSlug::DELETE_DRIVERS => [
+            'name' => 'delete-drivers',
+            'description' => 'delete-drivers',
+            'main_menu'=>'drivers',
+            'sub_menu'=>'driver_details',
+            'sub_link'=>'drivers',
+        ],
+    /* Driver Document */
+    PermissionSlug::DRIVER_DOCUMENT => [
+        'name' => 'driver-document',
+        'description' => 'driver-document',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_DOCUMENT_VIEW => [
+        'name' => 'driver-document-view',
+        'description' => 'driver-document-view',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_DOCUMENT_VIEW_IMAGE => [
+        'name' => 'driver-document-view-image',
+        'description' => 'driver-document-view',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_DOCUMENT_EDIT => [
+        'name' => 'driver-document-edit',
+        'description' => 'driver-document-edit',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_DOCUMENT_UPLOAD => [
+        'name' => 'driver-document-upload',
+        'description' => 'driver-document-upload',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_DOCUMENT_TOGGLE => [
+        'name' => 'driver-document-toggle',
+        'description' => 'driver-document-toggle',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+/* Driver Rating & Withdrwal Request */
+    PermissionSlug::VIEW_DRIVER_RATING => [
+        'name' => 'view-driver-rating',
+        'description' => 'view-driver-rating',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+    PermissionSlug::DRIVER_WITHDRAWAL_REQUEST_VIEW => [
+        'name' => 'driver-withdrwal-request-view',
+        'description' => 'driver-withdrwal-request-view',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+/* Negative Balance Driver */
+
+    PermissionSlug::NEGATIVE_BALACE_DRIVER_VIEW => [
+        'name' => 'neagtive-driver-view',
+        'description' => 'neagtive-driver-view',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'drivers',
+    ],
+/* Fleet Drivers  */
+    PermissionSlug::FLEET_DRIVERS_MENU => [
+        'name' => 'fleet-drivers-menu',
+        'description' => 'fleet-drivers',
+        'main_menu' => 'fleet-drivers',
+        'sub_menu' => null,
+        'sort' => 4,
+        'icon' => 'fa fa-users'
+    ],
+    PermissionSlug::VIEW_APPROVED_FLEET_DRIVERS => [
+        'name' => 'view-approved-drivers',
+        'description' => 'Get all drivers',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVERS_WAITING_FOR_APPROVAL => [
+        'name' => 'fleet-drivers-waiting-for-approval',
+        'description' => 'fleet-drivers-waiting-for-approval',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::EDIT_FLEET_DRIVERS => [
+        'name' => 'edit-fleet-drivers',
+        'description' => 'edit-fleet-drivers',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::TOGGLE_FLEET_DRIVERS => [
+        'name' => 'toggle-fleet-drivers',
+        'description' => 'toggle-fleet-drivers',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::UPDATE_FLEET_DRIVERS => [
+        'name' => 'update-fleet-drivers',
+        'description' => 'update-fleet-drivers',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::DELETE_FLEET_DRIVERS => [
+        'name' => 'delete-fleet-drivers',
+        'description' => 'delete-fleet-drivers',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::ADD_FLEET_DRIVERS => [
+        'name' => 'add-fleet-drivers',
+        'description' => 'add-fleet-drivers',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::VIEW_FLEET_DRIVER_REQUEST_LIST => [
+        'name' => 'view-fleet-driver-request-list',
+        'description' => 'view-fleet-driver-request-list',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_PAYMENT_HISTORY => [
+        'name' => 'fleet-driver-payment-history',
+        'description' => 'fleet-driver-payment-history',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::VIEW_FLEET_DRIVER_PROFILE => [
+        'name' => 'view-fleet-driver-profile',
+        'description' => 'view-fleet-driver-profile',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    /*Fleet Driver Document */
+    PermissionSlug::FLEET_DRIVER_DOCUMENT => [
+        'name' => 'fleet-driver-document',
+        'description' => 'fleet-driver-document',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_DOCUMENT_VIEW => [
+        'name' => 'fleet-driver-document-view',
+        'description' => 'fleet-driver-document-view',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_DOCUMENT_VIEW_IMAGE => [
+        'name' => 'fleet-driver-document-view-image',
+        'description' => 'fleet-driver-document-view',
+        'main_menu'=>'drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_DOCUMENT_EDIT => [
+        'name' => 'fleet-driver-document-edit',
+        'description' => 'fleet-driver-document-edit',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_DOCUMENT_UPLOAD => [
+        'name' => 'fleet-driver-document-upload',
+        'description' => 'fleet-driver-document-upload',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ],
+    PermissionSlug::FLEET_DRIVER_DOCUMENT_TOGGLE => [
+        'name' => 'fleet-driver-document-toggle',
+        'description' => 'fleet-driver-document-toggle',
+        'main_menu'=>'fleet-drivers',
+        'sub_menu'=>'fleet-driver_details',
+        'sub_link'=>'fleet-drivers',
+    ], 
+/* Users */
+    PermissionSlug::USER_MENU => [
+        'name' => 'user-menu',
+        'description' => 'View all user related menus',
+        'main_menu' => 'users',
+        'sub_menu' => null,
+        'sort' => 5,
+        'icon' => 'fa fa-user'
+    ],
+    PermissionSlug::VIEW_USERS => [
+        'name' => 'Get-All-Users',
+        'description' => 'Get all Users',
+        'main_menu'=>'users',
+        'sub_menu'=>'user_details',
+        'sub_link'=>'users',
+    ],
+    PermissionSlug::ADD_USER => [
+        'name' => 'add-users',
+        'description' => 'add user',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+
+    ],  
+    PermissionSlug::EDIT_USER => [
+        'name' => 'edit-user',
+        'description' => 'edit user',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+
+    ],  
+    PermissionSlug::DELETE_USER => [
+        'name' => 'delete-user',
+        'description' => 'delete user',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+
+    ],  
+    PermissionSlug::TOGGLE_USER => [
+        'name' => 'toggle-user',
+        'description' => 'toggle-user',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+    ],
+    PermissionSlug::VIEW_USER_REQUEST_LIST => [
+        'name' => 'view-user-request-list',
+        'description' => 'view-user-request-list',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+    ],
+    PermissionSlug::USER_PAYMENT_HISTORY => [
+        'name' => 'user-payment-history',
+        'description' => 'user-payment-history',
+        'main_menu'=>'users',
+        'sub_menu'=>null,
+        'sub_link'=>null,
+        'main_link'=>'users',
+    ],
+
+/* SOS */
+        PermissionSlug::VIEW_SOS => [
+            'name' => 'view-sos',
+            'description' => 'Emergency Numbers',
+            'main_menu'=>'sos',
+            'sub_menu'=> null,
+            'main_link'=>'sos',
+            'sort' => 6,
+            'icon' => 'fa fa-heartbeat'
+        ],
+        PermissionSlug::ADD_SOS => [
+            'name' => 'add-sos',
+            'description' => 'add sos',
+            'main_menu'=>'sos',
+            'main_link'=>'sos',
+    
+        ],  
+        PermissionSlug::EDIT_SOS => [
+            'name' => 'edit-sos',
+            'description' => 'edit sos',
+            'main_menu'=>'sos',
+            'main_link'=>'sos',
+    
+        ],  
+        PermissionSlug::DELETE_SOS => [
+            'name' => 'delete-sos',
+            'description' => 'delete sos',
+            'main_menu'=>'sos',
+            'main_link'=>'sos',
+    
+        ],  
+        PermissionSlug::TOGGLE_SOS => [
+            'name' => 'toggle-sos',
+            'description' => 'toggle-sos',
+            'main_menu'=>'sos',
+            'main_link'=>'sos',
+        ],
+    // manage-promo
+        PermissionSlug::MANAGE_PROMO => [
+            'name' => 'manage-promo',
+            'description' => 'View Promo code',
+            'main_menu'=>'promo',
+            'sub_menu'=> null,
+            'main_link'=>'promo',
+            'sort' => 10,
+            'icon' => 'fa fa-gift'
+        ],
+        PermissionSlug::ADD_PROMO => [
+            'name' => 'add-promo',
+            'description' => 'add Promo code',
+            'main_menu'=>'promo',
+            'sub_menu'=> null,
+            'sub_link'=>null,
+            'main_link'=>'promo',
+
+        ],
+        PermissionSlug::EDIT_PROMO => [
+            'name' => 'edit-promo',
+            'description' => 'edit promo',
+            'main_menu'=>'promo',
+            'main_link'=>'promo',
+    
+        ],  
+        PermissionSlug::DELETE_PROMO => [
+            'name' => 'delete-promo',
+            'description' => 'delete promo',
+            'main_menu'=>'promo',
+            'main_link'=>'promo',
+    
+        ],  
+        PermissionSlug::TOGGLE_PROMO => [
+            'name' => 'toggle-promo',
+            'description' => 'toggle-promo',
+            'main_menu'=>'promo',
+            'main_link'=>'promo',
+        ],
+//Notifications
+         PermissionSlug::NOTIFICATIONS => [
+            'name' => 'notifications',
+            'description' => 'notifications',
+            'main_menu'=>'notifications',
+            'main_link'=>'notifications',
+    
+        ],  
+        PermissionSlug::VIEW_NOTIFICATIONS => [
+            'name' => 'view-notifications',
+            'description' => 'view notifications',
+            'main_menu'=>'notifications',
+            'main_link'=>'notifications',
+    
+        ],  
+        PermissionSlug::SEND_PUSH => [
+            'name' => 'send-push',
+            'description' => 'toggle-promo',
+            'main_menu'=>'notifications',
+            'main_link'=>'notifications',
+        ],       
+        PermissionSlug::DELETE_NOTIFICATIONS => [
+            'name' => 'delete-notification',
+            'description' => 'delete-notifications',
+            'main_menu'=>'notifications',
+            'main_link'=>'notifications',
+        ],   
+    // manage-FAQ
+
+         PermissionSlug::MANAGE_FAQ => [
+            'name' => 'manage-faq',
+            'description' => 'View Promo code',
+            'main_menu'=>'faq',
+            'sub_menu'=> null,
+            'sub_link'=>null,
+            'main_link'=>'faq',
+            'icon' => 'fa fa-gift'
+        ],
+        PermissionSlug::ADD_FAQ => [
+            'name' => 'add-faq',
+            'description' => 'add Promo code',
+            'main_menu'=>'faq',
+            'sub_menu'=> null,
+            'sub_link'=>null,
+            'main_link'=>'faq',
+
+        ],
+        PermissionSlug::EDIT_FAQ => [
+            'name' => 'edit-faq',
+            'description' => 'edit faq',
+            'main_menu'=>'faq',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'faq',
+    
+        ],  
+        PermissionSlug::DELETE_FAQ => [
+            'name' => 'delete-faq',
+            'description' => 'delete faq',
+            'main_menu'=>'faq',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'faq',
+    
+        ],  
+        PermissionSlug::TOGGLE_FAQ => [
+            'name' => 'toggle-faq',
+            'description' => 'toggle-faq',
+            'main_menu'=>'faq',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'faq',
+        ],
+    // manage-cancellation reason
+
+         PermissionSlug::CANCELLATION_REASON => [
+            'name' => 'manage-cancellation',
+            'description' => 'View Promo code',
+            'main_menu'=>'cancellation',
+            'sub_menu'=> null,
+            'sub_link'=>null,
+            'main_link'=>'cancellation',
+            'icon' => 'fa fa-gift'
+        ],
+        PermissionSlug::ADD_CANCELLATION => [
+            'name' => 'add-cancellation',
+            'description' => 'add cancellation',
+            'main_menu'=>'cancellation',
+            'sub_menu'=> null,
+            'sub_link'=>null,
+            'main_link'=>'cancellation',
+
+        ],
+        PermissionSlug::EDIT_CANCELLATION => [
+            'name' => 'edit-cancellation',
+            'description' => 'edit cancellation',
+            'main_menu'=>'cancellation',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'cancellation',
+    
+        ],  
+        PermissionSlug::DELETE_CANCELLATION => [
+            'name' => 'delete-cancellation',
+            'description' => 'delete cancellation',
+            'main_menu'=>'cancellation',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'cancellation',
+    
+        ],  
+        PermissionSlug::TOGGLE_CANCELLATION => [
+            'name' => 'toggle-cancellation',
+            'description' => 'toggle-cancellation',
+            'main_menu'=>'cancellation',
+            'sub_menu'=>null,
+            'sub_link'=>null,
+            'main_link'=>'cancellation',
+        ],
 
         PermissionSlug::VIEW_COMPANIES => [
             'name' => 'View-Companies',
@@ -825,46 +1377,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 7,
             'main_link' => 'company',
             'icon' => 'fa fa-building'
-        ],
-            PermissionSlug::DRIVERS_MENU => [
-            'name' => 'drivers',
-            'description' => 'View all driver related menus',
-            'main_menu' => 'drivers',
-            'sub_menu' => null,
-            'sort' => 4,
-            'icon' => 'fa fa-users'
-        ],
-
-        PermissionSlug::VIEW_DRIVERS => [
-            'name' => 'Get-All-Drivers',
-            'description' => 'Get all drivers',
-            'main_menu'=>'drivers',
-            'sub_menu'=>'driver_details',
-            'sub_link'=>'drivers',
-        ],
-        PermissionSlug::USER_MENU => [
-            'name' => 'users',
-            'description' => 'View all user related menus',
-            'main_menu' => 'users',
-            'sub_menu' => null,
-            'sort' => 5,
-            'icon' => 'fa fa-user'
-        ],
-        PermissionSlug::VIEW_USERS => [
-            'name' => 'Get-All-Users',
-            'description' => 'Get all Users',
-            'main_menu'=>'users',
-            'sub_menu'=>'user_details',
-            'sub_link'=>'users',
-        ],
-        PermissionSlug::USER_SOS => [
-            'name' => 'User-Sos',
-            'description' => 'Emergency Numbers',
-            'main_menu'=>'emergency_number',
-            'sub_menu'=> null,
-            'main_link'=>'sos',
-            'sort' => 6,
-            'icon' => 'fa fa-heartbeat'
         ],
         PermissionSlug::ADMIN => [
             'name' => 'Admin',
@@ -1037,15 +1549,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 16.1,
             'icon' => 'fa fa-circle-thin'
         ],
-        PermissionSlug::MANAGE_PROMO => [
-            'name' => 'manage-promo',
-            'description' => 'View Promo code',
-            'main_menu'=>'manage-promo',
-            'sub_menu'=> null,
-            'main_link'=>'promo',
-            'sort' => 10,
-            'icon' => 'fa fa-gift'
-        ],
+
 
 ];
 

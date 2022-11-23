@@ -24,8 +24,11 @@
                         
 
                     <div class="col-12 text-right">
+                @if(auth()->user()->can('add-promo'))         
+
                         <a href="{{url('promo/create')}}" class="btn btn-primary btn-sm">
                             <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_promo')</a>
+                @endif
                     </div>
                 </div>
             </div>

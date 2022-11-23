@@ -8,7 +8,9 @@
                                             <th> @lang('view_pages.transport_type')</th>
                                             <th> @lang('view_pages.vehicle_type')</th>
                                             <th> @lang('view_pages.mobile')</th>
+                                        @if(auth()->user()->can('view-driver-rating'))         
                                             <th> @lang('view_pages.rating')</th>
+                                        @endif
                                             <th> @lang('view_pages.action')</th>
 
                                         </tr>
@@ -52,7 +54,9 @@
                                                     @endforeach 
 
                                         </td>
-                                        <td> <a href="{{ url('driver-ratings/view',$result->id) }}" class="btn btn-primary btn-sm">@lang('view_pages.view')</a></td>
+                                       @if(auth()->user()->can('view-driver-rating'))         
+                                            <a href="{{ url('driver-ratings/view',$result->id) }}" class="btn btn-primary btn-sm">@lang('view_pages.view')</a></td>
+                                        @endif
 
                                         
                                         </tr>

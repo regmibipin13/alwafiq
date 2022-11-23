@@ -41,13 +41,14 @@
                                     @lang('view_pages.filter_drivers')
                                 </button>
                             </div>
-
+                        @if(auth()->user()->can('add-drivers'))         
                             <div class="col-7 col-md-7 text-right">
                                 <a href="{{ url('drivers/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_driver')</a>
                                 <!--  <a class="btn btn-danger">
                                     Export</a> -->
                             </div>
+                        @endif
                         </div>
 
                         <!-- Modal -->

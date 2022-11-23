@@ -41,6 +41,7 @@
                                     @lang('view_pages.filter_drivers')
                                 </button>
                             </div>
+                        @if(auth()->user()->can('add-fleet-drivers'))         
 
                             <div class="col-7 col-md-7 text-right">
                                 <a href="{{ url('fleet-drivers/create') }}" class="btn btn-primary btn-sm">
@@ -48,6 +49,7 @@
                                 <!--  <a class="btn btn-danger">
                                     Export</a> -->
                             </div>
+                        @endif
                         </div>
 
                         <!-- Modal -->

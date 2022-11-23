@@ -21,11 +21,12 @@
                             @lang('view_pages.search')
                         </button>
                     </div> --}}
-
+                            @if (auth()->user()->can('add-faq'))
                             <div class="col-12 text-right">
                                 <a href="{{ url('faq/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_faq')</a>
                             </div>
+                            @endif
                         </div>
                     </div>
 

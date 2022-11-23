@@ -47,10 +47,12 @@
 </span>
 </th> -->
 <!-- <th> @lang('view_pages.online_status')<span style="float: right;"></span></th> -->
+@if(auth()->user()->can('neagtive-driver-view'))         
 <th> @lang('view_pages.action')
 <span style="float: right;">
 </span>
 </th>
+@endif
 </tr>
 </thead>
 <tbody>
@@ -108,11 +110,13 @@
 
 <td>
 <div class="dropdown">
+@if(auth()->user()->can('neagtive-driver-view'))         
 <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@lang('view_pages.action')
 </button>
     <div class="dropdown-menu">
         <a class="dropdown-item" href="{{url('drivers/payment-history',$result->id)}}">
         <i class="fa fa-dot-circle-o"></i>@lang('view_pages.driver_payment_history')</a>
+       @endif
     </div>
                      
 </td>   

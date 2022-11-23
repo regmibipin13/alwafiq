@@ -42,10 +42,12 @@
                             </div>
 
                             <div class="col-7 col-md-7 text-right">
+                             @if(auth()->user()->can('add-fleet-drivers'))          
                                 <a href="{{ url('fleet-drivers/create') }}" class="btn btn-primary btn-sm">
                                     <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_fleet_driver')</a>
                                 <!--  <a class="btn btn-danger">
                                     Export</a> -->
+                             @endif
                             </div>
                         </div>
 

@@ -135,26 +135,104 @@ class Permission
     const EDIT_RENTAL_PACKAGE = 'edit-rental-package';
     const DELETE_RENTAL_PACKAGE = 'delete-rental-package';
     const TOGGLE_RENTAL_PACKAGE = 'toggle-rental-package';
+/* Drivers */
+    const DRIVERS_MENU = 'drivers-menu';
+    const VIEW_DRIVERS = 'view-drivers';
+    const VIEW_PPROVAL_PENDING_DRIVERS = 'view-approval-pending-drivers';
+    const VIEW_DRIVER_RATINGS = 'view-driver-ratings';
+    CONST VIEW_DRIVER_WITHDRAWAL_REQUESTS = 'view-driver-withdrawal-requests';
+    const VIEW_NEGATIVE_BALANCE_DRIVERS = 'view-negative-balance-drivers';
+    const EDIT_DRIVERS = 'edit-drivers';
+    const TOGGLE_DRIVERS = 'toggle-drivers';
+    const VIEW_REQUEST_LIST = 'view-request-list';
+    const DRIVER_PAYMENT_HISTORY = 'driver-payment-history';
+    const VIEW_DRIVER_PROFILE = 'view-driver-profile';
+    const ADD_DRIVERS = 'add-drivers';
+    const UPDATE_DRIVERS = 'update-drivers';
+    const DELETE_DRIVERS = 'delete-drivers';
+  /* Driver Document & Withdrawal Request &negative balance & rating */
+    const DRIVER_DOCUMENT = 'driver-document';
+    const DRIVER_DOCUMENT_VIEW = 'driver-document-view';
+    const DRIVER_DOCUMENT_EDIT = 'driver-document-edit';
+    const DRIVER_DOCUMENT_UPLOAD = 'driver-document-upload';
+    const DRIVER_DOCUMENT_TOGGLE = 'driver-document-toggle';
+    const DRIVER_DOCUMENT_VIEW_IMAGE = 'driver-document-view-image';
+    const VIEW_DRIVER_RATING = 'view-driver-rating';
+    const DRIVER_WITHDRAWAL_REQUEST_VIEW = 'driver-withdrwal-request-view';
+    const NEGATIVE_BALACE_DRIVER_VIEW = 'neagtive-driver-view';
+/* Fleet Drivers */
+    const FLEET_DRIVERS_MENU = 'fleet-drivers-menu';
+    const VIEW_APPROVED_FLEET_DRIVERS = 'view-approved-fleet-drivers';
+    const FLEET_DRIVERS_WAITING_FOR_APPROVAL = 'fleet-drivers-waiting-for-approval';
+    const EDIT_FLEET_DRIVERS ='edit-fleet-drivers';
+    const TOGGLE_FLEET_DRIVERS = 'toggle-fleet-drivers';
+    const DELETE_FLEET_DRIVERS = 'delete-fleet-drivers';
+    const ADD_FLEET_DRIVERS = 'add-fleet-drivers';
+    const VIEW_FLEET_DRIVER_REQUEST_LIST = 'view-fleet-driver-request-list';
+    const FLEET_DRIVER_PAYMENT_HISTORY = 'fleet-driver-payment-history';
+    const VIEW_FLEET_DRIVER_PROFILE = 'view-fleet-driver-profile';
+    const UPDATE_FLEET_DRIVERS = 'update-fleet-drivers';
+/* Fleet Drivers Document*/
+    const FLEET_DRIVER_DOCUMENT = 'fleet-driver-document';
+    const FLEET_DRIVER_DOCUMENT_VIEW = 'fleet-driver-document-view';
+    const FLEET_DRIVER_DOCUMENT_EDIT = 'fleet-driver-document-edit';
+    const FLEET_DRIVER_DOCUMENT_UPLOAD = 'fleet-driver-document-upload';
+    const FLEET_DRIVER_DOCUMENT_TOGGLE = 'fleet-driver-document-toggle';
+    const FLEET_DRIVER_DOCUMENT_VIEW_IMAGE = 'fleet-driver-document-view-image';
+
+/* Users */
+    const USER_MENU = 'user-menu';
+    const VIEW_USERS = 'view-users';
+    const DELETE_USER = 'delete-user';
+    const EDIT_USER = 'edit-user';
+    const ADD_USER = 'add-user';
+    const TOGGLE_USER = 'toggle-user';
+    const VIEW_USER_REQUEST_LIST = 'view-user-request-list';
+    const USER_PAYMENT_HISTORY = 'user-payment-history';
+/* SOS */
+    const VIEW_SOS = 'view-sos';
+    const DELETE_SOS = 'delete-sos';
+    const EDIT_SOS = 'edit-sos';
+    const ADD_SOS = 'add-sos';
+    const TOGGLE_SOS = 'toggle-sos';
+
+ //* Promo code */
+    const MANAGE_PROMO = 'manage-promo';
+    const ADD_PROMO = 'add-promo';
+    const EDIT_PROMO = 'edit-promo';
+    const TOGGLE_PROMO = 'toggle-promo';
+    const DELETE_PROMO = 'delete-promo';
+//Notifications
+    const NOTIFICATIONS = 'notifications';
+    const VIEW_NOTIFICATIONS = 'view-notifications';
+    const SEND_PUSH ='send_push';
+    const DELETE_NOTIFICATIONS = 'delete-notifications';
+ //FAQ
+    const MANAGE_FAQ = 'manage-promo';
+    const VIEW_FAQ = 'view-faq';
+    const DELETE_FAQ = 'delete-faq';
+    const EDIT_FAQ = 'edit-faq';
+    const ADD_FAQ = 'add-faq';
+    const TOGGLE_FAQ = 'toggle-faq';
+ //cancelation
+    const CANCELLATION_REASON = 'cancellation-reason';
+    const VIEW_CANCELLATION = 'view-cancellation';
+    const DELETE_CANCELLATION = 'delete-cancellation';
+    const EDIT_CANCELLATION = 'edit-cancellation';
+    const ADD_CANCELLATION = 'add-cancellation';
+    const TOGGLE_CANCELLATION = 'toggle-cancellation';
+
 
     // Company permissions
     const VIEW_COMPANIES ='view-companies';
     const ADD_COMPANY = 'add-company';
     const UPDATE_COMPANY = 'update-company';
     const DELETE_COMPANY = 'delete-company';
-    const DRIVERS_MENU = 'drivers-menu';
-    const VIEW_DRIVERS = 'view-drivers';
-    const ADD_DRIVERS = 'add-drivers';
-    const UPDATE_DRIVERS = 'update-drivers';
-    const DELETE_DRIVERS = 'delete-drivers';
 
-    const USER_MENU = 'user-menu';
-    const VIEW_USERS = 'view-users';
     const USER_SOS = 'view-sos';
     const DISPATCH_REQUEST = 'dispatch-request';
     const UPLOAD_BUILDS = 'upload-builds';
     const VIEW_BUILDS = 'view-builds';
-    const MANAGE_FAQ = 'manage-faq';
-    const CANCELLATION_REASON = 'cancellation-reason';
     const COMPLAINTS = 'complaints';
     const COMPLAINT_TITLE = 'complaint-title';
     const REPORTS = 'reports';
@@ -163,11 +241,8 @@ class Permission
     const FINANCE_REPORT = 'finance-report';
     const MANAGE_MAP = 'manage-map';
     const HEAT_MAP = 'heat-map';
-    const MANAGE_PROMO = 'manage-promo';
     const USER_COMPLAINT = 'user-complaint';
     const DRIVER_COMPLAINT = 'driver-complaint';
-    const VIEW_FLEET_DRIVERS = 'view-fleet-drivers';
-    const FLEET_DRIVERS_MENU = 'fleet-drivers-menu';
     const OWNER_COMPLAINT = 'owner-complaint';
     const OWNER_REPORT = 'owner-report';
 
