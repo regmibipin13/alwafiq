@@ -9,8 +9,6 @@ class Role
     const ADMIN = 'admin';
     const DRIVER = 'driver';
     const DISPATCHER = 'dispatcher';
-    const DEVELOPER = 'developer';
-    const CLIENT = 'client';
     const OWNER = 'owner';
     const DELIVERY_DISPATCHER = 'delivery-dispatcher';
 
@@ -64,8 +62,6 @@ class Role
         return [
             self::SUPER_ADMIN,
             self::ADMIN,
-            self::DEVELOPER,
-            self::CLIENT,
             self::OWNER,
         ];
     }

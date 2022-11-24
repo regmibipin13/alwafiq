@@ -1582,16 +1582,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'description' => 'Normal user with standard access',
             'permissions' => []
         ],
-         RoleSlug::DEVELOPER => [
-            'name' => 'Developer User',
-            'description' => 'Normal user with standard access',
-            'permissions' => []
-        ],
-        RoleSlug::CLIENT => [
-            'name' => 'Client User',
-            'description' => 'Normal user with standard access',
-            'permissions' => []
-        ],
         RoleSlug::ADMIN => [
             'name' => 'Admin',
             'description' => 'Admin group with restricted access',
