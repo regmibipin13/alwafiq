@@ -1559,7 +1559,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'description' => 'Dispatch manual requests from admin panel',
             'main_menu'=>'dispatch_request',
             'sub_menu'=> null,
-            'main_link'=>'dispatch',
+            'main_link'=>'dispatch-login',
             'sort' => 3,
             'icon' => 'fa fa-tripadvisor'
         ],

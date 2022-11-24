@@ -109,7 +109,7 @@ class AdminController extends BaseController
         $admins = User::companyKey()->doesNotBelongToRole(RoleSlug::SUPER_ADMIN)->get();
 
         if (access()->hasRole(RoleSlug::SUPER_ADMIN)) {
-            $roles = Role::whereIn('slug', RoleSlug::adminRoles())->get();
+            $roles = Role::whereNotIn('slug', RoleSlug::mobileAppRoles())->get();
         } else {
             $this->validateAdmin();
             $roles = Role::whereIn('slug', RoleSlug::exceptSuperAdminRoles())->get();
