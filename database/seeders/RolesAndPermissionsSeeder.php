@@ -19,8 +19,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
     protected $permissions = [
 
-         //Dashboard and Configurations
-
+    //Dashboard and Configurations
        PermissionSlug::ACCESS_DASHBOARD => [
             'name' => 'Access-Dashboard',
             'description' => 'Access Dashboard',

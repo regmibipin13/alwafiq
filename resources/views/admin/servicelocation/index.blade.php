@@ -30,8 +30,6 @@
                                 </button>
                             </div>
 
-                            
-
                     @if(auth()->user()->can('Add_Service_Location'))         
                             
                             <div class="col-md-7 text-center text-md-right">
