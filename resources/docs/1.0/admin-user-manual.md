@@ -126,7 +126,7 @@ Here you can see the list of scheduled & ride now requests along with multiple a
 
 <a name="promo-management"></a>
 ## 6.Promo Management
-Here you can configure the promo code with expiry dates and other configurations like how manu users can be used & how many times the same user can use the same promo. please refer the following image. Admin users can able to edit or in active the promo code at any time.
+Here you can configure the promo code with expiry dates. please refer the following image. Admin users can able to edit or in active the promo code at any time.
 ##
 Note: Maximum discount amount field is an optional. if you set the maximum discount amount then the promo would be act like an offer upto option. i.e you can configure the promo as 50% discount upto 200$ like this.
 ![image](../../images/user-manual-docs/create-promo.png)
