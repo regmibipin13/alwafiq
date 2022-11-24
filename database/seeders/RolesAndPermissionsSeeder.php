@@ -1452,6 +1452,15 @@ class RolesAndPermissionsSeeder extends Seeder
         ],
 /*Reports*/
        
+        PermissionSlug::REPORTS => [
+            'name' => 'reports',
+            'description' => 'View reports',
+            'main_menu'=>'reports',
+            'sub_menu'=> null,
+            'main_link'=>'reports',
+            'sort' => 16,
+            'icon' => 'fa fa-file-pdf-o'
+        ],
         PermissionSlug::USER_REPORT => [
             'name' => 'user-report',
             'description' => 'Download User Report',
@@ -1536,26 +1545,15 @@ class RolesAndPermissionsSeeder extends Seeder
             'icon' => 'fa fa-globe'
         ],
 
-
-
-        PermissionSlug::VIEW_COMPANIES => [
-            'name' => 'View-Companies',
-            'description' => 'View Companies',
-            'main_menu' => 'company',
-            'sub_menu' => null,
-            'sort' => 7,
-            'main_link' => 'company',
-            'icon' => 'fa fa-building'
-        ],
-        PermissionSlug::ADMIN => [
-            'name' => 'Admin',
-            'description' => 'Admin User List',
-            'main_menu'=>'admin',
-            'sub_menu'=> null,
-            'main_link'=>'admins',
-            'sort' => 3,
-            'icon' => 'fa fa-user-circle-o'
-        ],
+        // PermissionSlug::VIEW_COMPANIES => [
+        //     'name' => 'View-Companies',
+        //     'description' => 'View Companies',
+        //     'main_menu' => 'company',
+        //     'sub_menu' => null,
+        //     'sort' => 7,
+        //     'main_link' => 'company',
+        //     'icon' => 'fa fa-building'
+        // ],
         PermissionSlug::DISPATCH_REQUEST => [
             'name' => 'Dispatch-Request',
             'description' => 'Dispatch manual requests from admin panel',
@@ -1565,45 +1563,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 3,
             'icon' => 'fa fa-tripadvisor'
         ],
-        PermissionSlug::VIEW_REQUEST => [
-            'name' => 'View-Request-Details',
-            'description' => 'View Request Details',
-            'main_menu'=>'request',
-            'sub_menu'=> 'request',
-            'main_link'=>'requests',
-            'sort' => 5,
-            'icon' => 'fa fa-list'
-        ],
-        PermissionSlug::MANAGE_FAQ => [
-            'name' => 'manage-faq',
-            'description' => 'View Faq',
-            'main_menu'=>'faq',
-            'sub_menu'=> null,
-            'main_link'=>'faq',
-            'sort' => 13,
-            'icon' => 'fa fa-question-circle'
-        ],
-        PermissionSlug::CANCELLATION_REASON => [
-            'name' => 'cancellation-title',
-            'description' => 'View Cancellation Title',
-            'main_menu'=>'cancellation',
-            'sub_menu'=> null,
-            'main_link'=>'cancellation',
-            'sort' => 14,
-            'icon' => 'fa fa-ban'
-        ],
-        PermissionSlug::REPORTS => [
-            'name' => 'reports',
-            'description' => 'View reports',
-            'main_menu'=>'reports',
-            'sub_menu'=> null,
-            'main_link'=>'reports',
-            'sort' => 16,
-            'icon' => 'fa fa-file-pdf-o'
-        ],
-
-
-
 
 ];
 
