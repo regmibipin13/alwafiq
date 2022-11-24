@@ -30,11 +30,11 @@
                                         </button>
                                     </div>
                                   @if(auth()->user()->can('create-roles'))
-                                    <!-- <div class="col-9 text-right">
+                                <div class="col-12 text-right">
                                             <a href="{{ url('roles/create') }}" class="btn btn-primary btn-sm">
                                                 <i class="mdi mdi-plus-circle mr-2"></i>@lang('view_pages.add_role')</a>
 
-                                        </div> -->
+                                        </div>
                                   @endif
                             </form>
                             <!-- <div class="box-controls pull-right">
