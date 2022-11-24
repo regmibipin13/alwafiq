@@ -244,6 +244,8 @@ class Permission
     const MANAGE_MAP = 'manage-map';
     const HEAT_MAP = 'heat-map';
     const MAP_VIEW = 'map-view';
+/*cms*/
+    const CMS = 'cms';
 
 
     // Company permissions

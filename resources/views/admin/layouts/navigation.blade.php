@@ -565,7 +565,7 @@ if(str_contains((string)request()->path(),'translations')){
         </a>
       </li>
       @endif
-      @if(auth()->user())
+      @if(auth()->user()->can('cms'))
       <li class="treeview {{ 'cms' == $main_menu ? 'active menu-open' : '' }}">
         <a href="javascript: void(0);">
           <i class="fa fa-file-pdf-o"></i>
