@@ -167,7 +167,7 @@ Route::middleware('auth:web')->group(function () {
         return redirect('login');
     });
     // Masters Crud
-    Route::middleware(role_middleware(Role::webPanelLoginRoles()))->group(function () {
+    // Route::middleware(role_middleware(Role::webPanelLoginRoles()))->group(function () {
         /**
          * Vehicle Types
          */
@@ -185,7 +185,7 @@ Route::middleware('auth:web')->group(function () {
                 Route::get('/delete/{vehicle_type}', 'VehicleTypeController@delete');
             });
         });
-    });
+    // });
 
     Route::namespace('Admin')->group(function () {
         // Change Locale
@@ -474,7 +474,7 @@ Route::middleware('auth:web')->group(function () {
         });
 
         // Complaint Title CRUD
-        Route::group(['prefix' => 'complaint/title',  'middleware' => 'permission:cancellation-reason'], function () {
+        Route::group(['prefix' => 'complaint/title',  'middleware' => 'permission:complaints'], function () {
             Route::get('/', 'ComplaintTitleController@index');
             Route::get('/fetch', 'ComplaintTitleController@fetch');
             Route::get('/create', 'ComplaintTitleController@create');

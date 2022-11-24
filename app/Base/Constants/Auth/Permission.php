@@ -221,6 +221,31 @@ class Permission
     const EDIT_CANCELLATION = 'edit-cancellation';
     const ADD_CANCELLATION = 'add-cancellation';
     const TOGGLE_CANCELLATION = 'toggle-cancellation';
+//Complaint
+    const COMPLAINTS = 'complaints';
+    const USER_COMPLAINT = 'user-complaint';
+    const DRIVER_COMPLAINT = 'driver-complaint';
+    const OWNER_COMPLAINT = 'owner-complaint';
+    const OWNER_REPORT = 'owner-report';
+/*complaint titile */
+    const COMPLAINT_TITLE = 'complaint-title';
+    const ADD_COMPLAINT_TITLE = 'add-complaint-title';
+    const EDIT_COMPLAINT_TITLE = 'edit-complaint-title';
+    const TOGGLE_COMPLAINT_TITLE = 'toggle-complaint-title';
+    const DELETE_COMPLAINT_TITLE = 'delete-complaint-title';
+/*Reports*/
+    const REPORTS = 'reports';
+    const USER_REPORT = 'user-report';
+    const DRIVER_REPORT = 'driver-report';
+    const FINANCE_REPORT = 'finance-report';
+    const DRIVER_DUTIES_REPORT = 'driver-duties-report';
+
+/*geo-fencing*/
+    const MANAGE_MAP = 'manage-map';
+    const HEAT_MAP = 'heat-map';
+    const MAP_VIEW = 'map-view';
+/*cms*/
+    const CMS = 'cms';
 
 
     // Company permissions
@@ -231,19 +256,5 @@ class Permission
 
     const USER_SOS = 'view-sos';
     const DISPATCH_REQUEST = 'dispatch-request';
-    const UPLOAD_BUILDS = 'upload-builds';
-    const VIEW_BUILDS = 'view-builds';
-    const COMPLAINTS = 'complaints';
-    const COMPLAINT_TITLE = 'complaint-title';
-    const REPORTS = 'reports';
-    const USER_REPORT = 'user-report';
-    const DRIVER_REPORT = 'driver-report';
-    const FINANCE_REPORT = 'finance-report';
-    const MANAGE_MAP = 'manage-map';
-    const HEAT_MAP = 'heat-map';
-    const USER_COMPLAINT = 'user-complaint';
-    const DRIVER_COMPLAINT = 'driver-complaint';
-    const OWNER_COMPLAINT = 'owner-complaint';
-    const OWNER_REPORT = 'owner-report';
 
 }

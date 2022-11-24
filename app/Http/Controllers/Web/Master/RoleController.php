@@ -55,9 +55,9 @@ class RoleController extends BaseController
     public function index(QueryFilterContract $queryFilter)
     {
         if (access()->hasRole(RoleSlug::SUPER_ADMIN)) {
-            $result = Role::whereIn('slug', RoleSlug::webShowableRoles());
+            $result = Role::where('slug', '!=', 'developer')->where('slug', '!=', 'client');
         } else {
-            $result = Role::where('slug', '!=', 'super-admin')->whereIn('slug', RoleSlug::webShowableRoles());
+            $result = Role::where('slug', '!=', 'super-admin');
         }
 
         $results = $queryFilter->builder($result)->customFilter(new CommonMasterFilter)->paginate();
@@ -122,6 +122,12 @@ class RoleController extends BaseController
      */
     public function store(CreateRoleRequest $request)
     {
+         if (env('APP_FOR')=='demo') {
+            $message = trans('succes_messages.you_are_not_authorised');
+
+            return redirect()->back()->with('warning', $message);
+           }
+
         $role = $this->role->create($request->all());
 
         $message = trans('succes_messages.role_added_succesfully');
