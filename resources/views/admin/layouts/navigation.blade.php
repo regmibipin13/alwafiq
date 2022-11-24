@@ -246,7 +246,7 @@ if(str_contains((string)request()->path(),'translations')){
               <a href="{{url('/vehicle_fare')}}"><i class="fa fa-money"></i>@lang('pages_names.set_price')</a>
             </li>
         @endif
-  @if(auth()->user()->can('drivers-menu'))
+     @if(auth()->user()->can('drivers-menu'))
               @if (auth()->user()->hasRole('owner'))
                   @php
                       $route = 'company/drivers';
@@ -255,7 +255,7 @@ if(str_contains((string)request()->path(),'translations')){
                   @php
                       $route = 'drivers';
                   @endphp
-              @endif 
+      @endif 
   
        
         <li class="treeview {{ 'drivers' == $main_menu ? 'active menu-open' : '' }}">

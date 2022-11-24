@@ -208,7 +208,7 @@ class Permission
     const SEND_PUSH ='send_push';
     const DELETE_NOTIFICATIONS = 'delete-notifications';
  //FAQ
-    const MANAGE_FAQ = 'manage-promo';
+    const MANAGE_FAQ = 'manage-faq';
     const VIEW_FAQ = 'view-faq';
     const DELETE_FAQ = 'delete-faq';
     const EDIT_FAQ = 'edit-faq';

@@ -46,7 +46,9 @@
                     <a class="dropdown-item" href="{{url('faq/toggle_status',$result->id)}}"><i class="fa fa-dot-circle-o"></i>@lang('view_pages.active')</a>
                     @endif
                 @endif
+               @if (auth()->user()->can('delete-faq'))
                     <a class="dropdown-item sweet-delete" href="{{url('faq/delete',$result->id)}}"><i class="fa fa-trash-o"></i>@lang('view_pages.delete')</a>
+                @endif
                 </div>
             </div>
 
