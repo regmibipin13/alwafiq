@@ -399,7 +399,7 @@ if(str_contains((string)request()->path(),'translations')){
       </li>  
       @endif
 
-      @if(auth()->user()->can('complaint-title'))
+      @if(auth()->user()->can('complaints'))
       <li class="treeview {{ 'complaints' == $main_menu ? 'active menu-open' : '' }}">
         <a href="javascript: void(0);">
           <i class="fa fa-list-alt"></i>
@@ -507,7 +507,7 @@ if(str_contains((string)request()->path(),'translations')){
             <a href="{{url('/reports/driver')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_report')</a>
           </li>
           @endif
-          @if(auth()->user()->can('driver-report'))
+          @if(auth()->user()->can('driver-duties-report'))
          <!--  <li class="{{ 'driver_duties_report' == $sub_menu ? 'active' : '' }}">
             <a href="{{url('/reports/driver-duties')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.driver_duties_report')</a>
           </li> -->
@@ -545,7 +545,7 @@ if(str_contains((string)request()->path(),'translations')){
           </li>
           @endif
 
-          @if(auth()->user()->can('heat-map'))
+          @if(auth()->user()->can('map-view'))
           <li class="{{ 'map' == $sub_menu ? 'active' : '' }}">
             <a href="{{route('mapView')}}"><i class="fa fa-circle-thin"></i>@lang('pages_names.map_view')</a>
           </li>
@@ -646,32 +646,6 @@ if(str_contains((string)request()->path(),'translations')){
           </li>
           @endif -->
 
-
-      <!--         @if(auth()->user()->can('view-builds'))
-          <li class="treeview {{ 'builds' == $main_menu ? 'active menu-open' : '' }}">
-            <a href="javascript: void(0);">
-              <i class="fa fa-share"></i>
-              <span> Builds </span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-right pull-right"></i>
-              </span>
-            </a>
-
-            <ul class="treeview-menu">
-              @if(auth()->user()->can('view-builds'))
-                <li class="{{ 'list_builds' == $sub_menu ? 'active' : '' }}">
-                    <a href="{{url('builds/projects')}}"><i class="fa fa-list"></i> Build Lists</a>
-                </li>
-                @endif
-              @if(auth()->user()->can('upload-builds'))
-                <li class="{{ 'upload_builds' == $sub_menu ? 'active' : '' }}">
-                    <a href="{{url('/builds/create')}}"><i class="fa fa-plus"></i>Upload Builds</a>
-                </li>
-                @endif
-
-            </ul>
-        </li>
-        @endif -->
     </ul>
   </section>
 </aside>

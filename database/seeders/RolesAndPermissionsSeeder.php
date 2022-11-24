@@ -1369,78 +1369,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'main_link'=>'cancellation',
         ],
 
-        PermissionSlug::VIEW_COMPANIES => [
-            'name' => 'View-Companies',
-            'description' => 'View Companies',
-            'main_menu' => 'company',
-            'sub_menu' => null,
-            'sort' => 7,
-            'main_link' => 'company',
-            'icon' => 'fa fa-building'
-        ],
-        PermissionSlug::ADMIN => [
-            'name' => 'Admin',
-            'description' => 'Admin User List',
-            'main_menu'=>'admin',
-            'sub_menu'=> null,
-            'main_link'=>'admins',
-            'sort' => 3,
-            'icon' => 'fa fa-user-circle-o'
-        ],
-        PermissionSlug::DISPATCH_REQUEST => [
-            'name' => 'Dispatch-Request',
-            'description' => 'Dispatch manual requests from admin panel',
-            'main_menu'=>'dispatch_request',
-            'sub_menu'=> null,
-            'main_link'=>'dispatch',
-            'sort' => 3,
-            'icon' => 'fa fa-tripadvisor'
-        ],
-        PermissionSlug::UPLOAD_BUILDS => [
-            'name' => 'Upload-Mobile-Builds',
-            'description' => 'Upload mobile builds',
-            'main_menu'=>'builds',
-            'sub_menu'=> 'upload_builds',
-            'main_link'=>'/builds/create',
-            'sort' => 3,
-            'icon' => 'fa fa-tripadvisor'
-        ],
-        PermissionSlug::VIEW_BUILDS => [
-            'name' => 'View-Mobile-Builds',
-            'description' => 'View mobile builds',
-            'main_menu'=>'builds',
-            'sub_menu'=> 'list_builds',
-            'main_link'=>'/builds/projects',
-            'sort' => 3,
-            'icon' => 'fa fa-tripadvisor'
-        ],
-        PermissionSlug::VIEW_REQUEST => [
-            'name' => 'View-Request-Details',
-            'description' => 'View Request Details',
-            'main_menu'=>'request',
-            'sub_menu'=> 'request',
-            'main_link'=>'requests',
-            'sort' => 5,
-            'icon' => 'fa fa-list'
-        ],
-        PermissionSlug::MANAGE_FAQ => [
-            'name' => 'manage-faq',
-            'description' => 'View Faq',
-            'main_menu'=>'faq',
-            'sub_menu'=> null,
-            'main_link'=>'faq',
-            'sort' => 13,
-            'icon' => 'fa fa-question-circle'
-        ],
-        PermissionSlug::CANCELLATION_REASON => [
-            'name' => 'cancellation-title',
-            'description' => 'View Cancellation Title',
-            'main_menu'=>'cancellation',
-            'sub_menu'=> null,
-            'main_link'=>'cancellation',
-            'sort' => 14,
-            'icon' => 'fa fa-ban'
-        ],
+/*complaint*/
         PermissionSlug::COMPLAINTS => [
             'name' => 'complaints',
             'description' => 'View Complaints',
@@ -1449,15 +1378,6 @@ class RolesAndPermissionsSeeder extends Seeder
             'main_link'=>'complaint',
             'sort' => 15,
             'icon' => 'fa fa-list-alt'
-        ],
-        PermissionSlug::COMPLAINT_TITLE => [
-            'name' => 'complaint-title',
-            'description' => 'View Complaint Title',
-            'main_menu'=>'complaints',
-            'sub_menu'=> 'complaint-title',
-            'sub_link'=>'complaint/title',
-            'sort' => 15.1,
-            'icon' => 'fa fa-circle-thin'
         ],
         PermissionSlug::USER_COMPLAINT => [
             'name' => 'user-complaint',
@@ -1486,15 +1406,52 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 15.3,
             'icon' => 'fa fa-circle-thin'
         ],
-        PermissionSlug::REPORTS => [
-            'name' => 'reports',
-            'description' => 'View reports',
-            'main_menu'=>'reports',
-            'sub_menu'=> null,
-            'main_link'=>'reports',
-            'sort' => 16,
-            'icon' => 'fa fa-file-pdf-o'
+/*complaint-title*/
+
+      PermissionSlug::COMPLAINT_TITLE => [
+            'name' => 'complaint-title',
+            'description' => 'View Complaint Title',
+            'main_menu'=>'complaints',
+            'sub_menu'=> 'complaint-title',
+            'sub_link'=>'complaint/title',
+            'sort' => 15.1,
+            'icon' => 'fa fa-circle-thin'
         ],
+
+      PermissionSlug::ADD_COMPLAINT_TITLE => [
+            'name' => 'add-complaint-title',
+            'description' => 'View Complaint Title',
+            'main_menu'=>'complaints',
+            'sub_menu'=> 'complaint-title',
+            'sub_link'=>'complaint/title',
+            'sort' => 15.1,
+        ],
+      PermissionSlug::EDIT_COMPLAINT_TITLE => [
+            'name' => 'edit-complaint-title',
+            'description' => 'View Complaint Title',
+            'main_menu'=>'complaints',
+            'sub_menu'=> 'complaint-title',
+            'sub_link'=>'complaint/title',
+            'sort' => 15.1,
+        ],
+      PermissionSlug::DELETE_COMPLAINT_TITLE => [
+            'name' => 'delete-complaint-title',
+            'description' => 'View Complaint Title',
+            'main_menu'=>'complaints',
+            'sub_menu'=> 'complaint-title',
+            'sub_link'=>'complaint/title',
+            'sort' => 15.1,
+        ],
+      PermissionSlug::TOGGLE_COMPLAINT_TITLE => [
+            'name' => 'toggle-complaint-title',
+            'description' => 'View Complaint Title',
+            'main_menu'=>'complaints',
+            'sub_menu'=> 'complaint-title',
+            'sub_link'=>'complaint/title',
+            'sort' => 15.1,
+        ],
+/*Reports*/
+       
         PermissionSlug::USER_REPORT => [
             'name' => 'user-report',
             'description' => 'Download User Report',
@@ -1531,6 +1488,16 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 16.3,
             'icon' => 'fa fa-circle-thin'
         ],
+        PermissionSlug::DRIVER_DUTIES_REPORT => [
+            'name' => 'driver-duities-report',
+            'description' => 'Download driver-duities-report',
+            'main_menu'=>'reports',
+            'sub_menu'=> 'driver_report',
+            'sub_link'=>'reports/driver',
+            'sort' => 16.2,
+            'icon' => 'fa fa-circle-thin'
+        ],
+/*geo-fencing*/
         PermissionSlug::MANAGE_MAP => [
             'name' => 'manage-map',
             'description' => 'Manage Map',
@@ -1549,6 +1516,81 @@ class RolesAndPermissionsSeeder extends Seeder
             'sort' => 16.1,
             'icon' => 'fa fa-circle-thin'
         ],
+          PermissionSlug::MAP_VIEW => [
+            'name' => 'map-view',
+            'description' => 'Map View',
+            'main_menu'=>'map',
+            'sub_menu'=> null,
+            'main_link'=>'map',
+            'sort' => 17,
+            'icon' => 'fa fa-globe'
+        ],
+
+        PermissionSlug::VIEW_COMPANIES => [
+            'name' => 'View-Companies',
+            'description' => 'View Companies',
+            'main_menu' => 'company',
+            'sub_menu' => null,
+            'sort' => 7,
+            'main_link' => 'company',
+            'icon' => 'fa fa-building'
+        ],
+        PermissionSlug::ADMIN => [
+            'name' => 'Admin',
+            'description' => 'Admin User List',
+            'main_menu'=>'admin',
+            'sub_menu'=> null,
+            'main_link'=>'admins',
+            'sort' => 3,
+            'icon' => 'fa fa-user-circle-o'
+        ],
+        PermissionSlug::DISPATCH_REQUEST => [
+            'name' => 'Dispatch-Request',
+            'description' => 'Dispatch manual requests from admin panel',
+            'main_menu'=>'dispatch_request',
+            'sub_menu'=> null,
+            'main_link'=>'dispatch',
+            'sort' => 3,
+            'icon' => 'fa fa-tripadvisor'
+        ],
+        PermissionSlug::VIEW_REQUEST => [
+            'name' => 'View-Request-Details',
+            'description' => 'View Request Details',
+            'main_menu'=>'request',
+            'sub_menu'=> 'request',
+            'main_link'=>'requests',
+            'sort' => 5,
+            'icon' => 'fa fa-list'
+        ],
+        PermissionSlug::MANAGE_FAQ => [
+            'name' => 'manage-faq',
+            'description' => 'View Faq',
+            'main_menu'=>'faq',
+            'sub_menu'=> null,
+            'main_link'=>'faq',
+            'sort' => 13,
+            'icon' => 'fa fa-question-circle'
+        ],
+        PermissionSlug::CANCELLATION_REASON => [
+            'name' => 'cancellation-title',
+            'description' => 'View Cancellation Title',
+            'main_menu'=>'cancellation',
+            'sub_menu'=> null,
+            'main_link'=>'cancellation',
+            'sort' => 14,
+            'icon' => 'fa fa-ban'
+        ],
+        PermissionSlug::REPORTS => [
+            'name' => 'reports',
+            'description' => 'View reports',
+            'main_menu'=>'reports',
+            'sub_menu'=> null,
+            'main_link'=>'reports',
+            'sort' => 16,
+            'icon' => 'fa fa-file-pdf-o'
+        ],
+
+
 
 
 ];
@@ -1572,12 +1614,12 @@ class RolesAndPermissionsSeeder extends Seeder
          RoleSlug::DEVELOPER => [
             'name' => 'Developer User',
             'description' => 'Normal user with standard access',
-            'permissions' => [PermissionSlug::UPLOAD_BUILDS,PermissionSlug::VIEW_BUILDS]
+            'permissions' => []
         ],
         RoleSlug::CLIENT => [
             'name' => 'Client User',
             'description' => 'Normal user with standard access',
-            'permissions' => [PermissionSlug::VIEW_BUILDS]
+            'permissions' => []
         ],
         RoleSlug::ADMIN => [
             'name' => 'Admin',

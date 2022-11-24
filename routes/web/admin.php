@@ -474,7 +474,7 @@ Route::middleware('auth:web')->group(function () {
         });
 
         // Complaint Title CRUD
-        Route::group(['prefix' => 'complaint/title',  'middleware' => 'permission:cancellation-reason'], function () {
+        Route::group(['prefix' => 'complaint/title',  'middleware' => 'permission:complaints'], function () {
             Route::get('/', 'ComplaintTitleController@index');
             Route::get('/fetch', 'ComplaintTitleController@fetch');
             Route::get('/create', 'ComplaintTitleController@create');
