@@ -33,7 +33,7 @@ trait CanSendOTP {
 	}
 
 	/**
-	 * Check if the user entered OTP is valid.
+	 * Check if the user-entered OTP is valid.
 	 *
 	 * @param string $otp
 	 * @return bool

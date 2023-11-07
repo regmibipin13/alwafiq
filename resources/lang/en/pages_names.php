@@ -155,5 +155,7 @@ return array (
   'footer_page_cms'=> 'Footer Page Cms',
   'color_theme_page_cms'=> 'Color Theme Page CMS',
   'set_price' => 'Set Price',
+  'request_edit' => 'Edit Request',
+
 
 );

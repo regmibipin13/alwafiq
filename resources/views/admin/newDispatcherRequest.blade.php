@@ -338,6 +338,13 @@ body {
                       placeholder="Name" name="name" id="name" aria-label="Username"
                       aria-describedby="basic-addon1">
               </div>
+
+               <p class="box-title txtInput">@lang('view_pages.user_details')</p>
+      <div class="input-group mar1rm">
+                  <input class="form-control w-100 required_for_valid" type="text"
+                      placeholder="Name" name="name" id="name" aria-label="Username"
+                      aria-describedby="basic-addon1">
+              </div>
             
               <div class="input-group mar1rm">
                   <input class="form-control w-100" type="text" name="phone"

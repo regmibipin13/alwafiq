@@ -439,11 +439,11 @@
                 var icons = {
                     pickup: {
                         name: 'Pickup',
-                        icon: iconBase + '/driver_available.png'
+                        icon: iconBase + '/available-bike.png'
                     },
                     drop: {
                         name: 'Drop',
-                        icon: iconBase + '/driver_on_trip.png'
+                        icon: iconBase + '/ontrip-bike.png'
                     }
                 };
 

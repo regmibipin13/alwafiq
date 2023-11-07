@@ -303,8 +303,8 @@ Pickup Details :
 {{-- <b>Coimbatore</b> --}}
 </p>
 <p class="mb-1 f-12">
-<b>Location : </b><br>
-{{ $item->requestPlace->pick_address }}
+<b>Location: </b><br>
+<a href="">{{ $item->requestPlace->pick_address }}</a>
 </p>
 <p class="mb-1 f-12">
 <b>Time : </b><br>
@@ -404,19 +404,19 @@ var iconBase = "{{ asset('map/icon/') }}";
 var icons = {
 available: {
 name: 'Available',
-icon: iconBase + '/taxi1.svg'
+icon: iconBase + '/available-bike.png'
 },
 ontrip: {
 name: 'OnTrip',
-icon: iconBase + '/taxi.svg'
+icon: iconBase + '/ontrip-bike.png'
 },
 pickup: {
 name: 'PickUp',
-icon: iconBase + '/driver_available.png'
+icon: iconBase + '/available-bike.png'
 },
 drop: {
 name: 'Drop',
-icon: iconBase + '/driver_on_trip.png'
+icon: iconBase + '/ontrip-bike.png'
 }
 };
 

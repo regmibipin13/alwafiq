@@ -19,10 +19,11 @@ class DispatcherController extends BaseController
 
         $page = 'Dispatch Requests';
 
-        return view('admin.dispatcher.requests', compact(['main_menu','sub_menu','page']));
+        return view('admin.dispatcher.requests', compact(['main_menu', 'sub_menu', 'page']));
     }
 
-    public function dispatchView(){
+    public function dispatchView()
+    {
         $main_menu = 'dispatch_request';
 
         $sub_menu = null;
@@ -32,64 +33,66 @@ class DispatcherController extends BaseController
         $default_lat = get_settings('default_latitude');
         $default_lng = get_settings('default_longitude');
 
-        return view('admin.dispatcher.dispatch', compact(['main_menu','sub_menu','page', 'default_lat', 'default_lng']));
+        return view('admin.dispatcher.dispatch', compact(['main_menu', 'sub_menu', 'page', 'default_lat', 'default_lng']));
     }
 
     public function bookNow()
     {
-         $main_menu = 'dispatch_request';
+        $main_menu = 'dispatch_request';
 
         $sub_menu = null;
-       
+
         $default_lat = get_settings('default_latitude');
         $default_lng = get_settings('default_longitude');
 
-        return view('dispatch.new-ui.book-now')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
+        return view('dispatch.new-ui.book-now')->with(compact('main_menu', 'sub_menu', 'default_lat', 'default_lng'));
     }
 
     public function bookNowDelivery()
     {
-         $main_menu = 'dispatch_request';
+        $main_menu = 'dispatch_request';
 
         $sub_menu = null;
-       
+
         $default_lat = get_settings('default_latitude');
         $default_lng = get_settings('default_longitude');
 
-        return view('dispatch.new-ui.book-now-delivery')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
+        return view('dispatch.new-ui.book-now-delivery')->with(compact('main_menu', 'sub_menu', 'default_lat', 'default_lng'));
     }
 
 
     /**
-    *
-    * create new request
-    */
+     *
+     * create new request
+     */
     public function createRequest(Request $request)
     {
         dd($request->all());
     }
 
-    public function loginView(){
+    public function loginView()
+    {
         return view('admin.dispatch-login');
     }
 
     public function dashboard()
     {
-        
-        if (access()->hasRole(Role::DISPATCHER)) {
-             return view('dispatch.home');
-        } else {
-        
-        return view('dispatch-delivery.home');
 
+        if (access()->hasRole(Role::DISPATCHER)) {
+            return view('dispatch.home');
+        } else {
+
+            return view('dispatch-delivery.home');
         }
     }
 
-    public function fetchBookingScreen($modal){
+    public function fetchBookingScreen($modal)
+    {
         return view("dispatch.$modal");
     }
 
-    public function fetchRequestLists(QueryFilterContract $queryFilter){
+    public function fetchRequestLists(QueryFilterContract $queryFilter)
+    {
 
         $query = RequestRequest::where('transport_type', 'taxi');
 
@@ -98,17 +101,20 @@ class DispatcherController extends BaseController
         return view('dispatch.request-list', compact('results'));
     }
 
-    public function profile(){
+    public function profile()
+    {
         return view('dispatch.profile');
     }
 
-     public function fetchSingleRequest(RequestRequest $requestmodel){
+    public function fetchSingleRequest(RequestRequest $requestmodel)
+    {
         return $requestmodel;
     }
 
-     public function requestDetailedView(RequestRequest $requestmodel){
+    public function requestDetailedView(RequestRequest $requestmodel)
+    {
         $item = $requestmodel;
-        
-        return view('dispatch.request_detail',compact('item'));
+
+        return view('dispatch.request_detail', compact('item'));
     }
 }

@@ -10,6 +10,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Base\Constants\Setting\Settings;
+use DB;
+
+
 
 class DashboardController extends BaseController
 {
@@ -143,4 +146,5 @@ class DashboardController extends BaseController
 
         return view('admin.dashboard', compact('page', 'main_menu','currency', 'sub_menu','total_drivers','total_users','trips','todayEarnings','overallEarnings','data'));
     }
+
 }

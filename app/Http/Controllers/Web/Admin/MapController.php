@@ -8,6 +8,9 @@ use App\Base\Constants\Auth\Role;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ServiceLocation;
 use App\Models\Request\Request as RequestRequest;
+use DB;
+
+
 
 class MapController extends Controller
 {
@@ -76,9 +79,18 @@ class MapController extends Controller
             $default_lng = $polygon[0]->lng;
         }
 
+       
+   
+        $allRiders =  DB::table('drivers')
+        ->join('driver_availabilities', 'drivers.id', '=', 'driver_availabilities.driver_id')
+        ->select('drivers.name', 'drivers.email', 'drivers.mobile', 'driver_availabilities.is_online','driver_availabilities.updated_at','drivers.active','drivers.available')
+        ->groupBy('drivers.name')
+        ->get();
+          
 
-
-        return view('admin.map.map', compact('page', 'main_menu', 'sub_menu', 'default_lat', 'default_lng'));
+        
+        return view('admin.map.map', compact('page', 'main_menu', 'sub_menu', 'default_lat', 'default_lng',
+            'allRiders'));
     }
 
     public function mapViewMapbox()

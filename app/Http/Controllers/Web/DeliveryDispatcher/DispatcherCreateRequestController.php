@@ -115,6 +115,19 @@ class DispatcherCreateRequestController extends BaseController
             'service_location_id'=>$service_location->id,
             'goods_type_id'=>(integer)$request->goods_type_id,
             'transport_type'=>$request->transport_type,
+            'invoice_number'=>$request->invoice_number,
+            'pick_address'=>$request->pick_address,
+            'second_pickup_address'=>$request->second_pickup_address,
+            'third_pickup_address'=>$request->third_pickup_address,
+            'drop_address'=>$request->drop_address,
+            'building_number'=>$request->building_number,
+            'cash_to_be_collected'=>$request->cash_to_be_collected,
+            'invoice_amount'=>$request->invoice_amount,
+            'invoice_document'=>$request->invoice_document,
+            'pickup_poc_name'=>$request->pickup_poc_name,
+            'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'drop_poc_name'=>$request->drop_poc_name,
+            'drop_poc_mobile'=>$request->drop_poc_mobile
         ];
 
         // store request details to db

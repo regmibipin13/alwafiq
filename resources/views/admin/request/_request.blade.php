@@ -77,12 +77,12 @@
                 <button type="button" class="btn btn-info btn-sm">
                    @lang('view_pages.view')
                 </button></a>
-                    <!-- <div class="dropdown-menu">
+                     <div class="dropdown-menu">
                         {{-- <a class="dropdown-item" href="{{ url('requests/detail_view',$result->id) }}"> --}}
                              <a class="dropdown-item" href="{{url('requests/trip_view',$result->id) }}">
                             <i class="fa fa-eye"></i>@lang('view_pages.trip_request')</a>
                     </div>
-                </div> -->
+                </div>
             </td>
             @else
                <td>

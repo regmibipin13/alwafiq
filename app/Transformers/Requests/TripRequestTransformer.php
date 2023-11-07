@@ -108,6 +108,18 @@ class TripRequestTransformer extends Transformer
             'converted_completed_at'=>$request->converted_completed_at,
             'converted_cancelled_at'=>$request->converted_cancelled_at,
             'converted_created_at'=>$request->converted_created_at,
+            'cash_to_collect'=>$request->cash_to_collect,
+            'invoice_number'=>$request->invoice_number,
+            'invoice_amount'=>$request->invoice_amount,
+            'building_number'=>$request->building_number,
+            'invoice_document'=>$request->invoice_document,
+            'first_pickup_address'=>$request->first_pickup_address,
+            'second_pickup_address'=>$request->second_pickup_address,
+            'third_pickup_address'=>$request->third_pickup_address,
+            'pickup_poc_name'=>$request->pickup_poc_name,
+            'pickup_poc_mobile'=>$request->pickup_poc_mobile,
+            'drop_poc_name'=>$request->drop_poc_name,
+            'drop_poc_mobile'=>$request->drop_poc_mobile
         ];
 
         $maximum_time_for_find_drivers_for_regular_ride = (get_settings(Settings::MAXIMUM_TIME_FOR_FIND_DRIVERS_FOR_REGULAR_RIDE) * 60);

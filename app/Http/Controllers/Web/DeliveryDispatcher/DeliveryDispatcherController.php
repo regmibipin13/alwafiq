@@ -6,6 +6,7 @@ use App\Base\Filters\Admin\RequestFilter;
 use App\Base\Libraries\QueryFilter\QueryFilterContract;
 use App\Http\Controllers\Web\BaseController;
 use App\Models\Request\Request as RequestRequest;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class DeliveryDispatcherController extends BaseController
@@ -18,10 +19,21 @@ class DeliveryDispatcherController extends BaseController
 
         $page = 'Dispatch Requests';
 
-        return view('admin.dispatcher.requests', compact(['main_menu','sub_menu','page']));
+        return view('admin.dispatcher.requests', compact(['main_menu', 'sub_menu', 'page']));
     }
 
-    public function dispatchView(){
+    // New Tasks Management
+
+    public function tasks()
+    {
+        return view('dispatch-delivery.tasks.index');
+    }
+
+
+
+
+    public function dispatchView()
+    {
         $main_menu = 'dispatch_request';
 
         $sub_menu = null;
@@ -30,44 +42,48 @@ class DeliveryDispatcherController extends BaseController
 
         $default_lat = env('DEFAULT_LAT');
         $default_lng = env('DEFAULT_LNG');
-        return view('admin.dispatcher.dispatch', compact(['main_menu','sub_menu','page', 'default_lat', 'default_lng']));
+        return view('admin.dispatcher.dispatch', compact(['main_menu', 'sub_menu', 'page', 'default_lat', 'default_lng']));
     }
 
     public function bookNow()
     {
-         $main_menu = 'dispatch_request';
+        $main_menu = 'dispatch_request';
 
         $sub_menu = null;
-         $default_lat = env('DEFAULT_LAT');
+        $default_lat = env('DEFAULT_LAT');
         $default_lng = env('DEFAULT_LNG');
 
-        return view('dispatch-delivery.book-now')->with(compact('main_menu','sub_menu','default_lat', 'default_lng'));
+        return view('dispatch-delivery.book-now')->with(compact('main_menu', 'sub_menu', 'default_lat', 'default_lng'));
     }
 
     /**
-    *
-    * create new request
-    */
+     *
+     * create new request
+     */
     public function createRequest(Request $request)
     {
         dd($request->all());
     }
 
-    public function loginView(){
+    public function loginView()
+    {
         return view('admin.dispatch-delivery-login');
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
 
         return view('dispatch-delivery.home');
     }
 
-    public function fetchBookingScreen($modal){
+    public function fetchBookingScreen($modal)
+    {
 
         return view("dispatch-delivery.$modal");
     }
 
-    public function fetchRequestLists(QueryFilterContract $queryFilter){
+    public function fetchRequestLists(QueryFilterContract $queryFilter)
+    {
 
         $query = RequestRequest::where('transport_type', 'delivery');
 
@@ -78,17 +94,44 @@ class DeliveryDispatcherController extends BaseController
         return view('dispatch-delivery.request-list', compact('results'));
     }
 
-    public function profile(){
+    public function tasksList()
+    {
+        $results = Task::orderBy('id', 'desc')->paginate(20);
+        return view('dispatch-delivery.tasks.task-list', compact('results'));
+    }
+
+    public function storeTask(Request $request)
+    {
+        $sanitized = $request->validate([
+            'customer_id' => ['required'],
+            'customer_name' => ['required'],
+            'object_id' => ['required'],
+            'emirates' => ['required'],
+            'area' => ['required'],
+            'address' => ['required'],
+            'address_latitude' => ['required'],
+            'address_longitude' => ['required'],
+            'driver_id' => ['required'],
+        ]);
+
+        Task::create($sanitized);
+        return redirect()->back();
+    }
+
+    public function profile()
+    {
         return view('dispatch-delivery.profile');
     }
 
-     public function fetchSingleRequest(RequestRequest $requestmodel){
+    public function fetchSingleRequest(RequestRequest $requestmodel)
+    {
         return $requestmodel;
     }
 
-     public function requestDetailedView(RequestRequest $requestmodel){
+    public function requestDetailedView(RequestRequest $requestmodel)
+    {
         $item = $requestmodel;
-        
-        return view('dispatch-delivery.request_detail',compact('item'));
+
+        return view('dispatch-delivery.request_detail', compact('item'));
     }
 }

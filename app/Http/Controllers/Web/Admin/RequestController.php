@@ -8,17 +8,21 @@ use App\Base\Libraries\QueryFilter\QueryFilterContract;
 use App\Http\Controllers\Controller;
 use App\Models\Request\Request as RequestRequest;
 use Illuminate\Http\Request;
-
+use DB;
 class RequestController extends Controller
 {
-    public function index()
+    public function index(QueryFilterContract $queryFilter)
     {
         $page = trans('pages_names.request');
         $main_menu = 'trip-request';
         $sub_menu = 'request';
+        $query = RequestRequest::companyKey();
 
-        return view('admin.request.index', compact('page', 'main_menu', 'sub_menu'));
+        $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->defaultSort('-created_at')->paginate();
+       
+        return view('admin.request.index', compact('page', 'main_menu', 'sub_menu','results'));
     }
+
 
     public function getAllRequest(QueryFilterContract $queryFilter)
     {
@@ -43,23 +47,36 @@ class RequestController extends Controller
 
         $item = $request;
 
-        return view('admin.request.requestview', compact('page', 'main_menu', 'sub_menu', 'item'));
+        return view('admin.request.requestview', compact('page', 'main_menu', 'sub_menu','item'));
     } 
+
+    
 
     public function fetchSingleRequest(RequestRequest $request){
         return $request;
     }
 
-     public function requestDetailedView(RequestRequest $request){
+    public function requestDetailedView(RequestRequest $request){
         $item = $request;
         $page = trans('pages_names.request');
-         $main_menu = 'trip-request';
+        $main_menu = 'trip-request';
         $sub_menu = 'request';
         
         return view('admin.request.trip-request',compact('item','page', 'main_menu', 'sub_menu'));
     }
 
-     public function indexScheduled()
+    public function requestEditView(RequestRequest $request){
+        $item = $request;
+        $page = trans('pages_names.trip-request-edit');
+        $main_menu = 'trip-request';
+        $sub_menu = 'request';
+        
+        return view('admin.request.trip-request-edit',compact('item','page', 'main_menu', 'sub_menu'));
+     
+    }
+
+
+    public function indexScheduled()
     {
         $page = trans('pages_names.request');
         $main_menu = 'trip-request';
@@ -68,7 +85,7 @@ class RequestController extends Controller
         return view('admin.scheduled-rides.index', compact('page', 'main_menu', 'sub_menu'));
     }
 
-     public function getAllScheduledRequest(QueryFilterContract $queryFilter)
+    public function getAllScheduledRequest(QueryFilterContract $queryFilter)
     {
         $query = RequestRequest::companyKey()->whereIsCompleted(false)->whereIsCancelled(false)->whereIsLater(true);
         $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->defaultSort('-created_at')->paginate();
@@ -109,5 +126,9 @@ class RequestController extends Controller
 
         return view('admin.request.Cancelledview', compact('page', 'main_menu', 'sub_menu', 'item'));
     } 
+
+ 
+
+
      
 }

@@ -220,6 +220,7 @@ class LoginController extends BaseLoginController
         }
 
         $otp = $user->getCreatedOTP();
+        
         /**
         * Send OTP here
         * Temporary logger

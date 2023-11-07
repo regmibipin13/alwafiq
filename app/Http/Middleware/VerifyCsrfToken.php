@@ -19,6 +19,8 @@ class VerifyCsrfToken extends BaseVerifier
         'broadcasting/auth',
         'api/spa/*',
         'upload',
-        'test'
+        'test',
+        'dispatch-delivery/request/create'
+    
     ];
 }

@@ -384,6 +384,7 @@
         width: 100%;
         padding: 5px;
     }
+    
     .time-line li {
         list-style-type: none;
     }
@@ -679,7 +680,7 @@
                                                     {{-- <b>Coimbatore</b> --}}
                                                 </p>
                                                 <p class="mb-1 f-12">
-                                                    <b>Location : </b><br>
+                                                    <b>Locations : </b><br>
                                                     {{ $item->requestPlace->pick_address }}
                                                 </p>
                                                 <p class="mb-1 f-12">

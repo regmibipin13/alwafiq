@@ -21,7 +21,7 @@
                     <div class="box-header with-border">
                         <div class="row text-right">
 
-                            <div class="col-8 col-md-3">
+                            <div class="col-4 col-md-3">
                                 <div class="form-group">
                                     <input type="text" id="search_keyword" name="search" class="form-control"
                                         placeholder="@lang('view_pages.enter_keyword')">
@@ -33,6 +33,7 @@
                                     @lang('view_pages.search')
                                 </button>
                             </div>
+                          
                             
                             @if(auth()->user()->can('add-admin'))         
                             

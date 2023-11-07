@@ -212,11 +212,9 @@
         .toggle.l.pulse.active {
             background: #000000;
         }
-
     </style>
 @endpush
 @section('dispatch-content')
-
     <main class="main">
         <div class="container-fluid">
             @include('dispatch.header')
@@ -256,11 +254,9 @@
             </div>
         </div>
     </main>
-
 @endsection
 
 @push('dispatch-js')
-
     <script src="{{ asset('assets/js/fetchdata.min.js') }}"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:100,200,300,400,500,600,700,800,900&amp;display=swap"
@@ -268,11 +264,13 @@
 
 
     <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?key={{get_settings('google_map_key')}}&libraries=places"></script>
+        src="https://maps.google.com/maps/api/js?key={{ get_settings('google_map_key') }}&libraries=places"></script>
 
     <script>
-        var lat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? 11.015956}}");
-        var lng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? 76.968985}}");
+        var lat = parseFloat(
+            "{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? 11.015956 }}");
+        var lng = parseFloat(
+            "{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? 76.968985 }}");
 
         // Get user current location
         // if (navigator.geolocation) {
@@ -329,7 +327,6 @@
             else
                 fetchRequestList(col, val);
         })
-
     </script>
 
     @stack('booking-scripts')
@@ -353,14 +350,14 @@
 
         // Your web app's Firebase configuration
         var firebaseConfig = {
-                apiKey: "{{get_settings('firebase-api-key')}}",
-    authDomain: "{{get_settings('firebase-auth-domain')}}",
-    databaseURL: "{{get_settings('firebase-db-url')}}",
-    projectId: "{{get_settings('firebase-project-id')}}",
-    storageBucket: "{{get_settings('firebase-storage-bucket')}}",
-    messagingSenderId: "{{get_settings('firebase-messaging-sender-id')}}",
-    appId: "{{get_settings('firebase-app-id')}}",
-    measurementId: "{{get_settings('firebase-measurement-id')}}"
+            apiKey: "{{ get_settings('firebase-api-key') }}",
+            authDomain: "{{ get_settings('firebase-auth-domain') }}",
+            databaseURL: "{{ get_settings('firebase-db-url') }}",
+            projectId: "{{ get_settings('firebase-project-id') }}",
+            storageBucket: "{{ get_settings('firebase-storage-bucket') }}",
+            messagingSenderId: "{{ get_settings('firebase-messaging-sender-id') }}",
+            appId: "{{ get_settings('firebase-app-id') }}",
+            measurementId: "{{ get_settings('firebase-measurement-id') }}"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -371,7 +368,6 @@
 
         tripRef.on('value', async function(snapshot) {
             var data = snapshot.val();
-
             await loadDriverIcons(data);
         });
 
@@ -430,7 +426,7 @@
             scaleControl: true,
             streetViewControl: false,
             fullscreenControl: true,
-           
+
         });
 
         var iconBase = '{{ asset('map/icon/') }}';
@@ -487,7 +483,7 @@
 
                     var carIcon = new google.maps.Marker({
                         position: new google.maps.LatLng(val.l[0], val.l[1]),
-                         // animation: google.maps.Animation.DROP,
+                        // animation: google.maps.Animation.DROP,
                         icon: {
                             url: iconImg,
                             scaledSize: new google.maps.Size(35, 35)
@@ -503,7 +499,7 @@
 
                     marker.push(carIcon);
                     carIcon.setMap(map);
-                     
+
 
 
 
@@ -513,7 +509,7 @@
             });
         }
 
-       
+
 
         // To rotate truck based on driver bearing
         function rotateMarker(carimage, bearing) {
@@ -583,23 +579,22 @@
             if (modal == 'book-now') {
                 $('.date-option').addClass('d-none');
                 $('.modal-title').text('Taxi Book Now');
-                 $('#book-now').modal('show');
-            } else if (modal == 'book-later')  {
+                $('#book-now').modal('show');
+            } else if (modal == 'book-later') {
                 $('.date-option').removeClass('d-none');
                 $('.datetimepicker').addClass('required_for_valid');
                 $('.datetimepicker').prop('required', true);
                 $('.modal-title').text('Taxi Book Later');
                 $('#book-now').modal('show');
-            } else  if (modal == 'book-now-delivery') {
+            } else if (modal == 'book-now-delivery') {
                 alert('book-now-delivery');
             } else {
                 alert('book-later-delivery');
             }
-           
+
             // $('#book-now').modal('show');
-            
+
 
         });
-
     </script>
 @endpush

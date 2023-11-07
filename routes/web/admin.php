@@ -160,6 +160,8 @@ Route::namespace('Admin')->group(function () {
 });
 
 
+
+
 Route::middleware('auth:web')->group(function () {
     Route::post('logout', function () {
         auth('web')->logout();
@@ -196,6 +198,8 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/admin_dashboard', 'AdminViewController@viewTestDashboard')->name('admin_dashboard');
         Route::get('/driver_profile_dashboard', 'AdminViewController@driverPrfDashboard')->name('driver_profile_dashboard');
         Route::get('/driver_profile_dashboard_view/{driver}', 'AdminViewController@driverPrfDashboardView');
+
+
 
         Route::group(['prefix' => 'company',  'middleware' => 'permission:view-companies'], function () {
             // prefix('company')->group(function () {
@@ -398,6 +402,7 @@ Route::middleware('auth:web')->group(function () {
         });
 
         Route::group(['prefix' => 'requests',  'middleware' => 'permission:view-requests'], function () {
+            
             Route::get('/', 'RequestController@index');
             Route::get('/fetch', 'RequestController@getAllRequest');
             Route::get('/{request}', 'RequestController@getSingleRequest');
@@ -405,9 +410,10 @@ Route::middleware('auth:web')->group(function () {
             Route::get('/request/{request}', 'RequestController@fetchSingleRequest');
             Route::get('/fetch/request/{request}', 'RequestController@retrieveSingleRequest');
             Route::get('view-customer-invoice/{request_detail}','RequestController@viewCustomerInvoice');
-            Route::get('view-driver-invoice/{request_detail}','RequestController@viewDriverInvoice');
-            Route::get('cancelled/{request}', 'RequestController@getCancelledRequest');
+            Route::get('view-driver-invoice/{request_detail}','RequestController@viewDriverInvoice'); 
 
+
+            Route::get('trip-edit-view/{request}','RequestController@requestEditView');
            
         });
 
@@ -510,15 +516,27 @@ Route::middleware('auth:web')->group(function () {
             Route::get('/driver-duties', 'ReportController@driverDutiesReport')->name('driverDutiesReport');
             Route::get('/travel', 'ReportController@travelReport')->name('travelReport');
             Route::any('/download', 'ReportController@downloadReport')->name('downloadReport');
+
+            
+
+
         });
 
         // Manage Map
         Route::group(['prefix' => 'map',  'middleware' => 'permission:manage-map'], function () {
             Route::get('/view', 'MapController@mapView')->name('mapView');
+
+
+
+            Route::get('trip_view/{request}','RequestController@requestDetailedView');
+
+
             Route::get('/mapbox-view', 'MapController@mapViewMapbox')->name('mapViewMapbox');
             Route::get('/heatmap{zone_id?}', 'MapController@heatMapView')->name('heatMapView');
             Route::get('/get/zone', 'MapController@getZoneByServiceLocation')->name('getZoneByServiceLocation');
         });
+
+
     //Vehicle Type Fair
         Route::group(['prefix' => 'vehicle_fare'], function () {
             Route::get('/', 'VehicleFareController@index');
@@ -655,5 +673,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/request/{requestmodel}', 'DispatcherController@fetchSingleRequest');
        
     });
+
+  
 });
 

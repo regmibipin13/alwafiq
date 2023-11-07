@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\ExportRidesController;
+use App\Http\Controllers\RequestEditController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +34,10 @@ Route::namespace('Web')->group(function () {
     Route::get('/dmv', 'FrontPageController@dmvpage')->name('dmv');
     Route::get('/contactus', 'FrontPageController@contactuspage')->name('contactus');
     Route::post('/contactussendmail','FrontPageController@contactussendmailadd')->name('contactussendmail');
-
+    Route::get('exportrides',[ExportRidesController::class,'index']);
 
     // Website home route
     //Route::get('/', 'HomeController@index')->name('home');
+
+
 });

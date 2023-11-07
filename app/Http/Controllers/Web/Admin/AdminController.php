@@ -307,4 +307,7 @@ class AdminController extends BaseController
         $message = trans('succes_messages.admin_profile_updated_succesfully');
         return redirect('admins')->with('success', $message);
     }
+
+
+
 }

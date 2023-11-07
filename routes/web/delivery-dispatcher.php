@@ -8,18 +8,22 @@ Route::middleware('auth:web')->group(function () {
 
     Route::namespace('DeliveryDispatcher')->group(function () {
         Route::get('dispatch-delivery/dashboard', 'DeliveryDispatcherController@dashboard');
+        Route::get('tasks', 'DeliveryDispatcherController@tasks')->name('tasks.index');
         Route::get('fetch/booking-screen/{modal}', 'DeliveryDispatcherController@fetchBookingScreen');
 
         Route::post('dispatch-delivery/request/create', 'DispatcherCreateRequestController@createRequest');
 
         Route::get('fetch/dispatch-delivery-request_lists', 'DeliveryDispatcherController@fetchRequestLists');
 
-        Route::get('request/detail_view/{requestmodel}','DeliveryDispatcherController@requestDetailedView')->name('dispatcherRequestDetailView');
+        // Tasks By Bipin
+        Route::get('fetch/tasks', 'DeliveryDispatcherController@tasksList');
+        Route::post('store/tasks', 'DeliveryDispatcherController@storeTask');
+
+        Route::get('request/detail_view/{requestmodel}', 'DeliveryDispatcherController@requestDetailedView')->name('dispatcherRequestDetailView');
 
 
         Route::get('dispatch/profile', 'DeliveryDispatcherController@profile')->name('dispatcherProfile');
         Route::get('dispatch/book-now', 'DeliveryDispatcherController@bookNow');
         Route::get('dispatch/book-now-delivery', 'DeliveryDispatcherController@bookNowDelivery');
-
     });
 });

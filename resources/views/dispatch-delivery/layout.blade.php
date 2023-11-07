@@ -25,6 +25,7 @@
     <link href="{{ asset('dispatcher/vendors/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
 </head>
 @stack('dispatch-css')
+
 <body>
 
     @yield('dispatch-content')
@@ -45,6 +46,7 @@
     <script src="{{ asset('dispatcher/assets/js/theme.js') }}"></script>
     <script src="{{ asset('dispatcher/assets/js/user.js') }}"></script>
     <script src="{{ asset('dispatcher/jquery.fancybox.min.js') }}"></script>
-@stack('dispatch-js')
+    @stack('dispatch-js')
 </body>
+
 </html>

@@ -25,8 +25,8 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <input class="form-control w-100 required_for_valid" type="text"
-                                                        placeholder="Name" name="name" id="name" aria-label="Username"
-                                                        aria-describedby="basic-addon1">
+                                                        placeholder="Name" name="name" id="name"
+                                                        aria-label="Username" aria-describedby="basic-addon1">
                                                     <span class="text-danger"
                                                         id="error-name">{{ $errors->first('name') }}</span>
                                                 </div>
@@ -35,7 +35,8 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <input class="form-control w-100" type="text" name="phone"
-                                                        id="phone" aria-label="phone" aria-describedby="basic-addon1">
+                                                        id="phone" aria-label="phone"
+                                                        aria-describedby="basic-addon1">
                                                     <span class="text-danger"
                                                         id="error-msg">{{ $errors->first('phone') }}</span>
                                                 </div>
@@ -43,7 +44,7 @@
 
                                         </div>
                                     </div>
-                                   
+
                                     <div class="card p-3 mb-3 book">
                                         <div class="row">
                                             <div class="col-12">
@@ -117,7 +118,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                   <!--  <div class="col-12 py-2 addPackageBtn d-none">
+                                                    <!--  <div class="col-12 py-2 addPackageBtn d-none">
                                                         <span class="badge bg-success cursor-pointer"
                                                             data-bs-toggle="collapse" data-bs-target="#collapseExample"
                                                             aria-expanded="false" style="float:right"
@@ -143,15 +144,16 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="datepicker">Start Date</label>
                                                 <input class="form-control datetimepicker required_for_valid"
-                                                    name="date" id="datepicker" type="text" required placeholder="d/m/y"
-                                                    data-options='{"disableMobile":true}' />
+                                                    name="date" id="datepicker" type="text" required
+                                                    placeholder="d/m/y" data-options='{"disableMobile":true}' />
                                                 <span class="text-danger"
                                                     id="error-date">{{ $errors->first('date') }}</span>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="timepicker">Start Time</label>
                                                 <input class="form-control datetimepicker required_for_valid"
-                                                    name="time" id="timepicker" type="text" required placeholder="H:i"
+                                                    name="time" id="timepicker" type="text" required
+                                                    placeholder="H:i"
                                                     data-options='{"enableTime":true,"noCalendar":true,"dateFormat":"H:i","disableMobile":true}' />
                                                 <span class="text-danger"
                                                     id="error-time">{{ $errors->first('time') }}</span>
@@ -169,8 +171,8 @@
                                                     <input class="form-check-input" id="cash" type="radio"
                                                         name="payment_opt" value="1" />
                                                     <label class="form-check-label book" for="cash">
-                                                        <svg width="35" height="38" viewBox="0 0 40 44" fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
+                                                        <svg width="35" height="38" viewBox="0 0 40 44"
+                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M36.7644 40.301H3.23563C1.44865 40.301 0 38.8523 0 37.0653V9.14645C0 7.35948 1.44865 5.91083 3.23563 5.91083H36.7644C38.5513 5.91083 40 7.35948 40 9.14645V37.0653C40 38.8523 38.5513 40.301 36.7644 40.301Z"
                                                                 fill="url(#paint0_linear)" />
@@ -370,7 +372,8 @@
                             <div class="row etarow">
                                 <div class="col-4 etacol etaprice"><i class="fas fa-wallet"></i> <span>- - -</span>
                                 </div>
-                                <div class="col-4 etacol etatime"><i class="far fa-clock"></i> <span>- - -</span></div>
+                                <div class="col-4 etacol etatime"><i class="far fa-clock"></i> <span>- - -</span>
+                                </div>
                                 <div class="col-4 etacol etadistance"><i class="fas fa-map-marker-alt"></i> <span>- -
                                         -</span></div>
                             </div>
@@ -386,7 +389,6 @@
 </div>
 
 @push('booking-scripts')
-
     <script src="{{ asset('assets/build/js/intlTelInput.js') }}"></script>
     <script type="text/javascript">
         ['DOMContentLoaded'].forEach(function(eve) {
@@ -397,12 +399,12 @@
                     maxDate: new Date().fp_incr(5)
                 });
 
-  //               function showlocation() {
-  //   // One-shot position request.
-  //   navigator.geolocation.getCurrentPosition(callback);
-  // }
+                //               function showlocation() {
+                //   // One-shot position request.
+                //   navigator.geolocation.getCurrentPosition(callback);
+                // }
 
-               
+
 
                 var directionsService = new google.maps.DirectionsService();
                 var directionsRenderer = new google.maps.DirectionsRenderer({
@@ -415,27 +417,31 @@
                 var pickUpLocation, dropLocation;
                 var pickUpLat, pickUpLng, dropLat, dropLng;
                 var infowindow = new google.maps.InfoWindow({
-                      size: new google.maps.Size(150, 50)
-                    });
+                    size: new google.maps.Size(150, 50)
+                });
 
                 var iconBase = '{{ asset('map/icon/') }}';
                 var icons = {
                     pickup: {
                         name: 'Pickup',
-                        icon: iconBase + '/driver_available.png'
+                        icon: iconBase + '/available-bike.png'
                     },
                     drop: {
                         name: 'Drop',
-                        icon: iconBase + '/driver_on_trip.png'
+                        icon: iconBase + '/ontrip-bike.png'
                     }
                 };
 
                 function initialize() {
-                    var centerLat = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? get_settings('default_latitude')}}");
-                    var centerLng = parseFloat("{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? get_settings('default_longitude')}}");
+                    var centerLat = parseFloat(
+                        "{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lat')->first() ?? get_settings('default_latitude') }}"
+                    );
+                    var centerLng = parseFloat(
+                        "{{ auth()->user()->admin->serviceLocationDetail->zones()->pluck('lng')->first() ?? get_settings('default_longitude') }}"
+                    );
                     var pickup = document.getElementById('pickup');
-                    var drop = document.getElementById('drop');//11.018511, 76.969897
-                    var latlng = new google.maps.LatLng(centerLat,centerLng);
+                    var drop = document.getElementById('drop'); //11.018511, 76.969897
+                    var latlng = new google.maps.LatLng(centerLat, centerLng);
 
                     map = new google.maps.Map(document.getElementById('book-now-map'), {
                         center: latlng,
@@ -447,18 +453,18 @@
                     //     infowindow.close();
                     //   });
 
-              
+
                     directionsRenderer.setMap(map);
-                       
+
                     var geocoder = new google.maps.Geocoder();
 
                     var pickup_location = new google.maps.places.Autocomplete(pickup);
                     var drop_location = new google.maps.places.Autocomplete(drop);
 
-                    
+
 
                     pickup_location.addListener('place_changed', function() {
-                      
+
                         // pickUpMarker.setVisible(false);
 
                         var place = pickup_location.getPlace();
@@ -483,7 +489,7 @@
                             anchorPoint: new google.maps.Point(0, -29)
                         });
 
-                         // If the place has a geometry, then present it on a map.
+                        // If the place has a geometry, then present it on a map.
                         if (place.geometry.viewport) {
                             map.fitBounds(place.geometry.viewport);
                         } else {
@@ -494,21 +500,21 @@
                         pickUpMarker.setPosition(place.geometry.location);
                         pickUpMarker.setVisible(true);
 
-                         google.maps.event.addListener(pickUpMarker, 'dragend', function() {
+                        google.maps.event.addListener(pickUpMarker, 'dragend', function() {
                             geocodePosition(pickUpMarker.getPosition());
-                          });
-                          
-                          // google.maps.event.addListener(pickUpMarker, 'click', function() {
-                          //   if (pickUpMarker.formatted_address) {
-                          //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                          //   } else {
-                          //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                          //   }
-                          //   infowindow.open(map, pickUpMarker);
-                          // });
-                          google.maps.event.trigger(pickUpMarker, 'click')
+                        });
 
-                       
+                        // google.maps.event.addListener(pickUpMarker, 'click', function() {
+                        //   if (pickUpMarker.formatted_address) {
+                        //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
+                        //   } else {
+                        //     infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
+                        //   }
+                        //   infowindow.open(map, pickUpMarker);
+                        // });
+                        google.maps.event.trigger(pickUpMarker, 'click')
+
+
 
                         // console.log(pickUpMarker.setPosition(place.geometry.location));
 
@@ -517,8 +523,8 @@
                             calcRoute(pickUpLocation, dropLocation)
 
                         bindDataToForm(place.formatted_address, pickUpLat, pickUpLng, 'pickup');
-                        
-                       
+
+
                     });
 
                     drop_location.addListener('place_changed', function() {
@@ -553,25 +559,25 @@
                         dropMarker.setPosition(place.geometry.location);
                         dropMarker.setVisible(true);
 
-                         google.maps.event.addListener(dropMarker, 'dragend', function() {
+                        google.maps.event.addListener(dropMarker, 'dragend', function() {
                             geocodedropPosition(dropMarker.getPosition());
-                          });
+                        });
 
-                          //  google.maps.event.addListener(dropMarker, 'click', function() {
-                          //   if (dropMarker.formatted_address) {
-                          //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                          //   } else {
-                          //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                          //   }
-                          //   infowindow.open(map, dropMarker);
-                          //   // calcRoute(pickUpLocation, drop);
-                          // });
-                          // google.maps.event.trigger(dropMarker, 'click')
-
-
+                        //  google.maps.event.addListener(dropMarker, 'click', function() {
+                        //   if (dropMarker.formatted_address) {
+                        //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
+                        //   } else {
+                        //     infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
+                        //   }
+                        //   infowindow.open(map, dropMarker);
+                        //   // calcRoute(pickUpLocation, drop);
+                        // });
+                        // google.maps.event.trigger(dropMarker, 'click')
 
 
-                        
+
+
+
 
                         if (pickUpLocation)
                             calcRoute(pickUpLocation, dropLocation)
@@ -579,9 +585,9 @@
                         bindDataToForm(place.formatted_address, dropLat, dropLng, 'drop');
                     });
 
-                    // @TODO this function will work on marker move event into map 
+                    // @TODO this function will work on marker move event into map
                     // google.maps.event.addListener(pickUpMarker, 'dragend', function() {
-                        
+
                     //     console.log("hi");
                     //     geocoder.geocode({
                     //         'latLng': pickUpMarker.getPosition()
@@ -595,79 +601,81 @@
                     //                     .getPosition().lat(), pickUpMarker.getPosition()
                     //                     .lng());
                     //                 fillInAddress(results[0]);
-                                   
-                                   
+
+
                     //                 calcRoute(pickup, dropLocation);
                     //             }
                     //         }
                     //     });
                     // });
 
-                   function geocodePosition(pos) {
-                      geocoder.geocode({
-                        latLng: pos
-                      }, function(responses) {
-                        if (responses && responses.length > 0) {
-                          pickUpMarker.formatted_address = responses[0].formatted_address;
-                           $("#pickup").val(responses[0].formatted_address);
-                           $("#pickup_lat").val(pickUpMarker.getPosition().lat());
-                           $("#pickup_lng").val(pickUpMarker.getPosition().lng());
-                            bindDataToForm(responses[0].formatted_address,
-                                 pickUpMarker.getPosition().lat(), pickUpMarker
-                                        .getPosition().lng(), 'pickup');
-                                    var pickup = new google.maps.LatLng(pickUpMarker
-                                        .getPosition().lat(), pickUpMarker.getPosition()
-                                        .lng());
-                                     var drop = new google.maps.LatLng(dropMarker
-                                        .getPosition().lat(), dropMarker.getPosition()
-                                        .lng());
+                    function geocodePosition(pos) {
+                        geocoder.geocode({
+                            latLng: pos
+                        }, function(responses) {
+                            if (responses && responses.length > 0) {
+                                pickUpMarker.formatted_address = responses[0].formatted_address;
+                                $("#pickup").val(responses[0].formatted_address);
+                                $("#pickup_lat").val(pickUpMarker.getPosition().lat());
+                                $("#pickup_lng").val(pickUpMarker.getPosition().lng());
+                                bindDataToForm(responses[0].formatted_address,
+                                    pickUpMarker.getPosition().lat(), pickUpMarker
+                                    .getPosition().lng(), 'pickup');
+                                var pickup = new google.maps.LatLng(pickUpMarker
+                                    .getPosition().lat(), pickUpMarker.getPosition()
+                                    .lng());
+                                var drop = new google.maps.LatLng(dropMarker
+                                    .getPosition().lat(), dropMarker.getPosition()
+                                    .lng());
 
-                            calcRoute(pickup, drop);
-                        } else {
-                          pickUpMarker.formatted_address = 'Cannot determine address at this location.';
-                        }
-                        // infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
-                        // infowindow.open(map, pickUpMarker);
-                      });
-                    } 
+                                calcRoute(pickup, drop);
+                            } else {
+                                pickUpMarker.formatted_address =
+                                    'Cannot determine address at this location.';
+                            }
+                            // infowindow.setContent(pickUpMarker.formatted_address + "<br>coordinates: " + pickUpMarker.getPosition().toUrlValue(6));
+                            // infowindow.open(map, pickUpMarker);
+                        });
+                    }
 
                     function geocodedropPosition(pos) {
-                      geocoder.geocode({
-                        latLng: pos
-                      }, function(responses) {
-                        if (responses && responses.length > 0) {
-                          dropMarker.formatted_address = responses[0].formatted_address;
-                           $("#drop").val(responses[0].formatted_address);
-                           $("#drop_lat").val(dropMarker.getPosition().lat());
-                           $("#drop_lng").val(dropMarker.getPosition().lng());
-                            bindDataToForm(responses[0].formatted_address,
-                                 dropMarker.getPosition().lat(), dropMarker
-                                        .getPosition().lng(), 'drop');
-                                 var pickup = new google.maps.LatLng(pickUpMarker
-                                        .getPosition().lat(), pickUpMarker.getPosition()
-                                        .lng());
-                                    var drop = new google.maps.LatLng(dropMarker
-                                        .getPosition().lat(), dropMarker.getPosition()
-                                        .lng());
+                        geocoder.geocode({
+                            latLng: pos
+                        }, function(responses) {
+                            if (responses && responses.length > 0) {
+                                dropMarker.formatted_address = responses[0].formatted_address;
+                                $("#drop").val(responses[0].formatted_address);
+                                $("#drop_lat").val(dropMarker.getPosition().lat());
+                                $("#drop_lng").val(dropMarker.getPosition().lng());
+                                bindDataToForm(responses[0].formatted_address,
+                                    dropMarker.getPosition().lat(), dropMarker
+                                    .getPosition().lng(), 'drop');
+                                var pickup = new google.maps.LatLng(pickUpMarker
+                                    .getPosition().lat(), pickUpMarker.getPosition()
+                                    .lng());
+                                var drop = new google.maps.LatLng(dropMarker
+                                    .getPosition().lat(), dropMarker.getPosition()
+                                    .lng());
 
-                            calcRoute(pickup, drop);
-                        } else {
-                          dropMarker.formatted_address = 'Cannot determine address at this location.';
-                        }
-                        // infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
-                        // infowindow.open(map, dropMarker);
-                      });
+                                calcRoute(pickup, drop);
+                            } else {
+                                dropMarker.formatted_address =
+                                    'Cannot determine address at this location.';
+                            }
+                            // infowindow.setContent(dropMarker.formatted_address + "<br>coordinates: " + dropMarker.getPosition().toUrlValue(6));
+                            // infowindow.open(map, dropMarker);
+                        });
                     }
 
 
                     // calcRoute(pickup, drop);
-                    
+
 
                 }
 
-                 google.maps.event.addDomListener(window, 'load', initialize);
+                google.maps.event.addDomListener(window, 'load', initialize);
 
-               
+
 
 
 
@@ -888,7 +896,7 @@
                         'drop_lat': dropLat,
                         'drop_lng': dropLng,
                         'ride_type': 1,
-                        'transport_type':'delivery',
+                        'transport_type': 'delivery',
 
                     };
 
@@ -917,24 +925,24 @@
                                 // packageData.forEach(packagePrice => {
                                 //     if(packagePrice.price_type == 1){
                                 //         packagesArr += `<div class="fs--1 m-auto mb-2 selectTypePackage d-none" style="max-width: 25rem;" data-truck-id="${element.id}" data-package-id="${packagePrice.fare_type_id}">
-                                //                 <a class="notification" href="#!">
-                                //                     <div class="notification-body">
-                                //                         <h5 class="m-0 package_name">
-                                //                             ${packagePrice.fare_type_name}
-                                //                         </h5>
-                                //                         <p class="mb-1" style="text-align:left;" data-package-min="${packagePrice.free_minutes}" data-package-dis="${packagePrice.base_distance}" data-package-currency="${packagePrice.currency}">
-                                //                             <br>
-                                //                             ${packagePrice.currency} ${packagePrice.price_per_time} / Min after ${packagePrice.free_minutes} Min<br>
-                                //                             ${packagePrice.currency} ${packagePrice.price_per_distance} / Km after ${packagePrice.base_distance} Km
-                                //                         </p>
-                                //                     </div>
-                                //                     <div class="notification-avatar">
-                                //                         <div class="btn btn-success packagePrice" data-package-price="${packagePrice.base_price}">
-                                //                             ${packagePrice.currency} ${packagePrice.base_price}
-                                //                         </div>
-                                //                     </div>
-                                //                 </a>
-                                //             </div>`;    
+                            //                 <a class="notification" href="#!">
+                            //                     <div class="notification-body">
+                            //                         <h5 class="m-0 package_name">
+                            //                             ${packagePrice.fare_type_name}
+                            //                         </h5>
+                            //                         <p class="mb-1" style="text-align:left;" data-package-min="${packagePrice.free_minutes}" data-package-dis="${packagePrice.base_distance}" data-package-currency="${packagePrice.currency}">
+                            //                             <br>
+                            //                             ${packagePrice.currency} ${packagePrice.price_per_time} / Min after ${packagePrice.free_minutes} Min<br>
+                            //                             ${packagePrice.currency} ${packagePrice.price_per_distance} / Km after ${packagePrice.base_distance} Km
+                            //                         </p>
+                            //                     </div>
+                            //                     <div class="notification-avatar">
+                            //                         <div class="btn btn-success packagePrice" data-package-price="${packagePrice.base_price}">
+                            //                             ${packagePrice.currency} ${packagePrice.base_price}
+                            //                         </div>
+                            //                     </div>
+                            //                 </a>
+                            //             </div>`;
                                 //     }
                                 // });
                             });
@@ -992,16 +1000,16 @@
 
                     $('.etaprice').html(
                         `<i class="fas fa-wallet"></i><span> ${packageCurrency} ${(packagePrice).toFixed(2)}</span>`
-                        );
+                    );
                     $('.etatime').html(
                         `<i class="far fa-clock"></i> <span>${packageMin} Mins </span>`);
                     $('.etadistance').html(
                         `<i class="fas fa-map-marker-alt"></i> <span> ${packageDis} Kms </span>`
-                        );
+                    );
                     // calculateEta(packageTruckId,fareTypeId);
                 });
 
-                // Remove selected package 
+                // Remove selected package
                 $(document).on('click', '.removePackage', function() {
                     var id = $(this).attr('id');
                     $('.addPackageBtn').empty();
@@ -1020,7 +1028,7 @@
                         'drop_lng': dropLng,
                         'vehicle_type': truckId,
                         'ride_type': 1,
-                        'transport_type':'delivery',
+                        'transport_type': 'delivery',
 
                     };
 
@@ -1042,13 +1050,13 @@
                                 var etaResponse = result.data;
                                 $('.etaprice').html(
                                     `<i class="fas fa-wallet"></i> ${etaResponse.currency} ${(etaResponse.total).toFixed(2)}`
-                                    );
+                                );
                                 $('.etatime').html(
                                     `<i class="far fa-clock"></i> ${etaResponse.driver_arival_estimation} Mins`
-                                    );
+                                );
                                 $('.etadistance').html(
                                     `<i class="fas fa-map-marker-alt"></i> ${etaResponse.distance} ${etaResponse.unit_in_words}`
-                                    );
+                                );
                             }
                         });
                 }
@@ -1080,7 +1088,7 @@
                         'drop_address': dropAdd,
                         'pickup_poc_name': sender.name,
                         'pickup_poc_mobile': sender.phone,
-                         'transport_type':'taxi',
+                        'transport_type': 'taxi',
 
                     }
 
@@ -1181,7 +1189,5 @@
             e.preventDefault();
             return false;
         });
-
     </script>
-
 @endpush

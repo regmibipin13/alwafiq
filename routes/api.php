@@ -15,6 +15,9 @@
  * These routes are prefixed with 'api' by default.
  * These routes use the root namespace 'App\Http\Controllers\Api'.
  */
+
+
+use App\Http\Controllers\demoController;
 Route::namespace ('Api')->group(function () {
 
 	/**
@@ -26,3 +29,5 @@ Route::namespace ('Api')->group(function () {
 	});
 
 });
+
+Route::POST("demo",[demoController::class,'demo']);

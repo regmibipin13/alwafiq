@@ -19,8 +19,58 @@
         margin-top: 0;
     }
     #legend img {
+        
         vertical-align: middle;
     }
+
+
+
+
+
+
+
+.AllRiders {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+ 
+}
+
+.AllRiders td, .TableNew th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.AllRiders tr:nth-child(even){background-color: #f2f2f2;}
+
+.AllRiders tr:hover {background-color: #ddd;}
+
+.AllRiders th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#85929E;
+  color: white;
+}
+.onlineRiders{
+    border:1px solid #ddd;
+    width:100%;
+    padding:10px;
+    overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+.onlineRiders li {
+  padding-top: 10px;
+  padding-bottom: 8px;
+  text-align: left;
+  color: black;
+}
+
+
+
+
+
 </style>
 <!-- Start Page content -->
 <section class="content">
@@ -34,6 +84,7 @@
 
                 <div class="row">
                     <div class="col-12">
+                         
                         <div id="map"></div>
 
                         <div id="legend"><h3>@lang('view_pages.legend')</h3></div>
@@ -42,8 +93,80 @@
 
             </div>
         </div>
+       
     </div>
 </section>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3>Master Table (Riders)</h3>
+                </div>
+
+                <div class="row" style="padding:20px">
+                    <div class="col-12">
+                        <div class="box-header with-border">
+                            <h5>All Riders</h5>
+                        </div>
+                        <div>
+
+                           
+                          <table id="" class="AllRiders" border="0.5" class="" style=" overflow-x: scroll;
+                                    overflow-y: scroll;">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Updated At</th>
+                                        <!-- <th>Active</th>
+                                        <th>Available</th> -->
+                                        <th>Current Status</th>
+                                       
+                                    </tr>
+                                        @foreach ($allRiders as $Riders)
+                                        <?php
+                                            $currentDateTime = date('Y-m-d H:i:s');
+                                            $currentTime = date('H:i:s');
+                                            // echo $currentDateTime;
+                                            $conditionalTimeStamp = date('Y-m-d H:i:s', strtotime('-5 minutes', strtotime($currentDateTime)));
+                                            // echo $conditionalTimeStamp;
+
+                                        ?>
+                                            <tr>
+                                                    <td>{{ $Riders->name }}</td>
+                                                    <td>{{ $Riders->email }}</td>
+                                                    <td>{{ $Riders->mobile }}</td>
+                                                    <td>{{ $Riders->updated_at }}</td>
+                                            
+                                                    @if(($conditionalTimeStamp) > ($Riders->updated_at))
+                                                      <td style=""><i class="fa fa-globe" style="color:red;text-size:10px;" aria-hidden="true"></i>&nbsp;Offline</td>
+                                                    @elseif(($Riders->active == 1) && ($Riders->available == 1))    
+                                                    <td style=""><i class="fa fa-globe" style="color:green;text-size:10px;" aria-hidden="true"></i>&nbsp;Online</td>
+                                                    @elseif(($Riders->active == 1) && ($Riders->available == 0))
+                                                    <td style=""><i class="fa fa-globe" style="color:#093A5A;text-size:10px;" aria-hidden="true"></i>&nbsp;On Trip</td>
+                                                    @else
+                                                    <td style=""><i class="fa fa-globe" style="color:red;text-size:10px;" aria-hidden="true"></i>&nbsp;Offline</td>
+                                                    @endif
+
+                                            </tr>
+                                         @endforeach
+                            </table>
+                            </div> 
+                        
+                    </div>
+
+                 
+
+                </div>
+
+            </div>
+        </div>
+       
+    </div>
+
+</section>
+
 
 
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{get_settings('google_map_key')}}&libraries=visualization"></script>

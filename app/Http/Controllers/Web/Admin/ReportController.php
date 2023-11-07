@@ -213,4 +213,12 @@ class ReportController extends Controller
 
         return $filename;
     }
+    
+    /* RIDE_REPORTS */
+    public function  downloadRideReport()
+    {
+    return DB::select("select * from requests");
+
+    }
+
 }
