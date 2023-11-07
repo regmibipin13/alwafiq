@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Web\DeliveryDispatcher;
 use App\Base\Filters\Admin\RequestFilter;
 use App\Base\Libraries\QueryFilter\QueryFilterContract;
 use App\Http\Controllers\Web\BaseController;
+use App\Imports\AssetsImport;
 use App\Models\Asset;
 use App\Models\Request\Request as RequestRequest;
 use App\Models\Task;
+use Excel;
 use Illuminate\Http\Request;
 
 class DeliveryDispatcherController extends BaseController
@@ -140,6 +142,12 @@ class DeliveryDispatcherController extends BaseController
             'location' => ['required'],
         ]);
         $asset = Asset::create($sanitized);
+        return redirect()->back();
+    }
+
+    public function importObject(Request $request)
+    {
+        Excel::import(new AssetsImport, $request->objects);
         return redirect()->back();
     }
 

@@ -419,6 +419,45 @@
                                 </div>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-primary btn-sm turned-button mx-4 booking_screen"
+                            data-bs-toggle="modal" data-bs-target="#import-object">
+                            Import Object (Excel)
+                        </button>
+                        <div class="modal fade" id="import-object" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Import Object</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url('import/objects') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="object_id">Object Id</label>
+                                                    <input type="file" class="form-control" id="object_id"
+                                                        name="objects"
+                                                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                    @if ($errors->has('objects'))
+                                                        <p class="text-danger">
+                                                            {{ $errors->first('objects') }}
+                                                        </p>
+                                                    @endif
+                                                    <p>First Row Should Be Object Id and Second Row Should Be Location</p>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="mt-3 btn btn-success">Impoort Object</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         {{-- <button type="button" class="btn btn-primary btn-sm turned-button mx-4 booking_screen"
                             data-bs-toggle="modal" data-id="book-later">
                             Import From Excel

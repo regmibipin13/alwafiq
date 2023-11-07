@@ -20,6 +20,7 @@ Route::middleware('auth:web')->group(function () {
         Route::post('store/tasks', 'DeliveryDispatcherController@storeTask');
         Route::delete('delete/tasks/{task}', 'DeliveryDispatcherController@deleteTask');
         Route::post('store/objects', 'DeliveryDispatcherController@storeObject');
+        Route::post('import/objects', 'DeliveryDispatcherController@importObject');
         Route::get('fetch/objects', 'DeliveryDispatcherController@objectsList');
         Route::delete('delete/objects/{asset}', 'DeliveryDispatcherController@deleteObject');
 
