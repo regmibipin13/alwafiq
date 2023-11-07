@@ -272,11 +272,16 @@
                                             <div class="row mt-2">
                                                 <div class="form-group col-md-6">
                                                     <label for="object_id">Object Id</label>
-                                                    <input type="text" class="form-control" id="object_id"
-                                                        name="object_id">
-                                                    @if ($errors->has('object_id'))
+                                                    <select name="asset_id" id="object_id" class="form-control">
+                                                        <option value="">Select A Asset</option>
+                                                        @foreach (App\Models\Asset::all() as $asset)
+                                                            <option value="{{ $asset->id }}">{{ $asset->object_id }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->has('asset_id'))
                                                         <p class="text-danger">
-                                                            {{ $errors->first('object_id') }}
+                                                            {{ $errors->first('asset_id') }}
                                                         </p>
                                                     @endif
                                                 </div>
@@ -335,7 +340,79 @@
                                                     </p>
                                                 @endif
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="billing_type">Billing Type</label>
+                                                    <select class="form-control" id="billing_type" name="billing_type">
+                                                        <option value="daily">Daily</option>
+                                                        <option value="weekly">Weekly</option>
+                                                        <option value="monthly">Monthly</option>
+                                                        <option value="yearly">Yearly</option>
+                                                    </select>
+                                                    @if ($errors->has('billing_type'))
+                                                        <p class="text-danger">
+                                                            {{ $errors->first('billing_type') }}
+                                                        </p>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="frequency">Frequency</label>
+                                                    <input type="text" class="form-control" name="frequency"
+                                                        id="frequency">
+                                                    @if ($errors->has('frequency'))
+                                                        <p class="text-danger">
+                                                            {{ $errors->first('frequency') }}
+                                                        </p>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             <button type="submit" class="mt-3 btn btn-success">Assign Task</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm turned-button mx-4 booking_screen"
+                            data-bs-toggle="modal" data-bs-target="#create-object">
+                            New Object
+                        </button>
+                        <div class="modal fade" id="create-object" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Create New Object</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url('store/objects') }}" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="object_id">Object Id</label>
+                                                    <input type="text" class="form-control" id="object_id"
+                                                        name="object_id">
+                                                    @if ($errors->has('object_id'))
+                                                        <p class="text-danger">
+                                                            {{ $errors->first('object_id') }}
+                                                        </p>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="location">Location</label>
+                                                    <input type="text" class="form-control" id="location"
+                                                        name="location">
+                                                    @if ($errors->has('location'))
+                                                        <p class="text-danger">
+                                                            {{ $errors->first('location') }}
+                                                        </p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="mt-3 btn btn-success">Create New Object</button>
                                         </form>
                                     </div>
 
@@ -371,14 +448,42 @@
                                     <include-fragment src="{{ url('fetch/tasks') }}">
                                         <span style="text-align: center;font-weight: bold;">@lang('view_pages.loading')</span>
                                     </include-fragment>
+
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </div>
+            <div class="row g-0">
+                <div class="col ps-md-2 mb-2" style="padding-right: 0 !important;">
+                    <div class="card h-lg-100 overflow-hidden">
+                        <div class="card-body d-flex align-items-center p-2" style="height: calc(100vh - 100px);">
+
+
+                            {{-- <div id="legend">
+                                <h5>Object List</h5>
+                            </div> --}}
+
+                            {{-- List requests --}}
+                            <div class="sidebar-contact left active">
+                                <div class="toggle l pulse">
+                                    <i class="fas fa-align-justify"></i>
+                                </div>
+                                <div id="request-lists-target">
+                                    <include-fragment src="{{ url('fetch/objects') }}">
+                                        <span style="text-align: center;font-weight: bold;">@lang('view_pages.loading')</span>
+                                    </include-fragment>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 @endsection

@@ -118,10 +118,13 @@
                     <thead class="bg-200 text-900">
                         <tr>
                             <th class="align-middle sort">Task Id</th>
+                            <th class="align-middle sort">Task Visits (Readings)</th>
                             <th class="align-middle sort">Rider</th>
                             <th class="align-middle sort">Address</th>
                             <th class="align-middle sort">Object Id</th>
+                            <th class="align-middle sort">Billing Type</th>
                             <th class="align-middle sort">Status</th>
+                            <th class="align-middle sort">Action</th>
                         </tr>
                     </thead>
                     <tbody id="customers">
@@ -205,17 +208,77 @@
                                         </div>
                                     </div>
                                 </th>
-                                <td class="py-2 align-middle">
+                                <th class="align-middle">
+                                    <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#task-readings-{{ $item->id }}"
+                                        data-id="{{ $item->id }}">
+                                        Readings
+                                    </a>
+
+                                    <div class="modal fade" id="task-readings-{{ $item->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Task Readings</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="">
+                                                        <table class="table table-bordered">
+                                                            <tr>
+                                                                <th>Reading No.</th>
+                                                                <th>Date</th>
+                                                                <th>Remarks 1</th>
+                                                                <th>Remarks 2</th>
+                                                                <th>Reading 1</th>
+                                                                <th>Reading 2</th>
+                                                                <th>Reading 3</th>
+                                                            </tr>
+                                                            @foreach ($item->readings as $key => $reading)
+                                                                <tr>
+                                                                    <td>{{ $key + 1 }}</td>
+                                                                    <td>{{ $reading->date }}</td>
+                                                                    <td>{{ $reading->remark_first }}</td>
+                                                                    <td>{{ $reading->remark_second }}</td>
+                                                                    <td>{{ $reading->reading_one }}</td>
+                                                                    <td>{{ $reading->reading_two }}</td>
+                                                                    <td>{{ $reading->reading_three }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td class="align-middle">
                                     {{ $item->driver->name }}
                                 </td>
-                                <td class="py-2 align-middle pl-5">
+                                <td class="align-middle">
                                     {{ $item->address }}
                                 </td>
-                                <td class="align-middle fs-0" id="{{ $item->id }}">
+                                <td class="align-middle" id="{{ $item->id }}">
                                     {{ $item->object_id }}
                                 </td>
-                                <td class="align-middle fs-0" id="{{ $item->id }}">
+                                <td class="align-middle" id="{{ $item->id }}">
+                                    {{ $item->billing_type }}
+                                </td>
+                                <td class="align-middle" id="{{ $item->id }}">
                                     {{ $item->status ?? 'pending' }}
+                                </td>
+                                <td class="align-middle">
+                                    <form action="{{ url('delete/tasks') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
 
                             </tr>

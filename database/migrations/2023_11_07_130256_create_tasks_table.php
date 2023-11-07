@@ -13,14 +13,19 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
+
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('asset_id');
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade');
             $table->unsignedInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('drivers')->onDelete('cascade');
             $table->string('customer_id');
             $table->string('customer_name');
             $table->string('object_id');
             $table->string('emirates');
+            $table->string('billing_type');
+            $table->string('frequency');
             $table->string('area');
             $table->string('address');
             $table->string('address_latitude')->nullable();

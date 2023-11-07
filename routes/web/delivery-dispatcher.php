@@ -18,6 +18,10 @@ Route::middleware('auth:web')->group(function () {
         // Tasks By Bipin
         Route::get('fetch/tasks', 'DeliveryDispatcherController@tasksList');
         Route::post('store/tasks', 'DeliveryDispatcherController@storeTask');
+        Route::delete('delete/tasks/{task}', 'DeliveryDispatcherController@deleteTask');
+        Route::post('store/objects', 'DeliveryDispatcherController@storeObject');
+        Route::get('fetch/objects', 'DeliveryDispatcherController@objectsList');
+        Route::delete('delete/objects/{asset}', 'DeliveryDispatcherController@deleteObject');
 
         Route::get('request/detail_view/{requestmodel}', 'DeliveryDispatcherController@requestDetailedView')->name('dispatcherRequestDetailView');
 

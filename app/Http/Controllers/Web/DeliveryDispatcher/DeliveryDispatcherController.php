@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\DeliveryDispatcher;
 use App\Base\Filters\Admin\RequestFilter;
 use App\Base\Libraries\QueryFilter\QueryFilterContract;
 use App\Http\Controllers\Web\BaseController;
+use App\Models\Asset;
 use App\Models\Request\Request as RequestRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -99,22 +100,55 @@ class DeliveryDispatcherController extends BaseController
         $results = Task::orderBy('id', 'desc')->paginate(20);
         return view('dispatch-delivery.tasks.task-list', compact('results'));
     }
+    public function objectsList()
+    {
+        $results = Asset::orderBy('id', 'desc')->paginate(20);
+        return view('dispatch-delivery.tasks.objects-list', compact('results'));
+    }
 
     public function storeTask(Request $request)
     {
         $sanitized = $request->validate([
             'customer_id' => ['required'],
             'customer_name' => ['required'],
-            'object_id' => ['required'],
+            'asset_id' => ['required'],
+            'object_id' => ['nullable'],
             'emirates' => ['required'],
             'area' => ['required'],
+            'billing_type' => ['required'],
+            'frequency' => ['required'],
             'address' => ['required'],
             'address_latitude' => ['required'],
             'address_longitude' => ['required'],
             'driver_id' => ['required'],
         ]);
-
+        $sanitized['object_id'] = Asset::find($sanitized['asset_id'])->object_id;
         Task::create($sanitized);
+        return redirect()->back();
+    }
+
+    public function deleteTask(Task $task)
+    {
+        $task->delete();
+        return redirect()->back();
+    }
+
+    public function storeObject(Request $request)
+    {
+        $sanitized = $request->validate([
+            'object_id' => ['required', 'unique:assets'],
+            'location' => ['required'],
+        ]);
+        $asset = Asset::create($sanitized);
+        return redirect()->back();
+    }
+
+
+
+    public function deleteObject($id)
+    {
+        $asset = Asset::find($id);
+        $asset->delete();
         return redirect()->back();
     }
 

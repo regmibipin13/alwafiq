@@ -18,4 +18,13 @@ class Task extends Model
     {
         return $this->belongsTo(Driver::class, 'driver_id');
     }
+    public function asset()
+    {
+        return $this->belongsTo(Driver::class, 'asset_id');
+    }
+
+    public function readings()
+    {
+        return $this->hasMany(Reading::class);
+    }
 }

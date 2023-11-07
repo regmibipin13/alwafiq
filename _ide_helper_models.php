@@ -26,7 +26,7 @@ namespace App\Models\Access{
  * @property string|null $icon
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Access\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Access\Role> $roles
  * @property-read int|null $roles_count
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
@@ -59,9 +59,9 @@ namespace App\Models\Access{
  * @property int $locked
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Access\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Access\Permission> $permissions
  * @property-read int|null $permissions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Role active()
  * @method static \Illuminate\Database\Eloquent\Builder|Role inactive()
@@ -258,7 +258,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Company inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|Company newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Company newQuery()
- * @method static \Illuminate\Database\Query\Builder|Company onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Company onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Company query()
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereAddress($value)
@@ -278,8 +278,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Company whereVatNumber($value)
- * @method static \Illuminate\Database\Query\Builder|Company withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Company withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Company withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Company withoutTrashed()
  */
 	class Company extends \Eloquent {}
 }
@@ -401,16 +401,16 @@ namespace App\Models\Admin{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Master\CarMake|null $carMake
  * @property-read \App\Models\Master\CarModel|null $carModel
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\DriverAvailability[] $driverAvailabilities
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\DriverAvailability> $driverAvailabilities
  * @property-read int|null $driver_availabilities_count
  * @property-read \App\Models\Admin\DriverDetail|null $driverDetail
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\DriverDocument[] $driverDocument
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\DriverDocument> $driverDocument
  * @property-read int|null $driver_document_count
  * @property-read \App\Models\Payment\DriverWallet|null $driverPaymentWallet
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\DriverWalletHistory[] $driverPaymentWalletHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\DriverWalletHistory> $driverPaymentWalletHistory
  * @property-read int|null $driver_payment_wallet_history_count
  * @property-read \App\Models\Payment\DriverWallet|null $driverWallet
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\DriverWalletHistory[] $driverWalletHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\DriverWalletHistory> $driverWalletHistory
  * @property-read int|null $driver_wallet_history_count
  * @property-read \App\Models\Admin\Fleet|null $fleetDetail
  * @property-read mixed $car_make_name
@@ -425,26 +425,26 @@ namespace App\Models\Admin{
  * @property-read mixed $vehicle_type_image
  * @property-read mixed $vehicle_type_name
  * @property-read \App\Models\Admin\Owner|null $owner
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\DriverPrivilegedVehicle[] $privilegedVehicle
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\DriverPrivilegedVehicle> $privilegedVehicle
  * @property-read int|null $privileged_vehicle_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\DriverRejectedRequest[] $rejectedRequestDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\DriverRejectedRequest> $rejectedRequestDetail
  * @property-read int|null $rejected_request_detail_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\Request[] $requestDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\Request> $requestDetail
  * @property-read int|null $request_detail_count
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\DriverSubscription[] $subscriptions
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\DriverSubscription> $subscriptions
  * @property-read int|null $subscriptions_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
  * @property-read int|null $tasks_count
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Admin\VehicleType|null $vehicleType
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\WalletWithdrawalRequest[] $withdrawalRequestsHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\WalletWithdrawalRequest> $withdrawalRequestsHistory
  * @property-read int|null $withdrawal_requests_history_count
  * @method static \Illuminate\Database\Eloquent\Builder|Driver active()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver newQuery()
- * @method static \Illuminate\Database\Query\Builder|Driver onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Driver onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver query()
  * @method static \Illuminate\Database\Eloquent\Builder|Driver search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -482,8 +482,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereVehicleType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Driver whereVehicleYear($value)
- * @method static \Illuminate\Database\Query\Builder|Driver withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Driver withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Driver withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Driver withoutTrashed()
  */
 	class Driver extends \Eloquent {}
 }
@@ -542,7 +542,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail newQuery()
- * @method static \Illuminate\Database\Query\Builder|DriverDetail onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail whereBearing($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail whereCompany($value)
@@ -558,8 +558,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail whereRatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|DriverDetail withTrashed()
- * @method static \Illuminate\Database\Query\Builder|DriverDetail withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDetail withoutTrashed()
  */
 	class DriverDetail extends \Eloquent {}
 }
@@ -589,7 +589,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument newQuery()
- * @method static \Illuminate\Database\Query\Builder|DriverDocument onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument query()
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument whereCreatedAt($value)
@@ -602,8 +602,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument whereIdentifyNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|DriverDocument withTrashed()
- * @method static \Illuminate\Database\Query\Builder|DriverDocument withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|DriverDocument withoutTrashed()
  */
 	class DriverDocument extends \Eloquent {}
 }
@@ -729,7 +729,7 @@ namespace App\Models\Admin{
  * @property-read \App\Models\Master\CarMake $carBrand
  * @property-read \App\Models\Master\CarModel $carModel
  * @property-read \App\Models\Admin\Driver|null $driverDetail
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\FleetDocument[] $fleetDocument
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\FleetDocument> $fleetDocument
  * @property-read int|null $fleet_document_count
  * @property-read mixed $fleet_name
  * @property-read mixed $qr_code_image
@@ -739,7 +739,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet newQuery()
- * @method static \Illuminate\Database\Query\Builder|Fleet onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Fleet onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet query()
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet whereApprove($value)
@@ -760,8 +760,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet whereReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Fleet whereVehicleType($value)
- * @method static \Illuminate\Database\Query\Builder|Fleet withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Fleet withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Fleet withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Fleet withoutTrashed()
  */
 	class Fleet extends \Eloquent {}
 }
@@ -787,7 +787,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument newQuery()
- * @method static \Illuminate\Database\Query\Builder|FleetDocument onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument query()
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument whereCreatedAt($value)
@@ -801,8 +801,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|FleetDocument withTrashed()
- * @method static \Illuminate\Database\Query\Builder|FleetDocument withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|FleetDocument withoutTrashed()
  */
 	class FleetDocument extends \Eloquent {}
 }
@@ -855,7 +855,7 @@ namespace App\Models\Admin{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
  * @property-read mixed $push_image
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\UserDriverNotification[] $userNotification
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\UserDriverNotification> $userNotification
  * @property-read int|null $user_notification_count
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Notification newQuery()
@@ -908,17 +908,17 @@ namespace App\Models\Admin{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Admin\ServiceLocation $area
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\OwnerDocument[] $ownerDocument
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\OwnerDocument> $ownerDocument
  * @property-read int|null $owner_document_count
  * @property-read \App\Models\Payment\OwnerWallet|null $ownerWalletDetail
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\OwnerWalletHistory[] $ownerWalletHistoryDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\OwnerWalletHistory> $ownerWalletHistoryDetail
  * @property-read int|null $owner_wallet_history_detail_count
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Owner active()
  * @method static \Illuminate\Database\Eloquent\Builder|Owner inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|Owner newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Owner newQuery()
- * @method static \Illuminate\Database\Query\Builder|Owner onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Owner onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Owner query()
  * @method static \Illuminate\Database\Eloquent\Builder|Owner search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Owner searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -950,8 +950,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Owner whereTransportType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Owner whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Owner whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|Owner withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Owner withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Owner withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Owner withoutTrashed()
  */
 	class Owner extends \Eloquent {}
 }
@@ -977,7 +977,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument newQuery()
- * @method static \Illuminate\Database\Query\Builder|OwnerDocument onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument query()
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument whereCreatedAt($value)
@@ -990,8 +990,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument whereOwnerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|OwnerDocument withTrashed()
- * @method static \Illuminate\Database\Query\Builder|OwnerDocument withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|OwnerDocument withoutTrashed()
  */
 	class OwnerDocument extends \Eloquent {}
 }
@@ -1068,7 +1068,7 @@ namespace App\Models\Admin{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $from_date
  * @property-read mixed $to_date
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\PromoUser[] $promoUsers
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\PromoUser> $promoUsers
  * @property-read int|null $promo_users_count
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
  * @method static \Illuminate\Database\Eloquent\Builder|Promo active()
@@ -1136,14 +1136,14 @@ namespace App\Models\Admin{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read string $converted_created_at
  * @property-read string $converted_updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\Zone[] $zones
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\Zone> $zones
  * @property-read int|null $zones_count
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation active()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation companyKey()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation newQuery()
- * @method static \Illuminate\Database\Query\Builder|ServiceLocation onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation query()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -1159,8 +1159,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation whereTimezone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|ServiceLocation withTrashed()
- * @method static \Illuminate\Database\Query\Builder|ServiceLocation withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceLocation withoutTrashed()
  */
 	class ServiceLocation extends \Eloquent {}
 }
@@ -1188,7 +1188,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Sos inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|Sos newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Sos newQuery()
- * @method static \Illuminate\Database\Query\Builder|Sos onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Sos onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Sos query()
  * @method static \Illuminate\Database\Eloquent\Builder|Sos search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Sos searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -1203,8 +1203,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|Sos whereServiceLocationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Sos whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Sos whereUserType($value)
- * @method static \Illuminate\Database\Query\Builder|Sos withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Sos withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Sos withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Sos withoutTrashed()
  */
 	class Sos extends \Eloquent {}
 }
@@ -1237,7 +1237,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails newQuery()
- * @method static \Illuminate\Database\Query\Builder|UserDetails onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserDetails onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -1260,8 +1260,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails whereTokenExpiry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetails whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|UserDetails withTrashed()
- * @method static \Illuminate\Database\Query\Builder|UserDetails withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserDetails withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserDetails withoutTrashed()
  */
 	class UserDetails extends \Eloquent {}
 }
@@ -1328,14 +1328,14 @@ namespace App\Models\Admin{
  * @property-read string $converted_created_at
  * @property-read string $converted_updated_at
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\ZoneType[] $zoneType
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\ZoneType> $zoneType
  * @property-read int|null $zone_type_count
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType active()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType companyKey()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType newQuery()
- * @method static \Illuminate\Database\Query\Builder|VehicleType onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|VehicleType onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType query()
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -1355,8 +1355,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType whereSupportedVehicles($value)
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleType whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|VehicleType withTrashed()
- * @method static \Illuminate\Database\Query\Builder|VehicleType withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|VehicleType withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|VehicleType withoutTrashed()
  */
 	class VehicleType extends \Eloquent {}
 }
@@ -1383,9 +1383,9 @@ namespace App\Models\Admin{
  * @property-read string $converted_updated_at
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
  * @property-read \App\Models\Admin\ZoneBound|null $zoneBound
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\ZoneSurgePrice[] $zoneSurge
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\ZoneSurgePrice> $zoneSurge
  * @property-read int|null $zone_surge_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\ZoneType[] $zoneType
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\ZoneType> $zoneType
  * @property-read int|null $zone_type_count
  * @method static \Grimzy\LaravelMysqlSpatial\Eloquent\Builder|Zone active()
  * @method static \Grimzy\LaravelMysqlSpatial\Eloquent\Builder|Zone companyKey()
@@ -1509,15 +1509,15 @@ namespace App\Models\Admin{
  * @property-read string $vehicle_type_name
  * @property-read \App\Models\Admin\VehicleType $vehicleType
  * @property-read \App\Models\Admin\Zone $zone
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\ZoneTypePackagePrice[] $zoneTypePackage
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\ZoneTypePackagePrice> $zoneTypePackage
  * @property-read int|null $zone_type_package_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Admin\ZoneTypePrice[] $zoneTypePrice
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin\ZoneTypePrice> $zoneTypePrice
  * @property-read int|null $zone_type_price_count
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType active()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType newQuery()
- * @method static \Illuminate\Database\Query\Builder|ZoneType onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneType onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType query()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType whereBillStatus($value)
@@ -1529,8 +1529,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneType whereZoneId($value)
- * @method static \Illuminate\Database\Query\Builder|ZoneType withTrashed()
- * @method static \Illuminate\Database\Query\Builder|ZoneType withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneType withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneType withoutTrashed()
  */
 	class ZoneType extends \Eloquent {}
 }
@@ -1559,7 +1559,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice newQuery()
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePackagePrice onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice query()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice whereBasePrice($value)
@@ -1575,8 +1575,8 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice whereZoneId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice whereZoneTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePackagePrice withTrashed()
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePackagePrice withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePackagePrice withoutTrashed()
  */
 	class ZoneTypePackagePrice extends \Eloquent {}
 }
@@ -1607,7 +1607,7 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice inactive()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice newQuery()
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePrice onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice query()
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice search($search, $threshold = null, $entireText = false, $entireTextOnly = false)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
@@ -1626,10 +1626,31 @@ namespace App\Models\Admin{
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice whereWaitingCharge($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice whereZoneTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePrice withTrashed()
- * @method static \Illuminate\Database\Query\Builder|ZoneTypePrice withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|ZoneTypePrice withoutTrashed()
  */
 	class ZoneTypePrice extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Asset
+ *
+ * @property int $id
+ * @property string $object_id
+ * @property string $location
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset whereObjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Asset whereUpdatedAt($value)
+ */
+	class Asset extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -2276,7 +2297,7 @@ namespace App\Models\Master{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $converted_created_at
  * @property-read string $converted_updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Master\PocClient[] $pocClient
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Master\PocClient> $pocClient
  * @property-read int|null $poc_client_count
  * @method static \Illuminate\Database\Eloquent\Builder|Project active()
  * @method static \Illuminate\Database\Eloquent\Builder|Project inactive()
@@ -2364,7 +2385,7 @@ namespace App\Models\Payment{
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo newQuery()
- * @method static \Illuminate\Database\Query\Builder|CardInfo onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|CardInfo onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo query()
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo whereCardToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo whereCardType($value)
@@ -2379,8 +2400,8 @@ namespace App\Models\Payment{
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo whereUserRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CardInfo whereValidThrough($value)
- * @method static \Illuminate\Database\Query\Builder|CardInfo withTrashed()
- * @method static \Illuminate\Database\Query\Builder|CardInfo withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|CardInfo withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|CardInfo withoutTrashed()
  */
 	class CardInfo extends \Eloquent {}
 }
@@ -2689,6 +2710,38 @@ namespace App\Models\Payment{
 	class WalletWithdrawalRequest extends \Eloquent {}
 }
 
+namespace App\Models{
+/**
+ * App\Models\Reading
+ *
+ * @property int $id
+ * @property int $task_id
+ * @property string $date
+ * @property string|null $remark_first
+ * @property string|null $remark_second
+ * @property string|null $reading_one
+ * @property string|null $reading_two
+ * @property string|null $reading_three
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingOne($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingThree($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingTwo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereRemarkFirst($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereRemarkSecond($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereTaskId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereUpdatedAt($value)
+ */
+	class Reading extends \Eloquent {}
+}
+
 namespace App\Models\Request{
 /**
  * App\Models\Request\AdHocUser
@@ -2910,16 +2963,16 @@ namespace App\Models\Request{
  * @property-read \App\Models\Request\RequestBill|null $requestBill
  * @property-read \App\Models\Request\RequestBill|null $requestBillDetail
  * @property-read \App\Models\Request\RequestCancellationFee|null $requestCancellationFee
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\Chat[] $requestChat
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\Chat> $requestChat
  * @property-read int|null $request_chat_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\RequestMeta[] $requestMeta
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\RequestMeta> $requestMeta
  * @property-read int|null $request_meta_count
  * @property-read \App\Models\Request\RequestPlace|null $requestPlace
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\RequestDeliveryProof[] $requestProofs
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\RequestDeliveryProof> $requestProofs
  * @property-read int|null $request_proofs_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\RequestRating[] $requestRating
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\RequestRating> $requestRating
  * @property-read int|null $request_rating_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\RequestStop[] $requestStops
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\RequestStop> $requestStops
  * @property-read int|null $request_stops_count
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocationDetail
  * @property-read \App\Models\User|null $userDetail
@@ -3318,7 +3371,7 @@ namespace App\Models{
  * @property string $slug
  * @property string $name
  * @property int $active
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $cities
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\City> $cities
  * @property-read int|null $cities_count
  * @method static \Illuminate\Database\Eloquent\Builder|State active()
  * @method static \Illuminate\Database\Eloquent\Builder|State inactive()
@@ -3338,30 +3391,43 @@ namespace App\Models{
  * App\Models\Task
  *
  * @property int $id
+ * @property int $asset_id
  * @property int $driver_id
  * @property string $customer_id
  * @property string $customer_name
  * @property string $object_id
  * @property string $emirates
+ * @property string $billing_type
+ * @property string $frequency
  * @property string $area
  * @property string $address
+ * @property string|null $address_latitude
+ * @property string|null $address_longitude
  * @property string|null $remarks
  * @property string|null $submission_date
  * @property string|null $updated_remarks
  * @property string|null $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Admin\Driver $asset
  * @property-read \App\Models\Admin\Driver $driver
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reading> $readings
+ * @property-read int|null $readings_count
  * @method static \Illuminate\Database\Eloquent\Builder|Task newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Task newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Task query()
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddressLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddressLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereArea($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereAssetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereBillingType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereCustomerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereCustomerName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereDriverId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereEmirates($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereFrequency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereObjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Task whereRemarks($value)
@@ -3440,35 +3506,35 @@ namespace App\Models{
  * @property string|null $social_avatar_original
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\LinkedSocialAccount[] $accounts
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\LinkedSocialAccount> $accounts
  * @property-read int|null $accounts_count
  * @property-read \App\Models\Admin\AdminDetail|null $admin
  * @property-read \App\Models\Payment\UserBankInfo|null $bankInfo
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Client> $clients
  * @property-read int|null $clients_count
  * @property-read \App\Models\Country|null $countryDetail
  * @property-read \App\Models\Master\Developer|null $developer
  * @property-read \App\Models\Admin\Driver|null $driver
  * @property-read \App\Models\Payment\DriverWallet|null $driverWallet
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\FavouriteLocation[] $favouriteLocations
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\FavouriteLocation> $favouriteLocations
  * @property-read int|null $favourite_locations_count
  * @property-read string $converted_created_at
  * @property-read string $converted_updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\MobileOtp|null $otp
  * @property-read \App\Models\Admin\Owner|null $owner
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Request\Request[] $requestDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Request\Request> $requestDetail
  * @property-read int|null $request_detail_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Access\Role[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Access\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\Admin\UserDetails|null $userDetails
  * @property-read \App\Models\Payment\UserWallet|null $userWallet
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\UserWalletHistory[] $userWalletHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\UserWalletHistory> $userWalletHistory
  * @property-read int|null $user_wallet_history_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Payment\WalletWithdrawalRequest[] $withdrawalRequestsHistory
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\WalletWithdrawalRequest> $withdrawalRequestsHistory
  * @property-read int|null $withdrawal_requests_history_count
  * @method static \Illuminate\Database\Eloquent\Builder|User active()
  * @method static \Illuminate\Database\Eloquent\Builder|User belongsToRole(...$roleSlugs)
