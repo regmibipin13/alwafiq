@@ -25,16 +25,6 @@ class DeliveryDispatcherController extends BaseController
         return view('admin.dispatcher.requests', compact(['main_menu', 'sub_menu', 'page']));
     }
 
-    // New Tasks Management
-
-    public function tasks()
-    {
-        return view('dispatch-delivery.tasks.index');
-    }
-
-
-
-
     public function dispatchView()
     {
         $main_menu = 'dispatch_request';
@@ -95,69 +85,6 @@ class DeliveryDispatcherController extends BaseController
         $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->paginate();
 
         return view('dispatch-delivery.request-list', compact('results'));
-    }
-
-    public function tasksList()
-    {
-        $results = Task::orderBy('id', 'desc')->paginate(20);
-        return view('dispatch-delivery.tasks.task-list', compact('results'));
-    }
-    public function objectsList()
-    {
-        $results = Asset::orderBy('id', 'desc')->paginate(20);
-        return view('dispatch-delivery.tasks.objects-list', compact('results'));
-    }
-
-    public function storeTask(Request $request)
-    {
-        $sanitized = $request->validate([
-            'customer_id' => ['required'],
-            'customer_name' => ['required'],
-            'asset_id' => ['required'],
-            'object_id' => ['nullable'],
-            'emirates' => ['required'],
-            'area' => ['required'],
-            'billing_type' => ['required'],
-            'frequency' => ['required'],
-            'address' => ['required'],
-            'address_latitude' => ['required'],
-            'address_longitude' => ['required'],
-            'driver_id' => ['required'],
-        ]);
-        $sanitized['object_id'] = Asset::find($sanitized['asset_id'])->object_id;
-        Task::create($sanitized);
-        return redirect()->back();
-    }
-
-    public function deleteTask(Task $task)
-    {
-        $task->delete();
-        return redirect()->back();
-    }
-
-    public function storeObject(Request $request)
-    {
-        $sanitized = $request->validate([
-            'object_id' => ['required', 'unique:assets'],
-            'location' => ['required'],
-        ]);
-        $asset = Asset::create($sanitized);
-        return redirect()->back();
-    }
-
-    public function importObject(Request $request)
-    {
-        Excel::import(new AssetsImport, $request->objects);
-        return redirect()->back();
-    }
-
-
-
-    public function deleteObject($id)
-    {
-        $asset = Asset::find($id);
-        $asset->delete();
-        return redirect()->back();
     }
 
     public function profile()

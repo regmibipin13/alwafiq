@@ -15,14 +15,13 @@ class CreateReadingsTable extends Migration
     {
         Schema::create('readings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->dateTime('date');
-            $table->string('remark_first')->nullable();
-            $table->string('remark_second')->nullable();
-            $table->string('reading_one')->nullable();
-            $table->string('reading_two')->nullable();
-            $table->string('reading_three')->nullable();
+            $table->unsignedBigInteger('object_id');
+            $table->foreign('object_id')->references('id')->on('objects')->onDelete('cascade');
+            $table->unsignedBigInteger('reading_type_id');
+            $table->foreign('reading_type_id')->references('id')->on('reading_types')->onDelete('cascade');
+            $table->string('reading_value');
+            $table->date('visit_date');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

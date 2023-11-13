@@ -434,8 +434,6 @@ namespace App\Models\Admin{
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\DriverSubscription> $subscriptions
  * @property-read int|null $subscriptions_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
- * @property-read int|null $tasks_count
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Admin\VehicleType|null $vehicleType
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\WalletWithdrawalRequest> $withdrawalRequestsHistory
@@ -1634,23 +1632,78 @@ namespace App\Models\Admin{
 
 namespace App\Models{
 /**
- * App\Models\Asset
+ * App\Models\Area
+ *
+ * @property string $name
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Area newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Area newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Area query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Area whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Area whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Area whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Area whereUpdatedAt($value)
+ */
+	class Area extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AssetObject
  *
  * @property int $id
  * @property string $object_id
- * @property string $location
+ * @property string $contract_transaction
+ * @property string $customer
+ * @property string $invoice_type
+ * @property string $frequency
+ * @property string $object_type
+ * @property string $emirates
+ * @property string $visiting_address
+ * @property string $city
+ * @property string|null $contact_name
+ * @property string|null $phone
+ * @property string|null $email
+ * @property string|null $remarks
+ * @property string|null $last_visit_date
+ * @property int $rider_id
+ * @property string|null $area
+ * @property string $google_address
+ * @property string $month_wise_remarks
+ * @property string $batch
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Asset newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Asset newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Asset query()
- * @method static \Illuminate\Database\Eloquent\Builder|Asset whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Asset whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Asset whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Asset whereObjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Asset whereUpdatedAt($value)
+ * @property-read \App\Models\Admin\Driver|null $rider
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject filters($request)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereArea($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereBatch($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereContactName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereContractTransaction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereCustomer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereEmirates($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereFrequency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereGoogleAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereInvoiceType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereLastVisitDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereMonthWiseRemarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereObjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereObjectType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereRemarks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereRiderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AssetObject whereVisitingAddress($value)
  */
-	class Asset extends \Eloquent {}
+	class AssetObject extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1997,6 +2050,25 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Demo query()
  */
 	class Demo extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\InvoiceType
+ *
+ * @property int $id
+ * @property string|null $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|InvoiceType whereUpdatedAt($value)
+ */
+	class InvoiceType extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -2715,31 +2787,47 @@ namespace App\Models{
  * App\Models\Reading
  *
  * @property int $id
- * @property int $task_id
- * @property string $date
- * @property string|null $remark_first
- * @property string|null $remark_second
- * @property string|null $reading_one
- * @property string|null $reading_two
- * @property string|null $reading_three
+ * @property int $object_id
+ * @property int $reading_type_id
+ * @property string $reading_value
+ * @property string $visit_date
+ * @property string|null $remarks
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Task $task
+ * @property-read \App\Models\AssetObject $object
+ * @property-read \App\Models\ReadingType $reading_type
  * @method static \Illuminate\Database\Eloquent\Builder|Reading newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Reading newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Reading query()
  * @method static \Illuminate\Database\Eloquent\Builder|Reading whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reading whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingOne($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingThree($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingTwo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereRemarkFirst($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereRemarkSecond($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Reading whereTaskId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereObjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereReadingValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereRemarks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reading whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Reading whereVisitDate($value)
  */
 	class Reading extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\ReadingType
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReadingType whereUpdatedAt($value)
+ */
+	class ReadingType extends \Eloquent {}
 }
 
 namespace App\Models\Request{
@@ -3384,59 +3472,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|State whereSlug($value)
  */
 	class State extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\Task
- *
- * @property int $id
- * @property int $asset_id
- * @property int $driver_id
- * @property string $customer_id
- * @property string $customer_name
- * @property string $object_id
- * @property string $emirates
- * @property string $billing_type
- * @property string $frequency
- * @property string $area
- * @property string $address
- * @property string|null $address_latitude
- * @property string|null $address_longitude
- * @property string|null $remarks
- * @property string|null $submission_date
- * @property string|null $updated_remarks
- * @property string|null $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Admin\Driver $asset
- * @property-read \App\Models\Admin\Driver $driver
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reading> $readings
- * @property-read int|null $readings_count
- * @method static \Illuminate\Database\Eloquent\Builder|Task newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Task newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Task query()
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddressLatitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereAddressLongitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereArea($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereAssetId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereBillingType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereCustomerName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereDriverId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereEmirates($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereFrequency($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereObjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereRemarks($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereSubmissionDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedRemarks($value)
- */
-	class Task extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -22,9 +22,9 @@
                     data-id="book-now" data-bs-toggle="modal">
                     @lang('view_pages.book_now')
                 </button>
-                <a href="{{ route('tasks.index') }}" class="btn btn-primary btn-sm turned-button mr-auto"
+                <a href="{{ route('objects.index') }}" class="btn btn-primary btn-sm turned-button mr-auto"
                     data-toggle="modal" data-target="task-modal">
-                    Tasks Management
+                    Objects Management
                 </a>
 
                 {{-- <a href="{{url('dispatch/book-now')}}" class="btn btn-primary btn-sm">@lang('view_pages.book_now')</a> --}}
