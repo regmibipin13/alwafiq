@@ -1669,7 +1669,7 @@ namespace App\Models{
  * @property string|null $remarks
  * @property string|null $last_visit_date
  * @property int $rider_id
- * @property string|null $area
+ * @property \App\Models\Area|null $area
  * @property string $google_address
  * @property string $month_wise_remarks
  * @property string $batch

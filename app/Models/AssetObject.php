@@ -18,6 +18,11 @@ class AssetObject extends Model
         return $this->belongsTo(Driver::class, 'rider_id');
     }
 
+    public function area()
+    {
+        return $this->hasOne(Area::class);
+    }
+
     public function scopeFilters($query, $request)
     {
         if ($request->has('object_id') && $request->object_id !== null) {

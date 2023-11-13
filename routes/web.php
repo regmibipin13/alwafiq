@@ -29,6 +29,9 @@ Route::resource('remarks', 'RemarksController');
 // Apis By Bipin
 Route::group(['prefix' => 'app'], function () {
     Route::post('/login', 'AppController@login');
+    Route::get('/objects', 'AppController@objects');
+    Route::get('/object', 'AppController@objectShow');
+    Route::get('/readings', 'AppController@objectReadings');
 });
 
 Route::namespace('Web')->group(function () {
