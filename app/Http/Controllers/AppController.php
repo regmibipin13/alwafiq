@@ -21,7 +21,7 @@ class AppController extends Controller
         $user = User::where('email', $sanitized['email'])->first();
         if ($user) {
             $token = $user->createToken('Alwafiq')->accessToken;
-            return response()->json(['token' => $token, 'user' => $user], 200);
+            return response()->json(['token' => $token, 'data' => $user], 200);
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
