@@ -57,10 +57,7 @@
                             <th>City</th>
                             <td>{{ $object->city }}</td>
                         </tr>
-                        <tr>
-                            <th>Rider</th>
-                            <td>{{ $object->rider->user->name }}</td>
-                        </tr>
+
                         <tr>
                             <th>Area</th>
                             <td>{{ $object->area }}</td>
@@ -90,19 +87,46 @@
                             <td>{{ $object->remarks }}</td>
                         </tr>
                         <tr>
-                            <th>Month Wise Remarks</th>
-                            <td>{{ $object->month_wise_remarks }}</td>
-                        </tr>
-                        <tr>
                             <th>Batch</th>
                             <td>{{ $object->batch }}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card my-2">
+                <div class="card-header">
+                    Rider Details
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tbody>
 
+                            <tr>
+                                <th>Rider</th>
+                                <td>{{ $object->rider->user->name }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Visiting Address</th>
+                                <td>{{ $object->visiting_address }}</td>
+                            </tr>
+                            <tr>
+                                <th>Google Address</th>
+                                <td>{{ $object->google_address }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Month Wise Remarks</th>
+                                <td>{{ $object->month_wise_remarks }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card my-4">
                 <a href="{{ route('objects.index') }}" class="btn btn-primary">Back to List</a>
             </div>
         </div>
-        </div>
+
     </main>
 @endsection

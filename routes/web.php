@@ -24,6 +24,12 @@ Route::resource('objects', 'ObjectsController');
 Route::resource('reading_types', 'ReadingTypeController');
 Route::resource('invoice_types', 'InvoiceTypesController');
 Route::resource('areas', 'AreasController');
+Route::resource('remarks', 'RemarksController');
+
+// Apis By Bipin
+Route::group(['prefix' => 'app'], function () {
+    Route::post('/login', 'AppController@login');
+});
 
 Route::namespace('Web')->group(function () {
 

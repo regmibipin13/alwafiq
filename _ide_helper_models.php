@@ -2830,6 +2830,25 @@ namespace App\Models{
 	class ReadingType extends \Eloquent {}
 }
 
+namespace App\Models{
+/**
+ * App\Models\Remark
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Remark whereUpdatedAt($value)
+ */
+	class Remark extends \Eloquent {}
+}
+
 namespace App\Models\Request{
 /**
  * App\Models\Request\AdHocUser

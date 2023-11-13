@@ -9,6 +9,7 @@ use App\Models\AssetObject;
 use App\Models\InvoiceType;
 use App\Models\Reading;
 use App\Models\ReadingType;
+use App\Models\Remark;
 use Illuminate\Http\Request;
 
 class ObjectsController extends Controller
@@ -24,7 +25,8 @@ class ObjectsController extends Controller
         $readingTypes = ReadingType::orderBy('id', 'desc')->paginate(20);
         $invoiceTypes = InvoiceType::orderBy('id', 'desc')->paginate(20);
         $areas = Area::orderBy('id', 'desc')->paginate(20);
-        return view('objects.index', compact('objects', 'readingTypes', 'invoiceTypes', 'areas'));
+        $remarks = Remark::orderBy('id', 'desc')->paginate(20);
+        return view('objects.index', compact('objects', 'readingTypes', 'invoiceTypes', 'areas', 'remarks'));
     }
 
     /**

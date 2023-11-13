@@ -46,6 +46,8 @@
                             Type</button>
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-areas"
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Areas</button>
+                        <button class="nav-link" id="nav-remarks-tab" data-bs-toggle="tab" data-bs-target="#nav-remarks"
+                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Remarks</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
@@ -68,17 +70,8 @@
                                         <th>Invoice Type</th>
                                         <th>Frequency</th>
                                         <th>Emirates</th>
-                                        {{-- <th>City</th> --}}
                                         <th>Rider</th>
                                         <th>Area</th>
-                                        {{-- <th>Visiting Address</th> --}}
-                                        {{-- <th>Google Address</th> --}}
-                                        {{-- <th>Contact Name</th> --}}
-                                        {{-- <th>Phone</th> --}}
-                                        {{-- <th>Email</th> --}}
-                                        {{-- <th>Remarks</th> --}}
-                                        {{-- <th>Month Wise Remarks</th> --}}
-                                        {{-- <th>Batch</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -93,17 +86,9 @@
                                             <td>{{ $object->invoice_type }}</td>
                                             <td>{{ $object->frequency }}</td>
                                             <td>{{ $object->emirates }}</td>
-                                            {{-- <td>{{ $object->city }}</td> --}}
                                             <td>{{ $object->rider->user->name }}</td>
                                             <td>{{ $object->area }}</td>
-                                            {{-- <td>{{ $object->visiting_address }}</td> --}}
-                                            {{-- <td>{{ $object->google_address }}</td> --}}
-                                            {{-- <td>{{ $object->contact_name }}</td>
-                                            <td>{{ $object->phone }}</td>
-                                            <td>{{ $object->email }}</td>
-                                            <td>{{ $object->remarks }}</td>
-                                            <td>{{ $object->month_wise_remarks }}</td>
-                                            <td>{{ $object->batch }}</td> --}}
+
                                             <td class="d-flex align-items-center">
                                                 <a href="{{ route('objects.show', $object->id) }}"
                                                     class="btn btn-info btn-sm">
@@ -247,6 +232,47 @@
                                             &nbsp;
                                             <form action="{{ route('areas.destroy', $readingType->id) }}" method="POST"
                                                 style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-remarks" role="tabpanel" aria-labelledby="nav-remarks-tab">
+                        <div class="my-2">
+                            <a href="{{ route('remarks.create') }}" class="btn btn-success mb-2">Add New</a>
+
+                        </div>
+
+                        <table class="table table-bordered mb-2 table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($remarks as $readingType)
+                                    <tr>
+                                        <td>{{ $readingType->id }}</td>
+                                        <td>{{ $readingType->name }}</td>
+                                        <td class="d-flex align-items-center">
+
+                                            <a href="{{ route('remarks.edit', $readingType->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            &nbsp;
+                                            <form action="{{ route('remarks.destroy', $readingType->id) }}"
+                                                method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm"
