@@ -48,4 +48,21 @@ class AppController extends Controller
         $readings = Reading::where('object_id', $sanitized['object_id'])->orderBy('id', 'desc')->paginate(20);
         return response()->json(['data' => $readings], 200);
     }
+
+    public function addReading(Request $request)
+    {
+        $sanitized = $request->validate([
+            'object_id' => 'required',
+            'reading_type_id' => 'required',
+            'reading_value' => 'required',
+            'visit_date' => 'required',
+            'remarks' => 'required',
+        ]);
+        $reading = Reading::create($sanitized);
+        if ($reading) {
+            return response()->json(['status' => 'success', 'data' => $reading], 200);
+        } else {
+            return response()->json(['status' => 'error'], 400);
+        }
+    }
 }
