@@ -17,6 +17,7 @@ use App\Http\Controllers\ExportRidesController;
  * These routes use the root namespace 'App\Http\Controllers\Web'.
  */
 
+Route::post('add-readings', 'AppController@addReading');
 Route::get('objects/{object}/readings', 'ObjectsController@readingsIndex')->name('objects.readings.index');
 Route::get('objects/{object}/readings/create', 'ObjectsController@readingsCreate')->name('objects.readings.create');
 Route::delete('objects/{object}/readings/{reading}', 'ObjectsController@readingsDelete')->name('objects.readings.destroy');

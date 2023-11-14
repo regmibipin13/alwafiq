@@ -21,7 +21,8 @@ class VerifyCsrfToken extends BaseVerifier
         'upload',
         'test',
         'dispatch-delivery/request/create',
-        'app/*'
+        'app/*',
+        'add-readings'
 
     ];
 }
