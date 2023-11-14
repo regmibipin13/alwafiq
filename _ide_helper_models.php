@@ -2794,6 +2794,9 @@ namespace App\Models{
  * @property string|null $remarks
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $image
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
  * @property-read \App\Models\AssetObject $object
  * @property-read \App\Models\ReadingType $reading_type
  * @method static \Illuminate\Database\Eloquent\Builder|Reading newModelQuery()
@@ -2808,7 +2811,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Reading whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Reading whereVisitDate($value)
  */
-	class Reading extends \Eloquent {}
+	class Reading extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
 
 namespace App\Models{

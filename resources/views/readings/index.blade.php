@@ -69,6 +69,7 @@
                             <th>Visit Date</th>
                             <th>Reading Value</th>
                             <th>Remarks</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                         @foreach ($readings as $reading)
@@ -77,6 +78,7 @@
                                 <td>{{ $reading->visit_date }}</td>
                                 <td>{{ $reading->reading_value }}</td>
                                 <td>{{ $reading->remarks }}</td>
+                                <td>{{ $reading->image }}</td>
                                 <td class="d-flex align-items-center">
                                     <form action="{{ route('objects.readings.destroy', [$object->id, $reading->id]) }}"
                                         method="POST" style="display: inline;">
@@ -190,6 +192,8 @@
                                 <th>Month Wise Remarks</th>
                                 <td>{{ $object->month_wise_remarks }}</td>
                             </tr>
+
+
                         </tbody>
                     </table>
                 </div>

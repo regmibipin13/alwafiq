@@ -34,6 +34,7 @@
         "saikiran/geohash": "^1.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-fractal": "^6.0",
+        "spatie/laravel-medialibrary": "*",
         "stripe/stripe-php": "^9.6",
         "symfony/dom-crawler": "^6.1"
     },

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Base\Services\ImageUploader\ImageUploaderContract;
 use App\Models\Admin\Driver;
 use App\Models\AssetObject;
 use App\Models\Reading;
@@ -70,8 +71,14 @@ class AppController extends Controller
             'reading_value' => 'required',
             'visit_date' => 'required',
             'remarks' => 'required',
+            'image' => 'nullable',
         ]);
         $reading = Reading::create($sanitized);
+
+        if ($request->has('image') && $request->image !== null) {
+            $reading->addMedia($request->image)->toMediaCollection();
+        }
+
         if ($reading) {
             return response()->json(['status' => 'success', 'data' => $reading], 200);
         } else {

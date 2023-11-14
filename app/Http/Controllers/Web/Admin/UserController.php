@@ -35,7 +35,7 @@ class UserController extends BaseController
      *
      * @var \App\Models\Admin\UserDetails
      */
-    protected $user_details ;
+    protected $user_details;
 
     /**
      * The User model instance.
@@ -65,9 +65,9 @@ class UserController extends BaseController
     }
 
     /**
-    * Get all users
-    * @return \Illuminate\Http\JsonResponse
-    */
+     * Get all users
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
         $page = trans('pages_names.users');
@@ -89,9 +89,9 @@ class UserController extends BaseController
     }
 
     /**
-    * Create User View
-    *
-    */
+     * Create User View
+     *
+     */
     public function create()
     {
         $page = trans('pages_names.add_user');
@@ -112,7 +112,7 @@ class UserController extends BaseController
      */
     public function store(CreateUserRequest $request)
     {
-        $created_params = $request->only(['name','mobile','email','country']);
+        $created_params = $request->only(['name', 'mobile', 'email', 'country']);
         $created_params['mobile_confirmed'] = true;
         $created_params['password'] = bcrypt($request->input('password'));
 
@@ -121,10 +121,10 @@ class UserController extends BaseController
         $validate_exists_mobile = $this->user->belongsTorole(Role::USER)->where('mobile', $request->mobile)->exists();
 
         if ($validate_exists_email) {
-            return redirect()->back()->withErrors(['email'=>'Provided email hs already been taken'])->withInput();
+            return redirect()->back()->withErrors(['email' => 'Provided email hs already been taken'])->withInput();
         }
         if ($validate_exists_mobile) {
-            return redirect()->back()->withErrors(['mobile'=>'Provided mobile hs already been taken'])->withInput();
+            return redirect()->back()->withErrors(['mobile' => 'Provided mobile hs already been taken'])->withInput();
         }
 
         if ($uploadedFile = $this->getValidatedUpload('profile_picture', $request)) {
@@ -134,7 +134,7 @@ class UserController extends BaseController
 
         $created_params['company_key'] = auth()->user()->company_key;
 
-        $created_params['refferal_code']= str_random(6);
+        $created_params['refferal_code'] = str_random(6);
 
         $user = $this->user->create($created_params);
 
@@ -162,7 +162,7 @@ class UserController extends BaseController
 
     public function update(User $user, UpdateUserRequest $request)
     {
-        $updated_params = $request->only(['name','mobile','email','country']);
+        $updated_params = $request->only(['name', 'mobile', 'email', 'country']);
 
         if ($uploadedFile = $this->getValidatedUpload('profile_picture', $request)) {
             $updated_params['profile_picture'] = $this->imageUploader->file($uploadedFile)
@@ -174,10 +174,10 @@ class UserController extends BaseController
         $validate_exists_mobile = $this->user->belongsTorole(Role::USER)->where('mobile', $request->mobile)->where('id', '!=', $user->id)->exists();
 
         if ($validate_exists_email) {
-            return redirect()->back()->withErrors(['email'=>'Provided email hs already been taken'])->withInput();
+            return redirect()->back()->withErrors(['email' => 'Provided email hs already been taken'])->withInput();
         }
         if ($validate_exists_mobile) {
-            return redirect()->back()->withErrors(['mobile'=>'Provided mobile hs already been taken'])->withInput();
+            return redirect()->back()->withErrors(['mobile' => 'Provided mobile hs already been taken'])->withInput();
         }
 
         $user->update($updated_params);
@@ -199,12 +199,11 @@ class UserController extends BaseController
     }
     public function delete(User $user)
     {
-        if(env('APP_FOR')=='demo'){
+        if (env('APP_FOR') == 'demo') {
 
-        $message = 'you cannot delete the user. this is demo version';
+            $message = 'you cannot delete the user. this is demo version';
 
-        return $message;
-
+            return $message;
         }
         $user->delete();
 
@@ -215,10 +214,10 @@ class UserController extends BaseController
 
     public function UserTripRequest(QueryFilterContract $queryFilter, User $user)
     {
-       
-        $completedTrips = RequestRequest::where('user_id',$user->id)->companyKey()->whereIsCompleted(true)->count();
-        $cancelledTrips = RequestRequest::where('user_id',$user->id)->companyKey()->whereIsCancelled(true)->count();
-        $upcomingTrips = RequestRequest::where('user_id',$user->id)->companyKey()->whereIsLater(true)->whereIsCompleted(false)->whereIsCancelled(false)->whereIsDriverStarted(false)->count();
+
+        $completedTrips = RequestRequest::where('user_id', $user->id)->companyKey()->whereIsCompleted(true)->count();
+        $cancelledTrips = RequestRequest::where('user_id', $user->id)->companyKey()->whereIsCancelled(true)->count();
+        $upcomingTrips = RequestRequest::where('user_id', $user->id)->companyKey()->whereIsLater(true)->whereIsCompleted(false)->whereIsCancelled(false)->whereIsDriverStarted(false)->count();
 
         $card = [];
         $card['completed_trip'] = ['name' => 'trips_completed', 'display_name' => 'Completed Rides', 'count' => $completedTrips, 'icon' => 'fa fa-flag-checkered text-green'];
@@ -230,11 +229,11 @@ class UserController extends BaseController
 
 
 
-         $query = RequestRequest::where('user_id',$user->id);
+        $query = RequestRequest::where('user_id', $user->id);
         $results = $queryFilter->builder($query)->customFilter(new RequestFilter)->defaultSort('-created_at')->paginate();
 
 
-        return view('admin.users.user-request-list', compact('results','card','main_menu','sub_menu'));
+        return view('admin.users.user-request-list', compact('results', 'card', 'main_menu', 'sub_menu'));
     }
     public function userPaymentHistory(User $user)
     {
@@ -242,31 +241,31 @@ class UserController extends BaseController
         $sub_menu = 'user_details';
         $item = $user;
 
-        $amount = UserWallet::where('user_id',$user->id)->first();
+        $amount = UserWallet::where('user_id', $user->id)->first();
 
-    if ($amount == null) {
-         $card = [];
-         $card['total_amount'] = ['name' => 'total_amount', 'display_name' => 'Total Amount ', 'count' => "0", 'icon' => 'fa fa-flag-checkered text-green'];
-        $card['amount_spent'] = ['name' => 'amount_spent', 'display_name' => 'Spend Amount ', 'count' => "0", 'icon' => 'fa fa-ban text-red'];
-        $card['balance_amount'] = ['name' => 'balance_amount', 'display_name' => 'Balance Amount', 'count' => "0", 'icon' => 'fa fa-ban text-red'];
+        if ($amount == null) {
+            $card = [];
+            $card['total_amount'] = ['name' => 'total_amount', 'display_name' => 'Total Amount ', 'count' => "0", 'icon' => 'fa fa-flag-checkered text-green'];
+            $card['amount_spent'] = ['name' => 'amount_spent', 'display_name' => 'Spend Amount ', 'count' => "0", 'icon' => 'fa fa-ban text-red'];
+            $card['balance_amount'] = ['name' => 'balance_amount', 'display_name' => 'Balance Amount', 'count' => "0", 'icon' => 'fa fa-ban text-red'];
 
-         $history = UserWalletHistory::where('user_id',$user->id)->orderBy('created_at','desc')->paginate(10);
-        }else{
+            $history = UserWalletHistory::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
+        } else {
 
-         $card = [];
-        $card['total_amount'] = ['name' => 'total_amount', 'display_name' => 'Total Amount ', 'count' => $amount->amount_added, 'icon' => 'fa fa-flag-checkered text-green'];
-        $card['amount_spent'] = ['name' => 'amount_spent', 'display_name' => 'Spend Amount ', 'count' => $amount->amount_spent, 'icon' => 'fa fa-ban text-red'];
-        $card['balance_amount'] = ['name' => 'balance_amount', 'display_name' => 'Balance Amount', 'count' => $amount->amount_balance, 'icon' => 'fa fa-ban text-red'];
+            $card = [];
+            $card['total_amount'] = ['name' => 'total_amount', 'display_name' => 'Total Amount ', 'count' => $amount->amount_added, 'icon' => 'fa fa-flag-checkered text-green'];
+            $card['amount_spent'] = ['name' => 'amount_spent', 'display_name' => 'Spend Amount ', 'count' => $amount->amount_spent, 'icon' => 'fa fa-ban text-red'];
+            $card['balance_amount'] = ['name' => 'balance_amount', 'display_name' => 'Balance Amount', 'count' => $amount->amount_balance, 'icon' => 'fa fa-ban text-red'];
 
-         $history = UserWalletHistory::where('user_id',$user->id)->orderBy('created_at','desc')->paginate(10);
+            $history = UserWalletHistory::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(10);
 
-        // dd($history);
+            // dd($history);
         }
-        return view('admin.users.user-payment-wallet', compact('card','main_menu','sub_menu','item','history'));
+        return view('admin.users.user-payment-wallet', compact('card', 'main_menu', 'sub_menu', 'item', 'history'));
     }
-     public function StoreUserPaymentHistory(AddUserMoneyToWalletRequest $request,User $user)
+    public function StoreUserPaymentHistory(AddUserMoneyToWalletRequest $request, User $user)
     {
-// dd($request);
+        // dd($request);
 
         $currency = get_settings(Settings::CURRENCY);
 
@@ -278,30 +277,30 @@ class UserController extends BaseController
         $transaction_id = Str::random(6);
 
 
-            $wallet_model = new UserWallet();
-            $wallet_add_history_model = new UserWalletHistory();
-            $user_id = $user->id;
+        $wallet_model = new UserWallet();
+        $wallet_add_history_model = new UserWalletHistory();
+        $user_id = $user->id;
 
 
         $user_wallet = $wallet_model::firstOrCreate([
-            'user_id'=>$user_id]);
+            'user_id' => $user_id
+        ]);
         $user_wallet->amount_added += $request->amount;
         $user_wallet->amount_balance += $request->amount;
         $user_wallet->save();
 
         $wallet_add_history_model::create([
-            'user_id'=>$user_id,
-            'card_id'=>null,
-            'amount'=>$request->amount,
-            'transaction_id'=>$transaction_id,
-            'merchant'=>null,
-            'remarks'=>WalletRemarks::MONEY_DEPOSITED_TO_E_WALLET_FROM_ADMIN,
-            'is_credit'=>true]);
+            'user_id' => $user_id,
+            'card_id' => null,
+            'amount' => $request->amount,
+            'transaction_id' => $transaction_id,
+            'merchant' => null,
+            'remarks' => WalletRemarks::MONEY_DEPOSITED_TO_E_WALLET_FROM_ADMIN,
+            'is_credit' => true
+        ]);
 
 
-         $message = "money_added_successfully";
+        $message = "money_added_successfully";
         return redirect()->back()->with('success', $message);
-
-
     }
 }
