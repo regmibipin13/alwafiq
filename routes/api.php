@@ -20,7 +20,7 @@
 use App\Http\Controllers\demoController;
 
 
-Route::post('/add-readings', 'AppController@addReading');
+Route::POST('/add-readings', 'AppController@addReading');
 
 Route::namespace('Api')->group(function () {
 
