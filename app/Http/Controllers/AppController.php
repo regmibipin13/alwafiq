@@ -6,6 +6,7 @@ use App\Models\Admin\Driver;
 use App\Models\AssetObject;
 use App\Models\Reading;
 use App\Models\ReadingType;
+use App\Models\Remark;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -71,5 +72,11 @@ class AppController extends Controller
     {
         $readingTypes = ReadingType::all();
         return response()->json(['data' => $readingTypes]);
+    }
+
+    public function getRemarks()
+    {
+        $remarks = Remark::all();
+        return response()->json(['data' => $remarks]);
     }
 }
