@@ -78,7 +78,10 @@
                                 <td>{{ $reading->visit_date }}</td>
                                 <td>{{ $reading->reading_value }}</td>
                                 <td>{{ $reading->remarks }}</td>
-                                <td>{{ $reading->image }}</td>
+                                <td>
+                                    <a href="{{ $reading->image }}">
+                                        <img src="{{ $reading->image }}" height="100" width="100" alt="Image"></a>
+                                </td>
                                 <td class="d-flex align-items-center">
                                     <form action="{{ route('objects.readings.destroy', [$object->id, $reading->id]) }}"
                                         method="POST" style="display: inline;">
