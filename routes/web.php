@@ -32,7 +32,6 @@ Route::group(['prefix' => 'app'], function () {
     Route::get('/objects', 'AppController@objects');
     Route::get('/object', 'AppController@objectShow');
     Route::get('/readings', 'AppController@objectReadings');
-    Route::post('/add-readings', 'AppController@addReading');
     Route::get('/reading-types', 'AppController@readingTypes');
     Route::get('/remarks-types', 'AppController@getRemarks');
 });

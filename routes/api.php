@@ -18,16 +18,19 @@
 
 
 use App\Http\Controllers\demoController;
-Route::namespace ('Api')->group(function () {
 
-	/**
-	 * These routes are prefixed with 'api/v1'.
-	 * These routes use the root namespace 'App\Http\Controllers\Api\V1'.
-	 */
-	Route::prefix('v1')->namespace('V1')->group(function () {
-		include_route_files('api/v1');
-	});
 
+Route::post('/add-readings', 'AppController@addReading');
+
+Route::namespace('Api')->group(function () {
+
+    /**
+     * These routes are prefixed with 'api/v1'.
+     * These routes use the root namespace 'App\Http\Controllers\Api\V1'.
+     */
+    Route::prefix('v1')->namespace('V1')->group(function () {
+        include_route_files('api/v1');
+    });
 });
 
-Route::POST("demo",[demoController::class,'demo']);
+Route::POST("demo", [demoController::class, 'demo']);
