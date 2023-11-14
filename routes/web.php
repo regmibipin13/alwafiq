@@ -33,6 +33,7 @@ Route::group(['prefix' => 'app'], function () {
     Route::get('/object', 'AppController@objectShow');
     Route::get('/readings', 'AppController@objectReadings');
     Route::post('/readings', 'AppController@addReading');
+    Route::get('/reading-types', 'AppController@readingTypes');
 });
 
 Route::namespace('Web')->group(function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin\Driver;
 use App\Models\AssetObject;
 use App\Models\Reading;
+use App\Models\ReadingType;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -64,5 +65,11 @@ class AppController extends Controller
         } else {
             return response()->json(['status' => 'error'], 400);
         }
+    }
+
+    public function readingTypes()
+    {
+        $readingTypes = ReadingType::all();
+        return response()->json(['data' => $readingTypes]);
     }
 }
