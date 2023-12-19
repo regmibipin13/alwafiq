@@ -61,7 +61,7 @@ class AssetObjectImport implements ToCollection, WithHeadingRow
                         'object_id' => $asset->id,
                         'reading_type_id' => $key,
                         'reading_value' => $row[$type] ?? '-',
-                        'visit_date' => isset($row['visit_date']) ? $row['visit_date'] : (isset($row['submited_date']) ? $row['submitted_date'] : ''),
+                        'visit_date' => isset($row['visit_date']) ? $row['visit_date'] : (isset($row['submited_date']) ? $row['submited_date'] : ''),
                         'remarks' => isset($row['remarks']) ? $row['remarks'] : ''
                     ]);
                 }
