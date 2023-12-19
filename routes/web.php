@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ExportRidesController;
+use App\Models\AssetObject;
+use App\Models\ReadingType;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +20,17 @@ use App\Http\Controllers\ExportRidesController;
  * These routes use the root namespace 'App\Http\Controllers\Web'.
  */
 
+Route::get('/demos', function () {
+    $objects = AssetObject::with(['rider'])->paginate(30);
+    $objectsHeaders = collect(ReadingType::all())->map->name->toArray();
+    return view('objects.excel_view', ['objects' => $objects, 'types' => $objectsHeaders]);
+});
 Route::post('add-readings', 'AppController@addReading');
 Route::get('objects/{object}/readings', 'ObjectsController@readingsIndex')->name('objects.readings.index');
 Route::get('objects/{object}/readings/create', 'ObjectsController@readingsCreate')->name('objects.readings.create');
 Route::delete('objects/{object}/readings/{reading}', 'ObjectsController@readingsDelete')->name('objects.readings.destroy');
+Route::post('objects/import/excel', 'ObjectsController@import')->name('objects.import');
+Route::post('objects/export/excel', 'ObjectsController@export')->name('objects.export');
 Route::resource('objects', 'ObjectsController');
 Route::resource('reading_types', 'ReadingTypeController');
 Route::resource('invoice_types', 'InvoiceTypesController');

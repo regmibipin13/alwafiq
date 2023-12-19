@@ -33,6 +33,46 @@
                 </div>
             </div>
 
+            <div class="card py-2 px-2">
+                <div class="card-body">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#excel-import">Import</button>
+                    <div class="modal fade" id="excel-import" tabindex="-1" role="dialog" aria-labelledby="excel-import"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('objects.import') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="excel">Excel File</label>
+                                            <input type="file" class="form-control" name="file"
+                                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="{{ route('objects.export') }}" method="POST" class="mt-3">
+                        @csrf
+                        <button class="btn btn-primary" type="submit">Export</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="card my-2">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -47,11 +87,13 @@
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-areas"
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Areas</button>
                         <button class="nav-link" id="nav-remarks-tab" data-bs-toggle="tab" data-bs-target="#nav-remarks"
-                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Remarks</button>
+                            type="button" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Remarks</button>
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab">
                         <div class="my-2">
                             <a href="{{ route('objects.create') }}" class="btn btn-success mb-2">Add New</a>
                             <form action="" class="d-flex align-items-center justify-content-between filters">
@@ -86,7 +128,7 @@
                                             <td>{{ $object->invoice_type }}</td>
                                             <td>{{ $object->frequency }}</td>
                                             <td>{{ $object->emirates }}</td>
-                                            <td>{{ $object->rider->user->name }}</td>
+                                            <td>{{ $object->rider ? $object->rider->user->name : '' }}</td>
                                             <td>{{ $object->area }}</td>
 
                                             <td class="d-flex align-items-center">

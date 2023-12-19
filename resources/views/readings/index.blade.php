@@ -22,7 +22,6 @@
 
                             </div>
                         </a>
-
                         <a href="{{ url('/dispatch/dashboard') }}" class="btn btn-danger">Back To Home</a>
                     </nav>
                 </div>
@@ -35,7 +34,7 @@
                         Object Id: {{ $object->object_id }} <br />
                         Total Readings Count: {{ $readings->count() }} <br />
                         Total Readings (Sum) : {{ $readings->sum('reading_value') }}<br />
-                        Last Reading Visit : {{ $readings->first()->visit_date }}
+                        Last Reading Visit : {{ $readings->first() ? $readings->first()->visit_date : '' }}
                     </div>
                     <div>
                         <form action="{{ route('objects.readings.index', $object->id) }}" method="GET"
@@ -179,7 +178,7 @@
 
                             <tr>
                                 <th>Rider</th>
-                                <td>{{ $object->rider->user->name }}</td>
+                                <td>{{ $object->rider ? $object->rider->user->name : '' }}</td>
                             </tr>
 
                             <tr>

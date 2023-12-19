@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AssetObjectExport;
+use App\Imports\AssetObjectImport;
 use App\Models\Admin\Driver;
 use App\Models\Area;
-use App\Models\Asset;
 use App\Models\AssetObject;
 use App\Models\InvoiceType;
 use App\Models\Reading;
 use App\Models\ReadingType;
 use App\Models\Remark;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ObjectsController extends Controller
 {
+
+    public function export()
+    {
+        return Excel::download(new AssetObjectExport, 'reports.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new AssetObjectImport, $request->file('file'));
+        return redirect()->back();
+    }
+
     /**
      * Display a listing of the resource.
      *

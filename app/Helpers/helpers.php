@@ -25,6 +25,35 @@ use App\Base\Constants\Masters\DriverDocumentStatus;
 use App\Base\Services\OTP\Generator\OTPGeneratorContract;
 use App\Models\Admin\Driver;
 
+
+
+
+// Function to convert "112 BW-A3" to "112_bw_a3" if not already in that format
+if (!function_exists('convertToUnderscoreFormat')) {
+    function convertToUnderscoreFormat($inputString)
+    {
+        // Check if the string is already in the desired format
+        if (strpos($inputString, '_') === false) {
+            $convertedString = strtolower(str_replace(' ', '_', $inputString));
+            return $convertedString;
+        }
+        return $inputString; // Return the original string if it's already in the correct format
+    }
+}
+
+// Function to convert "112_bw_a3" to "112 BW-A3" if not already in that format
+if (!function_exists('convertToSpaceFormat')) {
+    function convertToSpaceFormat($inputString)
+    {
+        // Check if the string is already in the desired format
+        if (strpos($inputString, ' ') === false) {
+            $convertedString = ucwords(str_replace('_', ' ', $inputString));
+            return $convertedString;
+        }
+        return $inputString; // Return the original string if it's already in the correct format
+    }
+}
+
 /**
  * Custom helper functions.
  */
@@ -43,7 +72,7 @@ if (!function_exists('url_info')) {
 }
 
 
-if (! function_exists('starts_with')) {
+if (!function_exists('starts_with')) {
     /**
      * Determine if a given string starts with a given substring.
      *
@@ -57,7 +86,7 @@ if (! function_exists('starts_with')) {
     }
 }
 
-if (! function_exists('array_except')) {
+if (!function_exists('array_except')) {
     /**
      * Get all of the given array except for a specified array of keys.
      *
@@ -83,7 +112,7 @@ if (!function_exists('uuid')) {
     }
 }
 
-if (! function_exists('str_random')) {
+if (!function_exists('str_random')) {
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
@@ -98,7 +127,7 @@ if (! function_exists('str_random')) {
     }
 }
 
-if (! function_exists('studly_case')) {
+if (!function_exists('studly_case')) {
     /**
      * Convert a value to studly caps case.
      *
@@ -132,40 +161,40 @@ if (!function_exists('convert_currency_to_usd')) {
      */
     function convert_currency_to_usd($currency_code, $amount)
     {
-        if ($currency_code=='USD') {
+        if ($currency_code == 'USD') {
             return array(
-            'converted_amount'=>$amount,
-            'converted_type'=>'USD-USD',
-        );
+                'converted_amount' => $amount,
+                'converted_type' => 'USD-USD',
+            );
         }
-        $usd_amount = Cache::get($currency_code)?:null;
+        $usd_amount = Cache::get($currency_code) ?: null;
 
-        if ($usd_amount==null) {
+        if ($usd_amount == null) {
             $get_usd_amount =  get_and_set_currency_value_using_curreny_layer();
 
             if (!$get_usd_amount) {
                 return array(
-            'converted_amount'=>0,
-            'converted_type'=>$currency_code.'-USD',
-            );
+                    'converted_amount' => 0,
+                    'converted_type' => $currency_code . '-USD',
+                );
             }
         }
 
-        $usd_amount = Cache::get($currency_code)?:null;
+        $usd_amount = Cache::get($currency_code) ?: null;
 
         $converted_amount = ($amount / $usd_amount);
-        $converted_type = $currency_code."-USD";
+        $converted_type = $currency_code . "-USD";
 
         return array(
-            'converted_amount'=>number_format((float)$converted_amount, 2, '.', ''),
-            'converted_type'=>$converted_type,
+            'converted_amount' => number_format((float)$converted_amount, 2, '.', ''),
+            'converted_type' => $converted_type,
         );
     }
 }
 
 if (!function_exists('get_and_set_currency_value_using_curreny_layer')) {
 
-     /**
+    /**
      * Check if the currency is valid and convert the currency to USD.
      *
      * @param string $amount
@@ -179,7 +208,7 @@ if (!function_exists('get_and_set_currency_value_using_curreny_layer')) {
         $source = 'USD';
 
         // initialize CURL:
-        $ch = curl_init('http://apilayer.net/api/'.$endpoint.'?access_key='.$access_key.'&source='.$source.'&format=1');
+        $ch = curl_init('http://apilayer.net/api/' . $endpoint . '?access_key=' . $access_key . '&source=' . $source . '&format=1');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // get the (still encoded) JSON data:
@@ -215,35 +244,35 @@ if (!function_exists('panel_layout')) {
             $permissions = Permission::all();
         }
 
-        $menu =[];
-        $menu["sort"]=[];
+        $menu = [];
+        $menu["sort"] = [];
 
         foreach ($permissions as $key => $permission) {
             if (array_key_exists($permission->main_menu, $menu)) {
-                if (!array_key_exists($permission->sub_menu, $menu[$permission->main_menu])&&$permission->sub_menu!=null) {
+                if (!array_key_exists($permission->sub_menu, $menu[$permission->main_menu]) && $permission->sub_menu != null) {
                     set_menu($menu[$permission->main_menu][$permission->sub_menu]);
 
                     set_data($menu, $permission);
 
                     set_sort($menu, $permission->main_menu, $permission->sort);
 
-                    $menu[$permission->main_menu]['sub_menu']=true;
-                } elseif ($permission->sub_menu!=null && $menu[$permission->main_menu][$permission->sub_menu]['link'] == null) {
+                    $menu[$permission->main_menu]['sub_menu'] = true;
+                } elseif ($permission->sub_menu != null && $menu[$permission->main_menu][$permission->sub_menu]['link'] == null) {
                     set_data($menu, $permission);
 
                     set_sort($menu, $permission->main_menu, $permission->sort);
-                } elseif ($permission->sub_menu==null) {
+                } elseif ($permission->sub_menu == null) {
                     set_data($menu, $permission);
 
                     set_sort($menu, $permission->main_menu, $permission->sort);
                 }
             } else {
-                $menu[$permission->main_menu]['sub_menu']=$permission->sub_link?true:false;
-                $menu[$permission->main_menu]['icon']=null;
-                $menu[$permission->main_menu]['link']=null;
+                $menu[$permission->main_menu]['sub_menu'] = $permission->sub_link ? true : false;
+                $menu[$permission->main_menu]['icon'] = null;
+                $menu[$permission->main_menu]['link'] = null;
 
                 set_sort($menu, $permission->main_menu, $permission->sort);
-                if ($permission->sub_menu !=null) {
+                if ($permission->sub_menu != null) {
                     set_menu($menu[$permission->main_menu][$permission->sub_menu]);
                 }
                 set_data($menu, $permission);
@@ -264,7 +293,7 @@ if (!function_exists('set_menu')) {
      */
     function set_menu(&$menuArray)
     {
-        $menuArray=["link" => null];
+        $menuArray = ["link" => null];
     }
 }
 
@@ -275,15 +304,15 @@ if (!function_exists('set_data')) {
      */
     function set_data(&$linkPath, $data)
     {
-        if ($linkPath[$data->main_menu]['link']==null) {
+        if ($linkPath[$data->main_menu]['link'] == null) {
             $linkPath[$data->main_menu]['link'] = $data->main_link;
         }
 
-        if ($data->sub_menu!=null&&$linkPath[$data->main_menu][$data->sub_menu]['link']==null) {
+        if ($data->sub_menu != null && $linkPath[$data->main_menu][$data->sub_menu]['link'] == null) {
             $linkPath[$data->main_menu][$data->sub_menu]['link'] = $data->sub_link;
         }
 
-        if ($linkPath[$data->main_menu]['icon']==null) {
+        if ($linkPath[$data->main_menu]['icon'] == null) {
             $linkPath[$data->main_menu]['icon'] = $data->icon;
         }
     }
@@ -299,7 +328,7 @@ if (!function_exists('set_sort')) {
     function set_sort(&$menuArray, $menu, $sort)
     {
         if ($sort != null) {
-            $menuArray["sort"][$menu]= $sort;
+            $menuArray["sort"][$menu] = $sort;
         }
     }
 }
@@ -339,7 +368,6 @@ if (!function_exists('get_settings')) {
         // }
 
         return Setting::whereName($key)->pluck('value')->first();
-        
     }
 }
 
@@ -376,10 +404,10 @@ if (!function_exists('get_distance_matrix')) {
         $client = new \GuzzleHttp\Client();
         $url = 'https://maps.googleapis.com/maps/api/distancematrix/json';
         $args = [
-          'units' => "imperial",
-          'origins' => "$pick_lat,$pick_lng",
-          'destinations' => "$drop_lat,$drop_lng",
-          'key' => get_settings('google_map_key_for_distance_matrix')
+            'units' => "imperial",
+            'origins' => "$pick_lat,$pick_lng",
+            'destinations' => "$drop_lat,$drop_lng",
+            'key' => get_settings('google_map_key_for_distance_matrix')
         ];
         //AIzaSyDsgTHjo-lusijguNf8XO8aLNyYHe9mRE4
 
@@ -540,25 +568,23 @@ if (!function_exists('distance_between_two_coordinates')) {
     function distance_between_two_coordinates($lat1, $lon1, $lat2, $lon2, $unit)
     {
         if (($lat1 == $lat2) && ($lon1 == $lon2)) {
-    return 0;
-  }
-  else {
-    $theta = $lon1 - $lon2;
-    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-    $dist = acos($dist);
-    $dist = rad2deg($dist);
-    $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
+            return 0;
+        } else {
+            $theta = $lon1 - $lon2;
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $miles = $dist * 60 * 1.1515;
+            $unit = strtoupper($unit);
 
-    if ($unit == "K") {
-      return ($miles * 1.609344);
-    } else if ($unit == "M") {
-      return ($miles * 0.8684);
-    } else {
-      return $miles;
-    }
-  }
-
+            if ($unit == "K") {
+                return ($miles * 1.609344);
+            } else if ($unit == "M") {
+                return ($miles * 0.8684);
+            } else {
+                return $miles;
+            }
+        }
     }
 }
 
@@ -728,10 +754,10 @@ if (!function_exists('structure_for_socket')) {
     function structure_for_socket($id, $user_type, $message, $event)
     {
         $structure = array();
-        $structure['id']= $id;
-        $structure['user_type']= $user_type;
-        $structure['message']= $message;
-        $structure['event']= $event;
+        $structure['id'] = $id;
+        $structure['user_type'] = $user_type;
+        $structure['message'] = $message;
+        $structure['event'] = $event;
         return $structure;
     }
 }
@@ -1053,7 +1079,7 @@ if (!function_exists('role_middleware')) {
     }
 }
 
-if (! function_exists('array_wrap')) {
+if (!function_exists('array_wrap')) {
     /**
      * If the given value is not an array, wrap it in one.
      *
@@ -1066,7 +1092,7 @@ if (! function_exists('array_wrap')) {
     }
 }
 
-if (! function_exists('str_is')) {
+if (!function_exists('str_is')) {
     /**
      * Determine if a given string matches a given pattern.
      *
@@ -1079,7 +1105,7 @@ if (! function_exists('str_is')) {
         return Str::is($pattern, $value);
     }
 }
-if (! function_exists('array_only')) {
+if (!function_exists('array_only')) {
     /**
      * Get a subset of the items from the given array.
      *
@@ -1249,7 +1275,7 @@ if (!function_exists('fav_icon')) {
     }
 }
 
-if (! function_exists('str_limit')) {
+if (!function_exists('str_limit')) {
     /**
      * Limit the number of characters in a string.
      *

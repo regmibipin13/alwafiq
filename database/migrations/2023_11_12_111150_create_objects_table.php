@@ -16,24 +16,24 @@ class CreateObjectsTable extends Migration
         Schema::create('objects', function (Blueprint $table) {
             $table->id();
             $table->string('object_id')->unique();
-            $table->string('contract_transaction');
-            $table->string('customer');
-            $table->string('invoice_type');
-            $table->string('frequency');
-            $table->string('object_type');
-            $table->string('emirates');
-            $table->string('visiting_address');
-            $table->string('city');
+            $table->string('contract_transaction')->nullable();
+            $table->string('customer')->nullable();
+            $table->string('invoice_type')->nullable();
+            $table->string('frequency')->nullable();
+            $table->string('object_type')->nullable();
+            $table->string('emirates')->nullable();
+            $table->string('visiting_address')->nullable();
+            $table->string('city')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('remarks')->nullable();
             $table->dateTime('last_visit_date')->nullable();
-            $table->unsignedInteger('rider_id');
+            $table->unsignedInteger('rider_id')->nullable();
             $table->string('area')->nullable();
-            $table->string('google_address');
-            $table->string('month_wise_remarks');
-            $table->string('batch');
+            $table->text('google_address')->nullable();
+            $table->string('month_wise_remarks')->nullable();
+            $table->string('batch')->nullable();
             $table->timestamps();
         });
     }

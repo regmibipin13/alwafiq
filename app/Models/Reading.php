@@ -23,7 +23,6 @@ class Reading extends Model implements HasMedia
     {
         return $this->belongsTo(ReadingType::class, 'reading_type_id');
     }
-
     public function getImageAttribute()
     {
         return $this->hasMedia() ? $this->getFirstMediaUrl() : null;

@@ -1655,24 +1655,24 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $object_id
- * @property string $contract_transaction
- * @property string $customer
- * @property string $invoice_type
- * @property string $frequency
- * @property string $object_type
- * @property string $emirates
- * @property string $visiting_address
- * @property string $city
+ * @property string|null $contract_transaction
+ * @property string|null $customer
+ * @property string|null $invoice_type
+ * @property string|null $frequency
+ * @property string|null $object_type
+ * @property string|null $emirates
+ * @property string|null $visiting_address
+ * @property string|null $city
  * @property string|null $contact_name
  * @property string|null $phone
  * @property string|null $email
  * @property string|null $remarks
  * @property string|null $last_visit_date
- * @property int $rider_id
+ * @property int|null $rider_id
  * @property \App\Models\Area|null $area
- * @property string $google_address
- * @property string $month_wise_remarks
- * @property string $batch
+ * @property string|null $google_address
+ * @property string|null $month_wise_remarks
+ * @property string|null $batch
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Admin\Driver|null $rider
@@ -2787,18 +2787,18 @@ namespace App\Models{
  * App\Models\Reading
  *
  * @property int $id
- * @property int $object_id
- * @property int $reading_type_id
- * @property string $reading_value
- * @property string $visit_date
+ * @property int|null $object_id
+ * @property int|null $reading_type_id
+ * @property string|null $reading_value
+ * @property string|null $visit_date
  * @property string|null $remarks
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read mixed $image
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
  * @property-read int|null $media_count
- * @property-read \App\Models\AssetObject $object
- * @property-read \App\Models\ReadingType $reading_type
+ * @property-read \App\Models\AssetObject|null $object
+ * @property-read \App\Models\ReadingType|null $reading_type
  * @method static \Illuminate\Database\Eloquent\Builder|Reading newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Reading newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Reading query()

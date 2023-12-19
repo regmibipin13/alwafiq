@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use App\Models\Asset;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class AssetsImport implements ToModel
@@ -14,9 +13,9 @@ class AssetsImport implements ToModel
      */
     public function model(array $row)
     {
-        return new Asset([
-            'object_id' => $row[0],
-            'location' => $row[1]
-        ]);
+        // return new Asset([
+        //     'object_id' => $row[0],
+        //     'location' => $row[1]
+        // ]);
     }
 }
