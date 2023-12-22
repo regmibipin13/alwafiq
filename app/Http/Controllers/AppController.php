@@ -18,7 +18,7 @@ class AppController extends Controller
     {
         $sanitized = $request->validate(['user_id' => 'required']);
         $data = [];
-        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id']);
+        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id'])->get();
         $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($data['total_objects'])->map->id->toArray())->count();
         $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id'])->count();
 
