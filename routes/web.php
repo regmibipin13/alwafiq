@@ -26,7 +26,7 @@ Route::get('/demos', function () {
     return view('objects.excel_view', ['objects' => $objects, 'types' => $objectsHeaders]);
 });
 
-Route::get('/analytics', 'AppController@analytics');
+
 Route::post('add-readings', 'AppController@addReading');
 Route::get('objects/{object}/readings', 'ObjectsController@readingsIndex')->name('objects.readings.index');
 Route::get('objects/{object}/readings/create', 'ObjectsController@readingsCreate')->name('objects.readings.create');
@@ -50,6 +50,7 @@ Route::group(['prefix' => 'app'], function () {
     Route::get('/readings', 'AppController@objectReadings');
     Route::get('/reading-types', 'AppController@readingTypes');
     Route::get('/remarks-types', 'AppController@getRemarks');
+    Route::get('/analytics', 'AppController@analytics');
 });
 
 Route::namespace('Web')->group(function () {
