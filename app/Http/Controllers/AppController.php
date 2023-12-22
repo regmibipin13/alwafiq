@@ -14,6 +14,16 @@ use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
+    public function analytics(Request $request)
+    {
+        $sanitized = $request->validate(['user_id' => 'required']);
+        $data = [];
+        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id']);
+        $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($data['total_objects'])->map->id->toArray())->count();
+        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id'])->count();
+
+        return response()->json($data);
+    }
     public function login(Request $request)
     {
         $sanitized = $request->validate([

@@ -25,10 +25,15 @@ Route::get('/demos', function () {
     $objectsHeaders = collect(ReadingType::all())->map->name->toArray();
     return view('objects.excel_view', ['objects' => $objects, 'types' => $objectsHeaders]);
 });
+
+Route::get('/analytics', 'AppController@analytics');
 Route::post('add-readings', 'AppController@addReading');
 Route::get('objects/{object}/readings', 'ObjectsController@readingsIndex')->name('objects.readings.index');
 Route::get('objects/{object}/readings/create', 'ObjectsController@readingsCreate')->name('objects.readings.create');
 Route::delete('objects/{object}/readings/{reading}', 'ObjectsController@readingsDelete')->name('objects.readings.destroy');
+
+
+
 Route::post('objects/import/excel', 'ObjectsController@import')->name('objects.import');
 Route::post('objects/export/excel', 'ObjectsController@export')->name('objects.export');
 Route::resource('objects', 'ObjectsController');
