@@ -18,9 +18,10 @@ class AppController extends Controller
     {
         $sanitized = $request->validate(['user_id' => 'required']);
         $data = [];
-        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id'])->get();
-        $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($data['total_objects'])->map->id->toArray())->count();
-        $data['total_objects'] = AssetObject::where('user_id', $sanitized['user_id'])->count();
+        $user = User::find($sanitized['user_id']);
+        $objects = AssetObject::where('rider_id', $user->driver->id);
+        $data['total_objects'] = $objects->count();
+        $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->count();
 
         return response()->json($data);
     }
