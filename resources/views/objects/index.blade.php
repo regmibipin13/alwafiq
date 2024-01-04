@@ -32,7 +32,11 @@
                     </nav>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
 
+                </div>
+            </div>
             <div class="card py-2 px-2">
                 @if ($errors->any())
                     <div class="card-header">

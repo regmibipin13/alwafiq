@@ -8,6 +8,7 @@ use App\Models\AssetObject;
 use App\Models\Reading;
 use App\Models\ReadingType;
 use App\Models\Remark;
+use App\Models\Task;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
@@ -22,8 +23,8 @@ class AppController extends Controller
         $user = User::find($sanitized['user_id']);
         $objects = AssetObject::where('rider_id', $user->driver->id);
         $data['total_objects'] = $objects->count();
-        $data['total_tasks_today'] = $objects->tasks()->whereDate('date', Carbon::now())->count();
-        $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->count();
+        $data['total_tasks_today'] = Task::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('date', Carbon::now())->count();
+        $data['total_readings_submitted_today'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('created_at', Carbon::now())->count();
 
         return response()->json($data);
     }

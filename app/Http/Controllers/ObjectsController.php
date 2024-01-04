@@ -11,6 +11,8 @@ use App\Models\InvoiceType;
 use App\Models\Reading;
 use App\Models\ReadingType;
 use App\Models\Remark;
+use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -35,12 +37,17 @@ class ObjectsController extends Controller
      */
     public function index(Request $request)
     {
-        $objects = AssetObject::filters($request)->paginate(20);
+        $objects = AssetObject::filters($request);
         $readingTypes = ReadingType::orderBy('id', 'desc')->paginate(20);
         $invoiceTypes = InvoiceType::orderBy('id', 'desc')->paginate(20);
         $areas = Area::orderBy('id', 'desc')->paginate(20);
         $remarks = Remark::orderBy('id', 'desc')->paginate(20);
-        return view('objects.index', compact('objects', 'readingTypes', 'invoiceTypes', 'areas', 'remarks'));
+        $data = [];
+        $data['total_objects'] = $objects->count();
+        $data['total_tasks_today'] = Task::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('date', Carbon::now())->count();
+        $data['total_readings_submitted_today'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('created_at', Carbon::now())->count();
+        $objects = $objects->paginate(20);
+        return view('objects.index', compact('objects', 'readingTypes', 'invoiceTypes', 'areas', 'remarks', 'data'));
     }
 
     /**
