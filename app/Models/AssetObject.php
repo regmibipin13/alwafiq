@@ -23,6 +23,11 @@ class AssetObject extends Model
         return $this->hasOne(Area::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function scopeFilters($query, $request)
     {
         if ($request->has('object_id') && $request->object_id !== null) {

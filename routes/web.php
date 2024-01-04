@@ -32,8 +32,7 @@ Route::get('objects/{object}/readings', 'ObjectsController@readingsIndex')->name
 Route::get('objects/{object}/readings/create', 'ObjectsController@readingsCreate')->name('objects.readings.create');
 Route::delete('objects/{object}/readings/{reading}', 'ObjectsController@readingsDelete')->name('objects.readings.destroy');
 
-
-
+Route::post('objects/delete', 'ObjectsController@deleteAll')->name('objects.delete');
 Route::post('objects/import/excel', 'ObjectsController@import')->name('objects.import');
 Route::post('objects/export/excel', 'ObjectsController@export')->name('objects.export');
 Route::resource('objects', 'ObjectsController');

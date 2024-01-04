@@ -10,6 +10,7 @@ use App\Models\ReadingType;
 use App\Models\Remark;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -21,6 +22,7 @@ class AppController extends Controller
         $user = User::find($sanitized['user_id']);
         $objects = AssetObject::where('rider_id', $user->driver->id);
         $data['total_objects'] = $objects->count();
+        $data['total_tasks_today'] = $objects->tasks()->whereDate('date', Carbon::now())->count();
         $data['total_readings_submitted'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->count();
 
         return response()->json($data);
@@ -48,6 +50,9 @@ class AppController extends Controller
         $objects = (new AssetObject)->newQuery();
         if ($request->has('object_id') && $request->object_id !== null) {
             $objects->where('object_id', $request->object_id);
+        }
+        if ($request->has('date') && $request->date !== null) {
+            $request->whereDate('visit_date', Carbon::parse($request->date));
         }
         $objects = $objects->where('rider_id', $user->driver->id)->orderBy('id', 'desc')->paginate(20);
         return response()->json(['data' => $objects], 200);

@@ -162,6 +162,12 @@ class ObjectsController extends Controller
         return redirect()->back();
     }
 
+    public function deleteAll()
+    {
+        AssetObject::where('id', '>', 0)->delete();
+        return redirect()->back();
+    }
+
     public function readingsIndex($id, Request $request)
     {
         $object = AssetObject::findOrFail($id);

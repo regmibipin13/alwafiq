@@ -434,6 +434,8 @@ namespace App\Models\Admin{
  * @property-read \App\Models\Admin\ServiceLocation $serviceLocation
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\DriverSubscription> $subscriptions
  * @property-read int|null $subscriptions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
+ * @property-read int|null $tasks_count
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Admin\VehicleType|null $vehicleType
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Payment\WalletWithdrawalRequest> $withdrawalRequestsHistory
@@ -1676,6 +1678,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Admin\Driver|null $rider
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
+ * @property-read int|null $tasks_count
  * @method static \Illuminate\Database\Eloquent\Builder|AssetObject filters($request)
  * @method static \Illuminate\Database\Eloquent\Builder|AssetObject newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AssetObject newQuery()
@@ -3494,6 +3498,28 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|State whereSlug($value)
  */
 	class State extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Task
+ *
+ * @property int $id
+ * @property int $object_id
+ * @property string $date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\AssetObject $object
+ * @method static \Illuminate\Database\Eloquent\Builder|Task newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereObjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Task whereUpdatedAt($value)
+ */
+	class Task extends \Eloquent {}
 }
 
 namespace App\Models{

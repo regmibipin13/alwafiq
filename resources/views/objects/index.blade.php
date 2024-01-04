@@ -34,8 +34,16 @@
             </div>
 
             <div class="card py-2 px-2">
+                @if ($errors->any())
+                    <div class="card-header">
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="card-body">
-                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#excel-import">Import</button>
                     <div class="modal fade" id="excel-import" tabindex="-1" role="dialog" aria-labelledby="excel-import"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -65,11 +73,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <button class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#excel-import">Import</button>
 
-                    <form action="{{ route('objects.export') }}" method="POST" class="mt-3">
-                        @csrf
-                        <button class="btn btn-primary" type="submit">Export</button>
-                    </form>
+                        </div>
+                        &nbsp;&nbsp;
+                        <form action="{{ route('objects.export') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-primary" type="submit">Export</button>
+                        </form>
+                        &nbsp;&nbsp;
+                        <form action="{{ route('objects.delete') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger" type="submit">Delete All</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
