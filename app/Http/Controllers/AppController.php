@@ -53,7 +53,7 @@ class AppController extends Controller
             $objects->where('object_id', $request->object_id);
         }
         if ($request->has('date') && $request->date !== null) {
-            $request->whereDate('visit_date', Carbon::parse($request->date));
+            $request->whereDate('last_visit_date', Carbon::parse($request->date));
         }
         $objects = $objects->where('rider_id', $user->driver->id)->orderBy('id', 'desc')->paginate(20);
         return response()->json(['data' => $objects], 200);

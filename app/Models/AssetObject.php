@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Admin\Driver;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +43,9 @@ class AssetObject extends Model
         if ($request->has('emirates') && $request->emirates !== null) {
             $query->where('emirates', $request->emirates);
         }
-        return $query->orderBy('id', 'desc');
+        if ($request->has('visit_date') && $request->visit_date !== null) {
+            $query->whereDate('last_visit_date', Carbon::parse($request->visit_date));
+        }
+        return $query->orderBy('last_visit_date', 'desc');
     }
 }

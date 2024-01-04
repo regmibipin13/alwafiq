@@ -33,8 +33,19 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-body">
-
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="box border p-3">
+                        <h4>Total Objects</h4>
+                        <span>{{ $data['total_objects'] }}</span>
+                    </div>
+                    <div class="box border p-3">
+                        <h4>Total Tasks Today</h4>
+                        <span>{{ $data['total_tasks_today'] }}</span>
+                    </div>
+                    <div class="box border p-3">
+                        <h4>Total Readings Today</h4>
+                        <span>{{ $data['total_readings_submitted_today'] }}</span>
+                    </div>
                 </div>
             </div>
             <div class="card py-2 px-2">
@@ -109,7 +120,8 @@
                             type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Invoice
                             Type</button>
                         <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-areas"
-                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Areas</button>
+                            type="button" role="tab" aria-controls="nav-contact"
+                            aria-selected="false">Areas</button>
                         <button class="nav-link" id="nav-remarks-tab" data-bs-toggle="tab" data-bs-target="#nav-remarks"
                             type="button" role="tab" aria-controls="nav-contact"
                             aria-selected="false">Remarks</button>
@@ -123,6 +135,8 @@
                             <form action="" class="d-flex align-items-center justify-content-between filters">
                                 <input type="text" name="object_id" class="form-control"
                                     value="{{ request('object_id') }}" placeholder="Object Id">
+                                <input type="date" name="visit_date" class="form-control"
+                                    value="{{ request('visit_date') }}">
                                 <button type="submit" class="btn btn-primary">Apply Filters</button>
                             </form>
                         </div>
@@ -138,6 +152,7 @@
                                         <th>Emirates</th>
                                         <th>Rider</th>
                                         <th>Area</th>
+                                        <th>Latest Visit Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -154,6 +169,7 @@
                                             <td>{{ $object->emirates }}</td>
                                             <td>{{ $object->rider ? $object->rider->user->name : '' }}</td>
                                             <td>{{ $object->area }}</td>
+                                            <td>{{ $object->last_visit_date }}</td>
 
                                             <td class="d-flex align-items-center">
                                                 <a href="{{ route('objects.show', $object->id) }}"
