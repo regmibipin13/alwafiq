@@ -25,7 +25,8 @@ class AssetObject extends Model
         foreach ($tasks as $task) {
             $schedules[] = Carbon::parse($task->date)->format('Y M d g:i A');
         }
-        return $schedules;
+        return implode(", ", $schedules);
+        // return $schedules;
     }
 
     public function rider()
