@@ -44,7 +44,7 @@
                                 @foreach ($tasks as $task)
                                     <tr>
                                         <td>
-                                            {{ $task->date }}
+                                            {{ Carbon\Carbon::parse($task->date)->format('Y M d g:i A') }}
                                         </td>
                                     </tr>
                                 @endforeach

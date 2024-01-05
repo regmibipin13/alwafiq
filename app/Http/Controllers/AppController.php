@@ -21,7 +21,7 @@ class AppController extends Controller
         $sanitized = $request->validate(['user_id' => 'required']);
         $data = [];
         $user = User::find($sanitized['user_id']);
-        $objects = AssetObject::where('rider_id', $user->driver->id);
+        $objects = AssetObject::orderBy('last_visit_date', 'desc')->where('rider_id', $user->driver->id);
         $data['total_objects'] = $objects->count();
         $data['total_tasks_today'] = Task::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('date', Carbon::now())->count();
         $data['total_readings_submitted_today'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('created_at', Carbon::now())->count();
@@ -55,7 +55,7 @@ class AppController extends Controller
         if ($request->has('date') && $request->date !== null) {
             $request->whereDate('last_visit_date', Carbon::parse($request->date));
         }
-        $objects = $objects->where('rider_id', $user->driver->id)->orderBy('id', 'desc')->paginate(20);
+        $objects = $objects->where('rider_id', $user->driver->id)->orderBy('id', 'desc')->with('tasks')->paginate(20);
         return response()->json(['data' => $objects], 200);
     }
 
