@@ -123,7 +123,8 @@
     <select name="area" id="area" class="form-control">
         <option value="">Select Area</option>
         @foreach ($areas as $area)
-            <option value="{{ $area->id }}" {{ isset($object) && $object->area == $area->id ? 'selected' : '' }}>
+            <option value="{{ $area->name }}"
+                {{ isset($object) && $object->area == $area->name ? 'selected' : '' }}>
                 {{ $area->name }}</option>
         @endforeach
     </select>

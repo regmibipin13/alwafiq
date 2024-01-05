@@ -44,8 +44,8 @@ class ObjectsController extends Controller
         $remarks = Remark::orderBy('id', 'desc')->paginate(20);
         $data = [];
         $data['total_objects'] = $objects->count();
-        $data['total_tasks_today'] = Task::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('date', Carbon::now())->count();
-        $data['total_readings_submitted_today'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->whereDate('created_at', Carbon::now())->count();
+        $data['total_tasks'] = Task::whereIn('object_id', collect($objects->get())->map->id->toArray())->count();
+        $data['total_readings'] = Reading::whereIn('object_id', collect($objects->get())->map->id->toArray())->count();
         $objects = $objects->paginate(20);
         return view('objects.index', compact('objects', 'readingTypes', 'invoiceTypes', 'areas', 'remarks', 'data'));
     }
@@ -185,8 +185,9 @@ class ObjectsController extends Controller
         if ($request->has('date') && $request->date !== null) {
             $readings->where('visit_date', $request->date);
         }
-        $readings = $readings->orderBy('id', 'desc')->paginate(20);
-        return view('readings.index', compact('object', 'readings'));
+        $readings = $readings->orderBy('visit_date', 'desc')->paginate(20);
+        $tasks = Task::where('object_id', $object->id)->orderBy('date', 'desc')->paginate(20);
+        return view('readings.index', compact('object', 'readings', 'tasks'));
     }
 
     public function readingsDelete($objectId, $readingId)

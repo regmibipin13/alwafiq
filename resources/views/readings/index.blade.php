@@ -26,7 +26,40 @@
                     </nav>
                 </div>
             </div>
-
+            <div class="card">
+                <div class="card-header">
+                    Schedules of the object
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Visit Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (count($tasks))
+                                @foreach ($tasks as $task)
+                                    <tr>
+                                        <td>
+                                            {{ $task->date }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td>No Future Schedules for this tasks</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-header">
+                    {{ $tasks->links() }}
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <a href="{{ route('objects.edit', $object->id) }}" class="btn btn-success my-2">Edit this object</a>

@@ -39,12 +39,12 @@
                         <span>{{ $data['total_objects'] }}</span>
                     </div>
                     <div class="box border p-3">
-                        <h4>Total Tasks Today</h4>
-                        <span>{{ $data['total_tasks_today'] }}</span>
+                        <h4>Total Tasks</h4>
+                        <span>{{ $data['total_tasks'] }}</span>
                     </div>
                     <div class="box border p-3">
-                        <h4>Total Readings Today</h4>
-                        <span>{{ $data['total_readings_submitted_today'] }}</span>
+                        <h4>Total Readings</h4>
+                        <span>{{ $data['total_readings'] }}</span>
                     </div>
                 </div>
             </div>
