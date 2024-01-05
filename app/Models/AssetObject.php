@@ -21,13 +21,10 @@ class AssetObject extends Model
     public function getSchedulesAttribute()
     {
         $tasks = Task::where('object_id', $this->getKey())->orderBy('date', 'desc')->get();
-
         $schedules = [];
-
         foreach ($tasks as $task) {
             $schedules[] = Carbon::parse($task->date)->format('Y M d g:i A');
         }
-
         return $schedules;
     }
 
