@@ -1677,6 +1677,7 @@ namespace App\Models{
  * @property string|null $batch
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $schedules
  * @property-read \App\Models\Admin\Driver|null $rider
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
  * @property-read int|null $tasks_count

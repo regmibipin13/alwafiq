@@ -14,6 +14,23 @@ class AssetObject extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = [
+        'schedules',
+    ];
+
+    public function getSchedulesAttribute()
+    {
+        $tasks = Task::where('object_id', $this->getKey())->orderBy('date', 'desc')->get();
+
+        $schedules = [];
+
+        foreach ($tasks as $task) {
+            $schedules[] = Carbon::parse($task->date)->format('Y M d g:i A');
+        }
+
+        return $schedules;
+    }
+
     public function rider()
     {
         return $this->belongsTo(Driver::class, 'rider_id');
