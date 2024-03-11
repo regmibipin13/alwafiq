@@ -86,20 +86,20 @@ class AssetObjectImport implements ToCollection, WithHeadingRow
     {
         // dd(Date::excelToDateTimeObject($rows->first()['visit_date']));
         $keys = [
-            'contract_transaction',
+            // 'contract_transaction',
             'customer',
-            'meter_reading',
-            'billing_period',
-            'object_type',
-            'visiting_address',
-            'contact_name',
-            'phone_no',
-            'email',
-            'emirates',
-            'remarks_by_awds',
+            // 'meter_reading',
+            // 'billing_period',
+            // 'object_type',
+            // 'visiting_address',
+            // 'contact_name',
+            // 'phone_no',
+            // 'email',
+            // 'emirates',
+            // 'remarks_by_awds',
             // 'visit_date',
             'rider_assigned',
-            'google_address',
+            // 'google_address',
         ];
 
         // Check if all required keys are present in the first row of $rows
