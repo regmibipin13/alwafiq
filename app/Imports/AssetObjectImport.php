@@ -39,21 +39,21 @@ class AssetObjectImport implements ToCollection, WithHeadingRow
             $asset = AssetObject::updateOrCreate(
                 ['object_id' => $row['machine_id']], // Note the correction here
                 [
-                    'contract_transaction' => isset($row['contract_transaction']) ? $row['contract_transaction'] : '-',
-                    'customer' => isset($row['customer']) ? $row['customer'] : '-',
-                    'invoice_type' => isset($row['meter_reading']) ? $row['meter_reading'] : '-',
-                    'frequency' => isset($row['billing_period']) ? $row['billing_period'] : '-',
-                    'object_type' => isset($row['object_type']) ? $row['object_type'] : '-',
-                    'visiting_address' => isset($row['visiting_address']) ? $row['visiting_address'] : '-',
-                    'contact_name' => isset($row['contact_name']) ? $row['contact_name'] : '-',
-                    'phone' => isset($row['phone_no']) ? $row['phone_no'] : '-',
-                    'email' => isset($row['email']) ? $row['email'] : '-',
-                    'emirates' => isset($row['emirates']) ? $row['emirates'] : '-',
-                    'remarks' => isset($row['remarks_by_awds']) ? $row['remarks_by_awds'] : '-',
+                    'contract_transaction' => isset($row['contract_transaction']) ? $row['contract_transaction'] : 0,
+                    'customer' => isset($row['customer']) ? $row['customer'] : 0,
+                    'invoice_type' => isset($row['meter_reading']) ? $row['meter_reading'] : 0,
+                    'frequency' => isset($row['billing_period']) ? $row['billing_period'] : 0,
+                    'object_type' => isset($row['object_type']) ? $row['object_type'] : 0,
+                    'visiting_address' => isset($row['visiting_address']) ? $row['visiting_address'] : 0,
+                    'contact_name' => isset($row['contact_name']) ? $row['contact_name'] : 0,
+                    'phone' => isset($row['phone_no']) ? $row['phone_no'] : 0,
+                    'email' => isset($row['email']) ? $row['email'] : 0,
+                    'emirates' => isset($row['emirates']) ? $row['emirates'] : 0,
+                    'remarks' => isset($row['remarks_by_awds']) ? $row['remarks_by_awds'] : 0,
                     'last_visit_date' => isset($row['visit_date']) ? Carbon::parse($row['visit_date']) : null,
                     'rider_id' => $rider ? $rider->id : $rider,
-                    'batch' => isset($row['batch_no']) ? $row['batch_no'] : '-',
-                    'google_address' => isset($row['google_address']) ? $row['google_address'] : ''
+                    'batch' => isset($row['batch_no']) ? $row['batch_no'] : 0,
+                    'google_address' => isset($row['google_address']) ? $row['google_address'] : 0
                 ]
             );
             foreach ($this->readingTypes() as $key => $type) {
@@ -62,8 +62,8 @@ class AssetObjectImport implements ToCollection, WithHeadingRow
                     Reading::create([
                         'object_id' => $asset->id,
                         'reading_type_id' => $key,
-                        'reading_value' => $row[$type] ?? '-',
-                        'visit_date' => isset($row['visit_date']) ? $row['visit_date'] : (isset($row['submited_date']) ? $row['submited_date'] : ''),
+                        'reading_value' => $row[$type] ?? 0,
+                        'visit_date' => Carbon::now(),
                         'remarks' => isset($row['remarks']) ? $row['remarks'] : ''
                     ]);
                 }

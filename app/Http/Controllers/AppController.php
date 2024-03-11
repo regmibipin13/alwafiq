@@ -93,7 +93,13 @@ class AppController extends Controller
         $reading = Reading::create($sanitized);
 
         if ($request->has('image') && $request->image !== null) {
-            $reading->addMedia($request->image)->toMediaCollection();
+            if (is_array($request->image)) {
+                foreach ($request->image as $img) {
+                    $reading->addMedia($img)->toMediaCollection();
+                }
+            } else {
+                $reading->addMedia($request->image)->toMediaCollection();
+            }
         }
 
         if ($reading) {
