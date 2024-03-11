@@ -98,29 +98,31 @@
                     Rider Details
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <tbody>
+                    @if ($object->rider)
+                        <table class="table table-bordered">
+                            <tbody>
 
-                            <tr>
-                                <th>Rider</th>
-                                <td>{{ $object->rider->user->name }}</td>
-                            </tr>
+                                <tr>
+                                    <th>Rider</th>
+                                    <td>{{ $object->rider->user->name }}</td>
+                                </tr>
 
-                            <tr>
-                                <th>Visiting Address</th>
-                                <td>{{ $object->visiting_address }}</td>
-                            </tr>
-                            <tr>
-                                <th>Google Address</th>
-                                <td>{{ $object->google_address }}</td>
-                            </tr>
+                                <tr>
+                                    <th>Visiting Address</th>
+                                    <td>{{ $object->visiting_address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Google Address</th>
+                                    <td>{{ $object->google_address }}</td>
+                                </tr>
 
-                            <tr>
-                                <th>Month Wise Remarks</th>
-                                <td>{{ $object->month_wise_remarks }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <th>Month Wise Remarks</th>
+                                    <td>{{ $object->month_wise_remarks }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
             <div class="card my-4">
