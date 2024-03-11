@@ -97,7 +97,7 @@ class AssetObjectImport implements ToCollection, WithHeadingRow
             'email',
             'emirates',
             'remarks_by_awds',
-            'visit_date',
+            // 'visit_date',
             'rider_assigned',
             'google_address',
         ];
